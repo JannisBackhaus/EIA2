@@ -1,8 +1,8 @@
 namespace Aufgabe0_EIA2
 {
-    function main() 
+    function main()  
     {
-        var name = prompt("Wie darf ich dich nennen?");
+        var name : string = prompt("Wie darf ich dich nennen?");
         var node : any = document.getElementById("htmlcontent");
         var content: string = "";
         content+= "Moin ";

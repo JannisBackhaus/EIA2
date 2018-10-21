@@ -61,7 +61,9 @@ namespace deck {
 
         }
         let div_board: HTMLDivElement = document.createElement("div");
+        div_board.classList.add("div_board");
         let div_hand: HTMLDivElement = document.createElement("div");
+        div_hand.classList.add("div_hand");
         document.body.appendChild(div_board);
         div_board.appendChild(div_hand);
 
@@ -75,49 +77,66 @@ namespace deck {
             let t: number = (deck[a][1]);
             let c: number = (deck[a][0]);
             if (t = 0)
-                div.classList.add("blue")
+                div.classList.add("blue", "card")
             else if (t = 1)
-                div.classList.add("yellow")
+                div.classList.add("yellow", "card")
             else if (t = 2)
-                div.classList.add("green")
+                div.classList.add("green", "card")
             else if (t = 3)
-                div.classList.add("red")
-            else if (t = 4) 
-                div.classList.add("black")
-            if (c = 0)
-                div.classList.add("zero")
-            else if (c = 1)
-                div.classList.add("one")
-            else if (c = 2)
+                div.classList.add("red", "card")
+            else if (t = 4)
+                div.classList.add("black", "card")
+            if (c = 0) {
+                div.classList.add("zero");
+                div.innerHTML = "0";
+            }
+            else if (c = 1) {
+                div.classList.add("one");
+                div.innerHTML = "1";
+            }
+            else if (c = 2){
                 div.classList.add("two")
-            else if (c = 3)
+                div.innerHTML = "2";}
+            else if (c = 3){
                 div.classList.add("three")
-            else if (c = 4)
+                div.innerHTML = "3";}
+            else if (c = 4){
                 div.classList.add("four")
-            else if (c = 5)
+                div.innerHTML = "4";}
+            else if (c = 5){
                 div.classList.add("five")
-            else if (c = 6)
+                div.innerHTML = "5";}
+            else if (c = 6){
                 div.classList.add("six")
-            else if (c = 7)
+                div.innerHTML = "6";}
+            else if (c = 7){
                 div.classList.add("seven")
-            else if (c = 8)
+                div.innerHTML = "7";}
+            else if (c = 8){
                 div.classList.add("eight")
-            else if (c = 9)
+                div.innerHTML = "8";}
+            else if (c = 9){
                 div.classList.add("nine")
-            else if (c = 10)
+                div.innerHTML = "9";}
+            else if (c = 10){
                 div.classList.add("skip")
-            else if (c = 11)
+                div.innerHTML = "Aussetzen";}
+            else if (c = 11){
                 div.classList.add("direction")
-            else if (c = 12)
+                div.innerHTML = "Richtungswechsel";}
+            else if (c = 12){
                 div.classList.add("drawtwo")
-            else if (c = 13)
+                div.innerHTML = "+2";}
+            else if (c = 13){
                 div.classList.add("drawfour")
-            else if (c = 14)
+                div.innerHTML = "+4";}
+            else if (c = 14){
                 div.classList.add("choose")
-            
-            
-            
-            
+                div.innerHTML = "Farbwahl";}
+
+
+
+
 
         }
     }

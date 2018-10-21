@@ -1,0 +1,60 @@
+.div_hand {
+	position: fixed;
+	bottom: 0;
+	width: 60%;
+	height: 200px;
+	margin: 0% 20% 0% 20%;
+	border-width: 1px 1px 0px 1px;
+	border-style: solid;
+	border-color: black;
+	border-radius: 10px 10px 0px 0px;
+}
+
+.blue {
+	background-color: blue;
+}
+
+.yellow {
+	background-color: yellow;
+	font-family: Arial;
+	font-size: 3em;
+	color: black;
+}
+
+.green {
+	background-color: green;
+	font-family: Arial;
+	font-size: 3em;
+	color: black;
+}
+
+.red {
+	background-color: red;
+	font-family: Arial;
+	font-size: 3em;
+	color: black;
+}
+
+.black {
+	background-color: black;
+	font-family: Arial;
+	font-size: 3em;
+	color: white;
+}
+
+.card {
+	width: 132px;
+	height: 208px;
+	display: inline-block;
+	margin: 1%;
+	border-width: 1px 1px 1px 1px;
+	border-style: solid;
+	border-color: black;
+	border-radius: 10px 10px 10px 10px;
+	
+}
+
+p	{
+	font-family: Arial;
+	font-size: 2em;
+}

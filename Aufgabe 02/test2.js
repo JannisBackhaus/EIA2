@@ -13,33 +13,41 @@ var deck;
                 case 2:
                 case 3:
                     for (let typ = 0; typ < 13; typ++) {
-                        switch (typ) {
-                            case 0:
-                                deck[num] = [color, typ];
-                                num++;
-                                break;
-                            case 1:
-                            case 2:
-                            case 3:
-                            case 4:
-                            case 5:
-                            case 6:
-                            case 7:
-                            case 8:
-                            case 9:
-                            case 10:
-                            case 11:
-                            case 12:
-                                for (let i = 0; i < 2; i++) {
-                                    deck[num] = [color, typ];
-                                    num++;
-                                }
-                                break;
-                            default:
-                                console.log("Something's wrong. -> typ-Switch");
+                        for (let i = 0; i < 2; i++) {
+                            deck[num] = [color, typ];
+                            num++;
+                            if (typ == 0)
                                 break;
                         }
                     }
+                    //                    for (let typ: number = 0; typ < 13; typ++) {
+                    //                        switch (typ) {
+                    //                            case 0:
+                    //                                deck[num] = [color, typ];
+                    //                                num++;
+                    //                                break;
+                    //                            case 1:
+                    //                            case 2:
+                    //                            case 3:
+                    //                            case 4:
+                    //                            case 5:
+                    //                            case 6:
+                    //                            case 7:
+                    //                            case 8:
+                    //                            case 9:
+                    //                            case 10:
+                    //                            case 11:
+                    //                            case 12:
+                    //                                for (let i: number = 0; i < 2; i++) {
+                    //                                    deck[num] = [color, typ];
+                    //                                    num++;
+                    //                                }
+                    //                                break;
+                    //                            default:
+                    //                                console.log("Something's wrong. -> typ-Switch");
+                    //                                break;
+                    //                        }
+                    //                    }
                     break;
                 case 4:
                     for (let typ = 13; typ < 15; typ++) {
@@ -71,9 +79,9 @@ var deck;
         div_board.appendChild(div_tray);
         div_stack.id = ("div_stack");
         let uno_img = document.createElement("img");
-        uno_img.setAttribute("src", "img/UNO.jpg");
+        uno_img.setAttribute("src", "img/UNO.png");
         uno_img.setAttribute("height", "208px");
-        uno_img.setAttribute("width", "132px");
+        uno_img.setAttribute("width", "155px");
         uno_img.setAttribute("alt", "uno");
         document.getElementById("div_stack").appendChild(uno_img);
         let cards = parseInt(prompt("Wie viele Karten willst du ziehen?"), 10);

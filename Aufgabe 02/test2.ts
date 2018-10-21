@@ -157,8 +157,8 @@ namespace deck {
                 case 11:
                     div.classList.add("direction")
                     div.innerHTML = "<->";
-                    break;
-
+                    break; 
+ 
                 case 12:
                     div.classList.add("drawtwo")
                     div.innerHTML = "+2";

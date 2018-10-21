@@ -82,7 +82,7 @@ namespace deck {
                 div.classList.add("green")
             else if (t = 3)
                 div.classList.add("red")
-            else if (t = 4)
+            else if (t = 4) 
                 div.classList.add("black")
             if (c = 0)
                 div.classList.add("zero")

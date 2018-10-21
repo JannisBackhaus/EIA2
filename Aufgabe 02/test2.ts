@@ -170,7 +170,7 @@ namespace deck {
                     break;
 
                 case 14:
-                    div.classList.add("choose");
+                    div.classList.add("choose"); 
                     div.innerHTML = "choose";
                     break;
             }

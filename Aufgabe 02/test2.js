@@ -55,11 +55,27 @@ var deck;
             }
         }
         let div_board = document.createElement("div");
-        div_board.classList.add("div_board");
+        let div_stack = document.createElement("div");
         let div_hand = document.createElement("div");
+        let div_deck = document.createElement("div");
+        let div_tray = document.createElement("div");
         div_hand.classList.add("div_hand");
+        div_board.classList.add("div_board");
+        div_stack.classList.add("div_stack");
+        div_deck.classList.add("div_deck");
+        div_tray.classList.add("div_tray");
         document.body.appendChild(div_board);
         div_board.appendChild(div_hand);
+        div_board.appendChild(div_stack);
+        div_board.appendChild(div_deck);
+        div_board.appendChild(div_tray);
+        div_stack.id = ("div_stack");
+        let uno_img = document.createElement("img");
+        uno_img.setAttribute("src", "img/UNO.jpg");
+        uno_img.setAttribute("height", "208px");
+        uno_img.setAttribute("width", "132px");
+        uno_img.setAttribute("alt", "uno");
+        document.getElementById("div_stack").appendChild(uno_img);
         let cards = parseInt(prompt("Wie viele Karten willst du ziehen?"), 10);
         for (let i = 0; i < cards; i++) {
             let div = document.createElement("div");

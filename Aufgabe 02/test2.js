@@ -77,6 +77,36 @@ var deck;
                 div.classList.add("red");
             else if (t = 4)
                 div.classList.add("black");
+            if (c = 0)
+                div.classList.add("zero");
+            else if (c = 1)
+                div.classList.add("one");
+            else if (c = 2)
+                div.classList.add("two");
+            else if (c = 3)
+                div.classList.add("three");
+            else if (c = 4)
+                div.classList.add("four");
+            else if (c = 5)
+                div.classList.add("five");
+            else if (c = 6)
+                div.classList.add("six");
+            else if (c = 7)
+                div.classList.add("seven");
+            else if (c = 8)
+                div.classList.add("eight");
+            else if (c = 9)
+                div.classList.add("nine");
+            else if (c = 10)
+                div.classList.add("skip");
+            else if (c = 11)
+                div.classList.add("direction");
+            else if (c = 12)
+                div.classList.add("drawtwo");
+            else if (c = 13)
+                div.classList.add("drawfour");
+            else if (c = 14)
+                div.classList.add("choose");
         }
     }
     //generateRandom(0,deck.length)

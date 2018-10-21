@@ -68,14 +68,17 @@ namespace deck {
         div_board.appendChild(div_hand);
 
         let cards = parseInt(prompt("Wie viele Karten willst du ziehen?"), 10);
-        let content: string;
         for (let i: number = 0; i < cards; i++) {
             let div: HTMLDivElement = document.createElement("div");
             div_hand.appendChild(div);
             let a: number = generateRandom(0, deck.length);
             console.log(a);
-            let t: number = (deck[a][1]);
-            let c: number = (deck[a][0]);
+            hand[i]=deck[a];
+            console.log(hand);
+            deck.splice(a,1);
+            console.log(deck);
+            let t: number = (hand[i][1]);
+            let c: number = (hand[i][0]);
             if (t = 0)
                 div.classList.add("blue", "card")
             else if (t = 1)

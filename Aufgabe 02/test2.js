@@ -61,14 +61,17 @@ var deck;
         document.body.appendChild(div_board);
         div_board.appendChild(div_hand);
         let cards = parseInt(prompt("Wie viele Karten willst du ziehen?"), 10);
-        let content;
         for (let i = 0; i < cards; i++) {
             let div = document.createElement("div");
             div_hand.appendChild(div);
             let a = generateRandom(0, deck.length);
             console.log(a);
-            let t = (deck[a][1]);
-            let c = (deck[a][0]);
+            hand[i] = deck[a];
+            console.log(hand);
+            deck.splice(a, 1);
+            console.log(deck);
+            let t = (hand[i][1]);
+            let c = (hand[i][0]);
             if (t = 0)
                 div.classList.add("blue", "card");
             else if (t = 1)

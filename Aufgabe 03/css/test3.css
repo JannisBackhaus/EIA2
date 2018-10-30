@@ -55,7 +55,7 @@
 
 .divouter {
 	width: 155px;
-	height: 208px;
+	height: 241px;
 	display: inline-block;
 	margin: 1%;
 	border-width: 1px 1px 1px 1px;
@@ -74,29 +74,36 @@
 .blue {
 	background-color: blue;
 	color: white;
+	z-index: 1;
 }
 
 .yellow {
 	background-color: #ffdf00;
 	color: white;
+	z-index: 1;
 }
 
 .green {
 	background-color: green;
 	color: white;
+	z-index: 1;
 }
 
 .red {
 	background-color: red;
 	color: white;
+	z-index: 1;
 }
 
 .black {
 	background-color: black;
 	color: white;
+	z-index: 1;
+	
 }
 
 .divinner {
+	display:none;
 	width: 135px;
 	height: 188px;
 	position: relative;
@@ -104,6 +111,12 @@
 	left: 10px;
 	border-radius: 5px;
 	margin:0px;
+}
+
+.divouter img {
+	width: 155px;
+	height: 241px;
+	z-index: 100;
 }
 
 .cardcontent {
@@ -114,4 +127,3 @@
 	padding: 5px;
 	text-shadow: 2px 2px 0px #000000;
 }
-

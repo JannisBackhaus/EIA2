@@ -2,6 +2,7 @@ var deck;
 (function (deck_1) {
     let deck = [];
     let hand = [];
+    let tray = [];
     let num = 0;
     function generateDeck() {
         // Zahlen (0 - 9); Aussetzen (10); Richtungswechsel (11); 2-Ziehen (12); 4-Ziehen (13); Farbwahl (14);
@@ -141,18 +142,28 @@ var deck;
         generateDeck();
         let cards = parseInt(prompt("Wie viele Karten willst du ziehen?"), 10);
         drawCard(cards);
+        console.log("Handkarten: " + document.getElementById("div_hand").children.length);
     }
     function generateRandom(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min;
     }
-    function clickHandler() {
-        console.log("click on cards");
+    function clickHandler(_event) {
+        console.log(_event);
+        let cardnode = _event.target;
+        let cardindex = Array.from(cardnode.parentNode.children).indexOf(cardnode);
+        console.log("cardindex =" + cardindex);
     }
-    console.log(deck);
-    var x = document.getElementsByClassName("divouter");
-    document.addEventListener("click", clickHandler);
+    function sortHand() {
+        hand.sort();
+        console.log(hand);
+    }
+    document.addEventListener('DOMContentLoaded', generateDeck);
     document.addEventListener('DOMContentLoaded', drawCardInitial);
+    //document.addEventListener('click', clickHandler);
+    let button = document.getElementById("sort");
+    button.addEventListener('click', sortHand);
+    console.log(deck);
 })(deck || (deck = {}));
 //# sourceMappingURL=test2.js.map

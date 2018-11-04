@@ -35,9 +35,9 @@ namespace deck {
                 default:
                     console.log("Something's wrong. -> color-Switch");
                     break;
-            } 
+            }
 
- 
+
 
         }
     }
@@ -48,11 +48,11 @@ namespace deck {
             document.getElementById("div_hand").appendChild(divouter);
             let divinner: HTMLDivElement = document.createElement("div");
             divouter.appendChild(divinner);
-            divouter.classList.add("divouter");  
+            divouter.classList.add("divouter");
             let para: HTMLParagraphElement = document.createElement("p");
-            para.classList.add("cardcontent");  
+            para.classList.add("cardcontent");
             divinner.appendChild(para);
-            
+
             let a: number = generateRandom(0, deck.length);
             console.log(a);
             hand[i] = deck[a];
@@ -62,7 +62,7 @@ namespace deck {
             let c: number = (hand[i][0]);
             let t: number = (hand[i][1]);
             console.log("hand-Array: " + hand[i]);
-            console.log("c: " + c);  
+            console.log("c: " + c);
             console.log("t: " + t);
             switch (c) {
                 case 0:
@@ -91,7 +91,7 @@ namespace deck {
                     para.innerHTML = "1";
                     break;
 
-                case 2: 
+                case 2:
                     divinner.classList.add("two")
                     para.innerHTML = "2";
                     break;
@@ -152,7 +152,7 @@ namespace deck {
                     break;
 
                 case 14:
-                    divinner.classList.add("choose"); 
+                    divinner.classList.add("choose");
                     para.innerHTML = "choose";
                     break;
             }
@@ -165,7 +165,7 @@ namespace deck {
         generateDeck();
         let cards = parseInt(prompt("Wie viele Karten willst du ziehen?"), 10);
         drawCard(cards);
-        
+
     }
 
     function generateRandom(min: number, max: number) {
@@ -174,8 +174,12 @@ namespace deck {
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
+    function clickHandler(): void {
+        console.log("click on cards");
+    }
 
     console.log(deck);
-
+    var x = document.getElementsByClassName("divouter");
+    document.addEventListener("click", clickHandler)
     document.addEventListener('DOMContentLoaded', drawCardInitial);
 }

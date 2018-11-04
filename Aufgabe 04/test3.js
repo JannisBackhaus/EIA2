@@ -58,33 +58,45 @@ var deck;
             console.log("t: " + t);
             switch (c) {
                 case 0:
-                    divinner.classList.add("blue", "divinner");
+                    divouter.classList.add("blue", "divinner");
                     break;
                 case 1:
-                    divinner.classList.add("yellow", "divinner");
+                    divouter.classList.add("yellow", "divinner");
                     break;
                 case 2:
-                    divinner.classList.add("green", "divinner");
+                    divouter.classList.add("green", "divinner");
                     break;
                 case 3:
-                    divinner.classList.add("red", "divinner");
+                    divouter.classList.add("red", "divinner");
                     break;
                 case 4:
-                    divinner.classList.add("black", "divinner");
+                    divouter.classList.add("black", "divinner");
                     break;
             }
             switch (t) {
                 case 0:
                     divinner.classList.add("zero");
                     para.innerHTML = "0";
+                    let image_a = document.createElement("img");
+                    image_a.setAttribute("src", "img/0.png");
+                    image_a.setAttribute("alt", "zero");
+                    divouter.appendChild(image_a);
                     break;
                 case 1:
                     divinner.classList.add("one");
                     para.innerHTML = "1";
+                    let image_b = document.createElement("img");
+                    image_b.setAttribute("src", "img/1.png");
+                    image_b.setAttribute("alt", "one");
+                    divouter.appendChild(image_b);
                     break;
                 case 2:
                     divinner.classList.add("two");
                     para.innerHTML = "2";
+                    let image_c = document.createElement("img");
+                    image_c.setAttribute("src", "img/2.png");
+                    image_c.setAttribute("alt", "two");
+                    divouter.appendChild(image_c);
                     break;
                 case 3:
                     divinner.classList.add("three");
@@ -147,12 +159,7 @@ var deck;
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min;
     }
-    function clickHandler() {
-        console.log("click on cards");
-    }
     console.log(deck);
-    var x = document.getElementsByClassName("divouter");
-    document.addEventListener("click", clickHandler);
     document.addEventListener('DOMContentLoaded', drawCardInitial);
 })(deck || (deck = {}));
-//# sourceMappingURL=test2.js.map
+//# sourceMappingURL=test3.js.map

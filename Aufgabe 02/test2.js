@@ -20,34 +20,6 @@ var deck;
                                 break;
                         }
                     }
-                    //                    for (let typ: number = 0; typ < 13; typ++) {
-                    //                        switch (typ) {
-                    //                            case 0:
-                    //                                deck[num] = [color, typ];
-                    //                                num++;
-                    //                                break;
-                    //                            case 1:
-                    //                            case 2:
-                    //                            case 3:
-                    //                            case 4:
-                    //                            case 5:
-                    //                            case 6:
-                    //                            case 7:
-                    //                            case 8:
-                    //                            case 9:
-                    //                            case 10:
-                    //                            case 11:
-                    //                            case 12:
-                    //                                for (let i: number = 0; i < 2; i++) {
-                    //                                    deck[num] = [color, typ];
-                    //                                    num++;
-                    //                                }
-                    //                                break;
-                    //                            default:
-                    //                                console.log("Something's wrong. -> typ-Switch");
-                    //                                break;
-                    //                        }
-                    //                    }
                     break;
                 case 4:
                     for (let typ = 13; typ < 15; typ++) {
@@ -62,6 +34,8 @@ var deck;
                     break;
             }
         }
+    }
+    function createHTMLgeneral() {
         let div_board = document.createElement("div");
         let div_stack = document.createElement("div");
         let div_hand = document.createElement("div");
@@ -84,6 +58,8 @@ var deck;
         uno_img.setAttribute("width", "155px");
         uno_img.setAttribute("alt", "uno");
         document.getElementById("div_stack").appendChild(uno_img);
+    }
+    function drawCards() {
         let cards = parseInt(prompt("Wie viele Karten willst du ziehen?"), 10);
         for (let i = 0; i < cards; i++) {
             let div = document.createElement("div");
@@ -179,13 +155,13 @@ var deck;
                     break;
             }
         }
+        function generateRandom(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+        console.log(deck);
+        document.addEventListener('DOMContentLoaded', generateDeck);
     }
-    function generateRandom(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min)) + min;
-    }
-    console.log(deck);
-    document.addEventListener('DOMContentLoaded', generateDeck);
 })(deck || (deck = {}));
 //# sourceMappingURL=test2.js.map

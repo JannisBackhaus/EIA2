@@ -22,34 +22,6 @@ namespace deck {
                                 break;
                         }
                     }
-                    //                    for (let typ: number = 0; typ < 13; typ++) {
-                    //                        switch (typ) {
-                    //                            case 0:
-                    //                                deck[num] = [color, typ];
-                    //                                num++;
-                    //                                break;
-                    //                            case 1:
-                    //                            case 2:
-                    //                            case 3:
-                    //                            case 4:
-                    //                            case 5:
-                    //                            case 6:
-                    //                            case 7:
-                    //                            case 8:
-                    //                            case 9:
-                    //                            case 10:
-                    //                            case 11:
-                    //                            case 12:
-                    //                                for (let i: number = 0; i < 2; i++) {
-                    //                                    deck[num] = [color, typ];
-                    //                                    num++;
-                    //                                }
-                    //                                break;
-                    //                            default:
-                    //                                console.log("Something's wrong. -> typ-Switch");
-                    //                                break;
-                    //                        }
-                    //                    }
                     break;
                 case 4:
                     for (let typ: number = 13; typ < 15; typ++) {
@@ -68,6 +40,10 @@ namespace deck {
 
 
         }
+
+    }
+
+    function createHTMLgeneral() {
         let div_board: HTMLDivElement = document.createElement("div");
         let div_stack: HTMLDivElement = document.createElement("div");
         let div_hand: HTMLDivElement = document.createElement("div");
@@ -93,7 +69,9 @@ namespace deck {
         uno_img.setAttribute("width", "155px");
         uno_img.setAttribute("alt", "uno");
         document.getElementById("div_stack").appendChild(uno_img);
+    }
 
+    function drawCards() {
         let cards = parseInt(prompt("Wie viele Karten willst du ziehen?"), 10);
         for (let i: number = 0; i < cards; i++) {
             let div: HTMLDivElement = document.createElement("div");
@@ -204,16 +182,16 @@ namespace deck {
 
 
         }
+
+        function generateRandom(min: number, max: number) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+
+        console.log(deck);
+
+        document.addEventListener('DOMContentLoaded', generateDeck);
     }
-
-    function generateRandom(min: number, max: number) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min)) + min;
-    }
-
-
-    console.log(deck);
-
-    document.addEventListener('DOMContentLoaded', generateDeck);
 }

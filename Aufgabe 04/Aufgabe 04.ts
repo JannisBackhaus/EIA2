@@ -64,9 +64,13 @@ namespace Aufgabe04 {
     }
 
     function displayHand(): void {
-        let node: HTMLElement = document.getElementById("div_deck")
-        for (let i: number=0; i< Array.from(node.children).length; i++)
+        let node: HTMLElement = document.getElementById("div_hand")
+        console.log(node.firstChild);
+        console.log(hand);
+        while(node.firstChild != null)
             {node.removeChild(node.firstChild)}
+//        for (let i: number=0; i < Array.from(node.children).length; i++)
+//            {node.removeChild(node.firstChild)}
         for (let i: number = 0; i < hand.length; i++) {
                 let div: HTMLDivElement = document.createElement("div");
                 let para: HTMLParagraphElement = document.createElement("p");

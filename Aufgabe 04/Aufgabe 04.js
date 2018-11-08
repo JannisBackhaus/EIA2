@@ -53,10 +53,14 @@ var Aufgabe04;
         drawCard(cards);
     }
     function displayHand() {
-        let node = document.getElementById("div_deck");
-        for (let i = 0; i < Array.from(node.children).length; i++) {
+        let node = document.getElementById("div_hand");
+        console.log(node.firstChild);
+        console.log(hand);
+        while (node.firstChild != null) {
             node.removeChild(node.firstChild);
         }
+        //        for (let i: number=0; i < Array.from(node.children).length; i++)
+        //            {node.removeChild(node.firstChild)}
         for (let i = 0; i < hand.length; i++) {
             let div = document.createElement("div");
             let para = document.createElement("p");

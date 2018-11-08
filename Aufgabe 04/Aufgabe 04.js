@@ -36,23 +36,27 @@ var Aufgabe04;
             }
         }
     }
-    function drawOneCard() {
-        let rnum = generateRandom(0, deck.length);
-        hand.push([deck[rnum][0], deck[rnum][1]]);
-        deck.splice(rnum, 1);
-        console.log("Card drawn: " + hand[hand.length - 1]);
-        displayHand();
+    function drawOne() {
+        drawCard(1);
     }
-    function initialCardDraw() {
-        let cards = parseInt(prompt("Wie viele Karten willst du ziehen?"), 10);
-        for (let i = 0; i < cards; i++) {
+    function drawCard(a) {
+        for (let i = 0; i < a; i++) {
             let rnum = generateRandom(0, deck.length);
             hand.push([deck[rnum][0], deck[rnum][1]]);
             deck.splice(rnum, 1);
             console.log("Card drawn: " + hand[hand.length - 1]);
         }
+        displayHand();
+    }
+    function initialCardDraw() {
+        let cards = parseInt(prompt("Wie viele Karten willst du ziehen?"), 10);
+        drawCard(cards);
     }
     function displayHand() {
+        let node = document.getElementById("div_deck");
+        for (let i = 0; i < Array.from(node.children).length; i++) {
+            node.removeChild(node.firstChild);
+        }
         for (let i = 0; i < hand.length; i++) {
             let div = document.createElement("div");
             let para = document.createElement("p");
@@ -62,14 +66,29 @@ var Aufgabe04;
             div.appendChild(para);
             let t = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "skip", "direction", "drawtwo", "drawfour", "choose"];
             let c = ["blue", "yellow", "green", "red", "black"];
+            let content = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "<=>", "+2", "+4", "?"];
             let index_c = hand[i][0];
             let index_t = hand[i][1];
             div.classList.add(t[index_t]);
             div.classList.add(c[index_c]);
+            para.innerHTML = content[index_c];
             div.setAttribute("id", "card" + i);
         }
     }
     function displayTray() {
+        let div = document.createElement("div");
+        let para = document.createElement("p");
+        div.classList.add("card");
+        para.classList.add("cardcontent");
+        document.getElementById("div_hand").appendChild(div);
+        div.appendChild(para);
+        let t = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "skip", "direction", "drawtwo", "drawfour", "choose"];
+        let c = ["blue", "yellow", "green", "red", "black"];
+        let index_c = tray[(tray.length - 1)][0];
+        let index_t = tray[(tray.length - 1)][1];
+        div.classList.add(t[index_t]);
+        div.classList.add(c[index_c]);
+        div.setAttribute("id", "traytop");
     }
     function generateRandom(min, max) {
         min = Math.ceil(min);
@@ -84,8 +103,12 @@ var Aufgabe04;
         displayHand();
         displayTray();
     }
-    document.addEventListener("DOMContentLoaded", generateDeck);
-    document.addEventListener("DOMContentLoaded", initialCardDraw);
-    document.getElementById("div_deck").addEventListener("click", drawOneCard);
+    function main() {
+        generateDeck();
+        initialCardDraw();
+        document.getElementById("div_deck").addEventListener("click", drawOne);
+        document.getElementById("div_hand").addEventListener("click", playCard);
+    }
+    document.addEventListener("DOMContentLoaded", main);
 })(Aufgabe04 || (Aufgabe04 = {}));
 //# sourceMappingURL=Aufgabe 04.js.map

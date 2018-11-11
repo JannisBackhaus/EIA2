@@ -53,9 +53,9 @@ namespace Aufgabe04 {
         }
         displayHand();
     }
-    function keyboardDraw(_event: KeyboardEvent){
-            if (_event.keyCode == 32)
-                {drawCard(1);}
+    function keyboardDraw(_event: KeyboardEvent) {
+        if (_event.keyCode == 32)
+        { drawCard(1); }
     }
     function initialCardDraw(): void {
         let cards = parseInt(prompt("Wie viele Karten willst du ziehen?"), 10);
@@ -90,13 +90,9 @@ namespace Aufgabe04 {
             div.classList.add(c[index_c]);
             para.innerHTML = content[index_t];
             div.setAttribute("id", "card" + i);
-            
-            let card_count : HTMLElement = document.getElementById("p_cardcount");
-            card_count.innerHTML=("" + hand.length); 
-            if (hand.length == 0)
-                card_count.innerHTML=("0"); 
-
-        } 
+        }
+        let card_count: HTMLElement = document.getElementById("p_cardcount");
+        card_count.innerHTML = ("" + hand.length);
         dynamicHand();
     }
     function dynamicHand() {
@@ -113,9 +109,9 @@ namespace Aufgabe04 {
             if (hand.length * div_card_width * 1.1212 > div_hand_width) {
                 console.log("css active")
                 //document.getElementById("card" + i).style.left = (k *(1-(div_card_width/div_hand_width)))+ "px";
-                document.getElementById("card" + i).style.left =  (i * 155 - i * (40 * (hand.length*(div_card_width/div_hand_width))))  + "px";
+                document.getElementById("card" + i).style.left = (i * 155 - i * (40 * (hand.length * (div_card_width / div_hand_width)))) + "px";
             }
-            
+
         }
     };
     function displayTray() {
@@ -180,6 +176,6 @@ namespace Aufgabe04 {
         document.getElementById("div_sort").addEventListener("click", sortHandByColor)
         window.addEventListener('resize', dynamicHand)
     }
-    
+
     document.addEventListener("DOMContentLoaded", main);
 } 

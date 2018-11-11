@@ -8,13 +8,21 @@
 	border-style: solid;
 	border-color: black;
 	border-radius: 10px 10px 0px 0px;
+	overflow: hidden;
 }
 
 #title {
 	font-family: Arial;
-	font-size: 2em;
+	font-size: 5em;
 	left: 10%;
 	position: absolute;
+	font-weight: bold;
+	color: #FFD200;
+	text-shadow: -2px -2px 0px #000000, 1px 1px 0px #000000, 2px 2px 0px
+		#000000, 3px 3px 0px #000000, 4px 4px 0px #000000, 4px 4px 0px #000000,
+		5px 5px 0px #000000, 6px 6px 0px #000000, -2px 2px 0px #000000, 2px
+		-1px 0px #000000;
+
 }
 
 #div_deck {
@@ -47,64 +55,104 @@
 	-moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.6);
 	box-shadow: 0px 0px 12px 0px srgba(0, 0, 0, 0.6);
 }
-
+ 
 #div_deck img {
 	height: 208px;
 	width: 155px;
 }
 
 .card {
-	width: 155px;
+	width: 155px; 
 	height: 208px;
-	display: inline-block;
 	margin: 1%;
 	border-width: 1px 1px 1px 1px;
 	border-style: solid;
 	border-color: black;
 	border-radius: 10px 10px 10px 10px;
-	bottom: 0px;
+	top: 0px;
 	vertical-align: middle;
-	position: static;
+	position: absolute;
 	background-color: white;
 	-webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.6);
 	-moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.6);
 	box-shadow: 0px 0px 12px 0px srgba(0, 0, 0, 0.6);
 }
 
+.card:hover {
+	
+}
+
 .blue {
 	background-color: blue;
+	transition: background-color 0.15s ease 0s;
 	color: white;
+}
+
+.blue:hover {
+	background-color: #3535ff;
 }
 
 .yellow {
 	background-color: #ffdf00;
+	transition: background-color 0.15s ease 0s;
 	color: white;
+}
+
+.yellow:hover {
+	background-color: #ffe842;
 }
 
 .green {
 	background-color: green;
+	transition: background-color 0.15s ease 0s;
 	color: white;
+}
+
+.green:hover {
+	background-color: #00a600;
 }
 
 .red {
 	background-color: red;
+	transition: background-color 0.15s ease 0s;
 	color: white;
+}
+
+.red:hover {
+	background-color: #ff3e3e;
 }
 
 .black {
 	background-color: black;
+	transition: background-color 0.15s ease 0s;
 	color: white;
 }
 
-
+.black:hover {
+	background-color: #353535;
+}
 
 .cardcontent {
 	font-family: Arial;
 	font-size: 2em;
 	position: relative;
- 	margin: 0px;
+	margin: 0px;
 	padding: 5px;
 	text-shadow: 2px 2px 0px #000000;
 	z-index: 15;
 }
 
+#div_sort {
+	border-width: 1px 1px 1px 1px;
+	border-style: solid;
+	border-color: black;
+	border-radius: 3px;
+	padding: 5px 15px 5px 15px;
+	font-family: Arial;
+	display: inline-block;
+	position: absolute;
+	right: 13%;
+	bottom: 20%;
+	background-color: #f2f2f2;
+	font-weight: bold;
+}

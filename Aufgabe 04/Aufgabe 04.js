@@ -59,8 +59,6 @@ var Aufgabe04;
         while (node.firstChild != null) {
             node.removeChild(node.firstChild);
         }
-        //        for (let i: number=0; i < Array.from(node.children).length; i++)
-        //            {node.removeChild(node.firstChild)}
         for (let i = 0; i < hand.length; i++) {
             let div = document.createElement("div");
             let para = document.createElement("p");
@@ -75,23 +73,50 @@ var Aufgabe04;
             let index_t = hand[i][1];
             div.classList.add(t[index_t]);
             div.classList.add(c[index_c]);
-            para.innerHTML = content[index_c];
+            para.innerHTML = content[index_t];
             div.setAttribute("id", "card" + i);
         }
+        dynamicHand();
     }
+    function dynamicHand() {
+        for (let i = 0; i < hand.length; i++) {
+            let k = (i * 155 + i * 15);
+            document.getElementById("card" + i).style.left = k + "px";
+            let div_hand_node = document.getElementById("div_hand");
+            let div_hand_width = parseInt(window.getComputedStyle(div_hand_node).getPropertyValue("width"));
+            console.log("div_hand_width: " + div_hand_width);
+            let div_card_node = div_hand_node.firstElementChild;
+            let div_card_width = parseInt(window.getComputedStyle(div_card_node).getPropertyValue("width"));
+            console.log("div_card_width: " + div_card_width);
+            if (hand.length * div_card_width * 1.1212 > div_hand_width) {
+                console.log("css active");
+                //document.getElementById("card" + i).style.left = (k *(1-(div_card_width/div_hand_width)))+ "px";
+                document.getElementById("card" + i).style.left = +"px";
+            }
+        }
+    }
+    ;
     function displayTray() {
+        let node = document.getElementById("div_tray");
+        console.log(node.firstChild);
+        console.log(hand);
+        while (node.firstChild != null) {
+            node.removeChild(node.firstChild);
+        }
         let div = document.createElement("div");
         let para = document.createElement("p");
         div.classList.add("card");
         para.classList.add("cardcontent");
-        document.getElementById("div_hand").appendChild(div);
+        document.getElementById("div_tray").appendChild(div);
         div.appendChild(para);
         let t = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "skip", "direction", "drawtwo", "drawfour", "choose"];
         let c = ["blue", "yellow", "green", "red", "black"];
+        let content = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "<=>", "+2", "+4", "?"];
         let index_c = tray[(tray.length - 1)][0];
         let index_t = tray[(tray.length - 1)][1];
         div.classList.add(t[index_t]);
         div.classList.add(c[index_c]);
+        para.innerHTML = content[index_t];
         div.setAttribute("id", "traytop");
     }
     function generateRandom(min, max) {
@@ -102,16 +127,29 @@ var Aufgabe04;
     function playCard(_event) {
         let cardnode = _event.target;
         let cardindex = Array.from(cardnode.parentNode.children).indexOf(cardnode);
-        tray.push([hand[cardindex][0], hand[cardindex][1]]);
-        hand.splice(cardindex, 1);
+        console.log("CARDNODE: " + cardnode.id);
+        if (cardnode.id != "div_hand") {
+            tray.push([hand[cardindex][0], hand[cardindex][1]]);
+            hand.splice(cardindex, 1);
+            displayHand();
+            displayTray();
+        }
+    }
+    function sortHandByColor() {
+        hand.sort(function (a, b) {
+            var x = a[0];
+            var y = b[0];
+            return x - y;
+        });
         displayHand();
-        displayTray();
     }
     function main() {
         generateDeck();
         initialCardDraw();
         document.getElementById("div_deck").addEventListener("click", drawOne);
         document.getElementById("div_hand").addEventListener("click", playCard);
+        document.getElementById("div_sort").addEventListener("click", sortHandByColor);
+        window.addEventListener('resize', dynamicHand);
     }
     document.addEventListener("DOMContentLoaded", main);
 })(Aufgabe04 || (Aufgabe04 = {}));

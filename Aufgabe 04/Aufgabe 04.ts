@@ -33,14 +33,10 @@ namespace Aufgabe04 {
                         }
                     }
                     break;
-
                 default:
                     console.log("Something's wrong. -> color-Switch");
                     break;
             }
-
-
-
         }
     }
 
@@ -67,52 +63,78 @@ namespace Aufgabe04 {
         let node: HTMLElement = document.getElementById("div_hand")
         console.log(node.firstChild);
         console.log(hand);
-        while(node.firstChild != null)
-            {node.removeChild(node.firstChild)}
-//        for (let i: number=0; i < Array.from(node.children).length; i++)
-//            {node.removeChild(node.firstChild)}
+        while (node.firstChild != null)
+        { node.removeChild(node.firstChild) }
+
         for (let i: number = 0; i < hand.length; i++) {
-                let div: HTMLDivElement = document.createElement("div");
-                let para: HTMLParagraphElement = document.createElement("p");
+            let div: HTMLDivElement = document.createElement("div");
+            let para: HTMLParagraphElement = document.createElement("p");
 
-                div.classList.add("card");
-                para.classList.add("cardcontent");
+            div.classList.add("card");
+            para.classList.add("cardcontent");
 
-                document.getElementById("div_hand").appendChild(div);
-                div.appendChild(para);
+            document.getElementById("div_hand").appendChild(div);
+            div.appendChild(para);
 
-                let t: string[] = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "skip", "direction", "drawtwo", "drawfour", "choose"];
-                let c: string[] = ["blue", "yellow", "green", "red", "black"];
-                let content: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "<=>", "+2", "+4", "?"];
+            let t: string[] = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "skip", "direction", "drawtwo", "drawfour", "choose"];
+            let c: string[] = ["blue", "yellow", "green", "red", "black"];
+            let content: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "<=>", "+2", "+4", "?"];
 
-                let index_c: number = hand[i][0];
-                let index_t: number = hand[i][1];
+            let index_c: number = hand[i][0];
+            let index_t: number = hand[i][1];
 
-                div.classList.add(t[index_t]);
-                div.classList.add(c[index_c]);
-                para.innerHTML = content[index_c];
-                div.setAttribute("id", "card" + i);
-            }
+            div.classList.add(t[index_t]);
+            div.classList.add(c[index_c]);
+            para.innerHTML = content[index_t];
+            div.setAttribute("id", "card" + i);
+
+
+        }
+        dynamicHand();
     }
+    function dynamicHand() {
+        for (let i: number = 0; i < hand.length; i++) {
+            let k: number = (i * 155 + i * 15);
+            document.getElementById("card" + i).style.left = k + "px";
 
+            let div_hand_node: HTMLElement = document.getElementById("div_hand");
+            let div_hand_width: number = parseInt(window.getComputedStyle(div_hand_node).getPropertyValue("width"));
+            console.log("div_hand_width: " + div_hand_width)
+            let div_card_node: Element = div_hand_node.firstElementChild;
+            let div_card_width: number = parseInt(window.getComputedStyle(div_card_node).getPropertyValue("width"));
+            console.log("div_card_width: " + div_card_width)
+            if (hand.length * div_card_width * 1.1212 > div_hand_width) {
+                console.log("css active")
+                //document.getElementById("card" + i).style.left = (k *(1-(div_card_width/div_hand_width)))+ "px";
+                document.getElementById("card" + i).style.left =  + "px";
+            }
+        }
+    };
     function displayTray() {
+        let node: HTMLElement = document.getElementById("div_tray")
+        console.log(node.firstChild);
+        console.log(hand);
+        while (node.firstChild != null)
+        { node.removeChild(node.firstChild) }
         let div: HTMLDivElement = document.createElement("div");
         let para: HTMLParagraphElement = document.createElement("p");
 
         div.classList.add("card");
         para.classList.add("cardcontent");
 
-        document.getElementById("div_hand").appendChild(div);
+        document.getElementById("div_tray").appendChild(div);
         div.appendChild(para);
 
         let t: string[] = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "skip", "direction", "drawtwo", "drawfour", "choose"];
         let c: string[] = ["blue", "yellow", "green", "red", "black"];
+        let content: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "<=>", "+2", "+4", "?"];
 
         let index_c: number = tray[(tray.length - 1)][0];
         let index_t: number = tray[(tray.length - 1)][1];
 
         div.classList.add(t[index_t]);
         div.classList.add(c[index_c]);
+        para.innerHTML = content[index_t];
         div.setAttribute("id", "traytop");
     }
 
@@ -125,16 +147,29 @@ namespace Aufgabe04 {
     function playCard(_event: Event): void {
         let cardnode: any = _event.target;
         let cardindex: number = Array.from(cardnode.parentNode.children).indexOf(cardnode);
-        tray.push([hand[cardindex][0], hand[cardindex][1]]);
-        hand.splice(cardindex, 1);
+        console.log("CARDNODE: " + cardnode.id);
+        if (cardnode.id != "div_hand") {
+            tray.push([hand[cardindex][0], hand[cardindex][1]]);
+            hand.splice(cardindex, 1);
+            displayHand();
+            displayTray();
+        }
+    }
+    function sortHandByColor(): void {
+        hand.sort(function(a, b) {
+            var x = a[0];
+            var y = b[0];
+            return x - y;
+        })
         displayHand();
-        displayTray();
     }
     function main(): void {
         generateDeck();
         initialCardDraw();
         document.getElementById("div_deck").addEventListener("click", drawOne)
         document.getElementById("div_hand").addEventListener("click", playCard)
+        document.getElementById("div_sort").addEventListener("click", sortHandByColor)
+        window.addEventListener('resize', dynamicHand)
     }
 
     document.addEventListener("DOMContentLoaded", main);

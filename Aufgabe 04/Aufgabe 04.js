@@ -48,6 +48,11 @@ var Aufgabe04;
         }
         displayHand();
     }
+    function keyboardDraw(_event) {
+        if (_event.keyCode == 32) {
+            drawCard(1);
+        }
+    }
     function initialCardDraw() {
         let cards = parseInt(prompt("Wie viele Karten willst du ziehen?"), 10);
         drawCard(cards);
@@ -75,6 +80,8 @@ var Aufgabe04;
             div.classList.add(c[index_c]);
             para.innerHTML = content[index_t];
             div.setAttribute("id", "card" + i);
+            let card_count = document.getElementById("p_cardcount");
+            card_count.innerHTML = ("" + hand.length);
         }
         dynamicHand();
     }
@@ -91,7 +98,7 @@ var Aufgabe04;
             if (hand.length * div_card_width * 1.1212 > div_hand_width) {
                 console.log("css active");
                 //document.getElementById("card" + i).style.left = (k *(1-(div_card_width/div_hand_width)))+ "px";
-                document.getElementById("card" + i).style.left = +"px";
+                document.getElementById("card" + i).style.left = (i * 155 - i * (40 * (hand.length * (div_card_width / div_hand_width)))) + "px";
             }
         }
     }
@@ -148,6 +155,7 @@ var Aufgabe04;
         initialCardDraw();
         document.getElementById("div_deck").addEventListener("click", drawOne);
         document.getElementById("div_hand").addEventListener("click", playCard);
+        document.addEventListener("keydown", keyboardDraw);
         document.getElementById("div_sort").addEventListener("click", sortHandByColor);
         window.addEventListener('resize', dynamicHand);
     }

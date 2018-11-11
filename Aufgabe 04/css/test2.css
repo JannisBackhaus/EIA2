@@ -50,6 +50,7 @@
 	border-color: black;
 	border-radius: 10px 10px 10px 10px;
 	margin: auto;
+	padding: 0px;
 	left: 45%;
 	-webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.6);
 	-moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.6);
@@ -156,3 +157,29 @@
 	background-color: #f2f2f2;
 	font-weight: bold;
 }
+#div_cardcount {
+	border-width: 1px 1px 1px 1px;
+	border-style: solid;
+	border-color: black;
+	border-radius: 3px;
+	padding: 5px 15px 5px 15px;
+	font-family: Arial;
+	display: inline-block;
+	position: absolute;
+	left: 5%;
+	bottom: 8%;
+	background-color: #f2f2f2;
+	font-weight: bold;
+	text-align: center;
+}
+
+#p_cardcount {
+	font-weight: bold;
+	font-size: 3em;
+	color: #FFD200;
+	margin: 5px;
+	padding: 0px;
+	text-align: center;
+	text-shadow: -2px -2px 0px #000000, 1px 1px 0px #000000, 2px 2px 0px
+		#000000, 3px 3px 0px #000000, 4px 4px 0px #000000, 4px 4px 0px #000000, -2px 2px 0px #000000, 2px
+		-1px 0px #000000;}

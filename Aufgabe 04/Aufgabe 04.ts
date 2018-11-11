@@ -93,6 +93,8 @@ namespace Aufgabe04 {
             
             let card_count : HTMLElement = document.getElementById("p_cardcount");
             card_count.innerHTML=("" + hand.length); 
+            if (hand.length == 0)
+                card_count.innerHTML=("0"); 
 
         } 
         dynamicHand();

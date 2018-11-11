@@ -82,6 +82,8 @@ var Aufgabe04;
             div.setAttribute("id", "card" + i);
             let card_count = document.getElementById("p_cardcount");
             card_count.innerHTML = ("" + hand.length);
+            if (hand.length == 0)
+                card_count.innerHTML = ("0");
         }
         dynamicHand();
     }

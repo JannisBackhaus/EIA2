@@ -1,0 +1,63 @@
+{
+	"tree": [
+		{
+			"name": "Weihnachtsbaumkugeln",
+			"elements": [
+				{
+					"name": "Goldene Kugeln",
+					"price": 15
+				},
+				{
+					"name": "Rote Kugeln",
+					"price": 12
+				},
+				{
+					"name": "Grüne Kugeln",
+					"price": 12
+				},
+				{
+					"name": "Mercedes-Sterne",
+					"price": 0
+				}
+				{
+					"name": "Gucci-Kugeln",
+					"price": 99
+				}
+			]
+		},
+		{
+			"name": "Lametta",
+			"elements": [
+				{
+					"name": "Silber Lametta",
+					"price": 4.99
+				},
+				{
+					"name": "Rotes Lametta",
+					"price": 4.99
+				},
+				{
+					"name": "Kunstschnee",
+					"price": 11.99
+				}
+			]
+		},
+		{
+			"name": "Lichter",
+			"elements": [
+				{
+					"name": "Wachskerzen",
+					"price": 15
+				},
+				{
+					"name": "Lichterkette elektrisch",
+					"price": 12
+				},
+				{
+					"name": "LED-Öko-Lichterkette",
+					"price": 18
+				}
+			]
+		}
+	]
+}

@@ -122,17 +122,16 @@ function createHTML(): void {
         let target: HTMLInputElement = <HTMLInputElement>_event.target;
         let target_else: HTMLElement = <HTMLElement>_event.target;
         
-        if (target_else.className == "tree_form_options") 
+        if (target_else.id == "tree_form") 
         { 
-            console.log("YOLO");
             let index : number = parseInt(target.value, 10);
-            console.log("index: " +index);
+
             let node : HTMLDivElement = <HTMLDivElement>(document.getElementById("tree_type_cart"));
             let node2 : HTMLDivElement = <HTMLDivElement>(document.getElementById("tree_type_cart_price"));
             node.innerHTML = ""; 
             node2.innerHTML = "";
             let name : HTMLAnchorElement = document.createElement("a");
-                     node.appendChild(name);
+                    node.appendChild(name);
                     name.classList.add("overview_item");
                     name.innerHTML = (tree[index].name);
             let price : HTMLAnchorElement = document.createElement("a");

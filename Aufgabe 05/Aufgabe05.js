@@ -115,10 +115,8 @@ var Aufgabe05;
         console.log(_event);
         let target = _event.target;
         let target_else = _event.target;
-        if (target_else.className == "tree_form_options") {
-            console.log("YOLO");
+        if (target_else.id == "tree_form") {
             let index = parseInt(target.value, 10);
-            console.log("index: " + index);
             let node = (document.getElementById("tree_type_cart"));
             let node2 = (document.getElementById("tree_type_cart_price"));
             node.innerHTML = "";

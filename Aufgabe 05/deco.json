@@ -18,7 +18,7 @@
 				{
 					"name": "Mercedes-Sterne",
 					"price": 0
-				}
+				},
 				{
 					"name": "Gucci-Kugeln",
 					"price": 99
@@ -56,6 +56,23 @@
 				{
 					"name": "LED-Öko-Lichterkette",
 					"price": 18
+				}
+			]
+		},
+		{
+			"name": "Spitze",
+			"elements": [
+				{
+					"name": "Engel",
+					"price": 7.99
+				},
+				{
+					"name": "Stern",
+					"price": 15.99
+				},
+				{
+					"name": "Supreme-Logo",
+					"price": 49.99
 				}
 			]
 		}

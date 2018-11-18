@@ -5,8 +5,6 @@ function main(): void {
     createEventListener(event);
 }
     
-let overview: Decoration[] = []
-
 function createHTML(): void { 
     // Baumart
     for(let i : number =0; i<tree.length ; i++){
@@ -15,8 +13,9 @@ function createHTML(): void {
         ele.classList.add("tree_form_options")
         ele.classList.add("formelements")
         ele.setAttribute("value", "" + i)
+        ele.setAttribute("name", "Tree_Option")
         ele.innerHTML= tree[i].name       
-    }
+    } 
     // Halterung
     for(let i : number =0; i<holder.length ; i++){
         let ele : HTMLInputElement = document.createElement("input");
@@ -42,7 +41,7 @@ function createHTML(): void {
         ele.classList.add("balls_form_options")
         ele.classList.add("formelements")
         ele.setAttribute("type", "checkbox")
-        ele.setAttribute("name", "Balls_Checkbox"  + i)
+        ele.setAttribute("name", "Balls_Checkbox")
         ele.setAttribute("value", "" + i)
         ele.setAttribute("id", "balls_check" + i)
 
@@ -60,7 +59,7 @@ function createHTML(): void {
         ele.classList.add("tinsel_form_options")
         ele.classList.add("formelements")
         ele.setAttribute("type", "checkbox")
-        ele.setAttribute("name", "Tinsel_Checkbox"  + i)
+        ele.setAttribute("name", "Tinsel_Checkbox")
         ele.setAttribute("value", "" + i)
         ele.setAttribute("id", "tinsel_check" + i)
 
@@ -119,30 +118,143 @@ function createHTML(): void {
     
     function generateCart(_event:Event):void {
         console.log(_event); 
+        
         let target: HTMLInputElement = <HTMLInputElement>_event.target;
+        let target_else: HTMLElement = <HTMLElement>_event.target;
         
-        
-        
-        
-        if (target.name == "Holder_Radiogroup" && target.checked == true){
+        if (target_else.className == "tree_form_options") 
+        { 
+            console.log("YOLO");
+            let index : number = parseInt(target.value, 10);
+            console.log("index: " +index);
+            let node : HTMLDivElement = <HTMLDivElement>(document.getElementById("tree_type_cart"));
+            let node2 : HTMLDivElement = <HTMLDivElement>(document.getElementById("tree_type_cart_price"));
+            node.innerHTML = ""; 
+            node2.innerHTML = "";
+            let name : HTMLAnchorElement = document.createElement("a");
+                     node.appendChild(name);
+                    name.classList.add("overview_item");
+                    name.innerHTML = (tree[index].name);
+            let price : HTMLAnchorElement = document.createElement("a");
+                    node2.appendChild(price);
+                    price.classList.add("overview_item");
+                    price.innerHTML = (tree[index].price +"" )
+            console.log("tree dropdown no."+ index + " clicked")}
+            
+    
+        else if (target.name == "Holder_Radiogroup" && target.checked == true){
             let index : number = parseInt(target.value, 10);
             let node : HTMLDivElement = <HTMLDivElement>(document.getElementById("tree_holder_cart"));
-            node.innerHTML = holder[index].name;
+            let node2 : HTMLDivElement = <HTMLDivElement>(document.getElementById("tree_holder_cart_price"));
+            node.innerHTML = ""; 
+            node2.innerHTML = "";
+            let name : HTMLAnchorElement = document.createElement("a");
+                    node.appendChild(name);
+                    name.classList.add("overview_item");
+                    name.innerHTML = (holder[index].name);
+            let price : HTMLAnchorElement = document.createElement("a");
+                    node2.appendChild(price);
+                    price.classList.add("overview_item");
+                    price.innerHTML = (holder[index].price +"" )
             console.log("Holder radiobutton no."+ index + " clicked")}
-            
         
-        
-        
-        if (target.name == "Balls_Checkbox" && target.checked == true){
+        else if (target.name == "Balls_Checkbox"){
             let index : number = parseInt(target.value, 10);
-
+            let node : HTMLDivElement = <HTMLDivElement>(document.getElementById("deco_balls_cart"));
+            node.innerHTML = "";
+            let node2 : HTMLDivElement = <HTMLDivElement>(document.getElementById("deco_balls_cart_price"));
+            node2.innerHTML = "";
+            for( let i: number =0 ; i < balls.length ; i++) {
+                let checkbox : HTMLInputElement = <HTMLInputElement>document.getElementById("balls_check" + i);
+                if (checkbox.checked == true)
+                {   let name : HTMLAnchorElement = document.createElement("a");
+                    node.appendChild(name);
+                    name.classList.add("overview_item");
+                    name.innerHTML = (balls[i].name);
+                    let price : HTMLAnchorElement = document.createElement("a");
+                    node2.appendChild(price);
+                    price.classList.add("overview_item");
+                    price.innerHTML = (balls[i].price + "");
+                }
+                
+            }
             console.log("Balls checkbox no."+ index + " clicked")}
+               
+        
+    else if (target.name == "Tinsel_Checkbox"){
+            console.log("tinsel")
+            let index : number = parseInt(target.value, 10);
+            let node : HTMLDivElement = <HTMLDivElement>(document.getElementById("deco_tinsel_cart"));
+            node.innerHTML = "";
+            let node2 : HTMLDivElement = <HTMLDivElement>(document.getElementById("deco_tinsel_cart_price"));
+            node2.innerHTML = "";
+            for( let i: number = 0 ; i < tinsel.length ; i++) {
+                let checkbox : HTMLInputElement = <HTMLInputElement>document.getElementById("tinsel_check" + i);
+                if (checkbox.checked == true)
+                {   let name : HTMLAnchorElement = document.createElement("a");
+                    node.appendChild(name);
+                    name.classList.add("overview_item");
+                    name.innerHTML = (tinsel[i].name);
+                    let price : HTMLAnchorElement = document.createElement("a");
+                    node2.appendChild(price);
+                    price.classList.add("overview_item");
+                    price.innerHTML = (tinsel[i].price + "");
+                }
+                
+            }
+            console.log("tinsel checkbox no."+ index + " clicked")}
+           
+    else if (target.name == "Lights_Radiogroup" && target.checked == true){
+            let index : number = parseInt(target.value, 10);
+            let node : HTMLDivElement = <HTMLDivElement>(document.getElementById("deco_lights_cart"));
+            let node2 : HTMLDivElement = <HTMLDivElement>(document.getElementById("deco_lights_cart_price"));
+            node.innerHTML = ""; 
+            node2.innerHTML = "";
+            let name : HTMLAnchorElement = document.createElement("a");
+                    node.appendChild(name);
+                    name.classList.add("overview_item");
+                    name.innerHTML = (lights[index].name);
+            let price : HTMLAnchorElement = document.createElement("a");
+                    node2.appendChild(price);
+                    price.classList.add("overview_item");
+                    price.innerHTML = (lights[index].price +"" )
+            console.log("lights radiobutton no."+ index + " clicked")}
             
-        
-        
-    }
+    else if (target.name == "Top_Radiogroup" && target.checked == true){
+            let index : number = parseInt(target.value, 10);
+            let node : HTMLDivElement = <HTMLDivElement>(document.getElementById("deco_top_cart"));
+            let node2 : HTMLDivElement = <HTMLDivElement>(document.getElementById("deco_top_cart_price"));
+            node.innerHTML = ""; 
+            node2.innerHTML = "";
+            let name : HTMLAnchorElement = document.createElement("a");
+                    node.appendChild(name);
+                    name.classList.add("overview_item");
+                    name.innerHTML = (top[index].name);
+            let price : HTMLAnchorElement = document.createElement("a");
+                    node2.appendChild(price);
+                    price.classList.add("overview_item");
+                    price.innerHTML = (top[index].price +"" )
+            console.log("top radiobutton no."+ index + " clicked")}
     
-
-
+        
+        document.getElementById("total").innerHTML=("Gesamtpreis :   " + calculatePrice() + " Euro" );   
+    };   
+        
+    function calculatePrice(): string {
+        let node : any = Array.from(document.getElementById("ov_prices").children);
+        let calculate: number = 0;
+        for(let i : number =0; i< node.length ; i++)
+            if(node[i].firstChild != null)
+            {
+            let innernode = Array.from(node[i].children);
+            console.log(node[i].firstElementChild.innerHTML);
+             for(let k : number =0; k< innernode.length ; k++)
+                {calculate += parseFloat(node[i].firstElementChild.innerHTML);}
+            }
+        let total: string = calculate.toFixed(2)
+        console.log(total)
+        return total;
+        }
+    
 document.addEventListener("DOMContentLoaded", main);
 }  

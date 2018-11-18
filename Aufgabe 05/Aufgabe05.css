@@ -47,17 +47,17 @@ body {
 }
 
 #configurator {
-	display: inline-block; 
+	display: inline-block;
 	border-style: solid;
 	border-width: 0px 1px 0px 1px;
 	background-color: white;
-	width: 25%; 
-	margin: 0% 0% 0% 0%; 
+	width: 25%;
+	margin: 0% 0% 0% 0%;
 	padding: 2% 5% 2% 5%;
 	left: 15%;
 	position: absolute;
-
 }
+
 #title {
 	font-weight: bold;
 	font-size: 1.2em;
@@ -66,15 +66,61 @@ body {
 
 #overview {
 	display: inline-block;
-	border-style: solid;	
+	border-style: solid;
 	border-width: 0px 1px 1px 1px;
-	border-radius: 0px 0px 10px 10px;
-	background-color: white;
-	width: 10%;  
+	border-radius: 0px 0px 10px 10px; background-color : white;
+	width: 20%;
 	height: 80%;
-	margin: 0% 0% 0% 5%; 
-	padding: 2% 5% 2% 5%;
+	margin: 0% 0% 0% 0%;
+	padding: 2% 0.5% 2% 0.5%;
 	right: 5%;
 	top: 0%;
+	position: fixed;
+	background-color: white;
+}
+
+.overview_item {
+	display: block;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	height: 1.1 em;
+}
+
+#ov_articles {
+	max-width: 70%;
+	display: inline-block;
 	position: absolute;
+	left: 5%;
+	top: 20%;
+}
+
+#ov_prices {
+	max-width: 20%;
+	position: absolute;
+	right: 5%;
+	display: inline-block;
+	top: 20%;
+	
+}
+#tree_holder_cart {
+	border-width: 0px 0px 1px 0px;
+	border-style: dashed;
+	padding-bottom: 10px;
+}
+#tree_holder_cart_price {
+	border-width: 0px 0px 1px 0px;
+	border-style: dashed;
+	padding-bottom: 10px;
+}
+
+#deco_balls_cart {
+	padding-top: 15px;
+}
+#deco_balls_cart_price {
+	padding-top: 15px;
+}
+#total	{
+	position: absolute;
+	bottom: 5%;
+	right: 5%;
 }

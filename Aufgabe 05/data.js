@@ -29,7 +29,7 @@ var Aufgabe05;
             price: 24.99
         },
         {
-            name: "'Iced-Out'-Diamant-Halterung",
+            name: "'Iced-Out'-VVS-Halterung",
             price: 9.99
         },
         {
@@ -40,15 +40,15 @@ var Aufgabe05;
     Aufgabe05.balls = [
         {
             name: "Goldene Kugeln",
-            price: 15
+            price: 15.99
         },
         {
             name: "Rote Kugeln",
-            price: 12
+            price: 12.99
         },
         {
             name: "Gruene Kugeln",
-            price: 12
+            price: 12.99
         },
         {
             name: "Mercedes-Sterne",
@@ -56,7 +56,7 @@ var Aufgabe05;
         },
         {
             name: "Gucci-Kugeln",
-            price: 99
+            price: 99.99
         }
     ];
     Aufgabe05.tinsel = [
@@ -76,15 +76,15 @@ var Aufgabe05;
     Aufgabe05.lights = [
         {
             name: "Wachskerzen",
-            price: 15
+            price: 15.99
         },
         {
             name: "Lichterkette elektrisch",
-            price: 12
+            price: 12.99
         },
         {
             name: "LED-Lichterkette",
-            price: 18
+            price: 18.99
         }
     ];
     Aufgabe05.top = [

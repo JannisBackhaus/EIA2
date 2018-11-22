@@ -5,4 +5,4 @@ var Aufgabe06;
     }
     document.addEventListener("DOMContentLoaded", main);
 })(Aufgabe06 || (Aufgabe06 = {}));
-//# sourceMappingURL=test.js.map
+//# sourceMappingURL=test2.js.map

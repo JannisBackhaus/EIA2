@@ -1,11 +1,11 @@
-namespace Aufgabe06 {
+namespace Aufgabe05 {
     export interface Categories {
         [key: string]: Category;
     }
     export interface Category {
         amount_type: string;
-        amount: Amount; 
-        form_type: string; 
+        amount: Amount;
+        form_type: string;
         items: Item[];
     }
     export interface Item {
@@ -17,14 +17,14 @@ namespace Aufgabe06 {
         display: string[],
     }
 
-    export let categories: Categories = 
+    export let data: Categories = 
 
         {
             "tree":
             {
                 amount_type: "slider",
                 amount:
-                { 
+                {
                     steps: [0.8, 0.9, 1.0, 1.1, 1.2],
                     display: ["Sehr klein", "Klein", "Normal", "Groﬂ", "GIGANTISCH"]
                 },
@@ -72,7 +72,7 @@ namespace Aufgabe06 {
                     },
                     {
                         name: "'Iced-Out'-VVS-Halterung",
-                        price: 999.99
+                        price: 9.99
                     },
                     {
                         name: "Keramik-Blumentopf",

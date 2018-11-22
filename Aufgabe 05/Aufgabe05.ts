@@ -5,6 +5,10 @@ function main(): void {
     createEventListener(event);
 }
     
+function dynamicHTML(): void {
+    
+}
+    
 function createHTML(): void { 
     // Baumart
     for(let i : number =0; i<tree.length ; i++){
@@ -12,10 +16,10 @@ function createHTML(): void {
         document.getElementById("tree_form").appendChild(ele);
         ele.classList.add("tree_form_options")
         ele.classList.add("formelements")
-        ele.setAttribute("value", "" + i)
+        ele.setAttribut e("value", "" + i)
         ele.setAttribute("name", "Tree_Option")
         ele.innerHTML= tree[i].name       
-    } 
+    }  
     // Halterung
     for(let i : number =0; i<holder.length ; i++){
         let ele : HTMLInputElement = document.createElement("input");
@@ -241,11 +245,11 @@ function createHTML(): void {
         
     function calculatePrice(): string {
         let node : any = Array.from(document.getElementById("ov_prices").children);
-        let calculate: number = 0;
+        let calculate: number = 0; 
         for(let i : number =0; i< node.length ; i++)
             if(node[i].firstChild != null)
             {
-            let innernode = Array.from(node[i].children);
+            let innernode = Array.from(node[i].children); 
             console.log(node[i].firstElementChild.innerHTML);
              for(let k : number =0; k< innernode.length ; k++)
                 {calculate += parseFloat(node[i].firstElementChild.innerHTML);}

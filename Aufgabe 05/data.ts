@@ -1,30 +1,39 @@
 namespace Aufgabe05 {
 
-    export interface Decoration {
+    export interface Category {
+        form_type: string;
+        items: Item[];
+    }
+    export interface Categories {
+        [key: string]: Category[];
+    }
+    export interface Item {
         name: string;
         price: number;
     }
+    export let categories: Categories = {
 
-    export let tree: Decoration[] =
-        [
-            {
-                name: "Nordmanntanne",
-                price: 39.99
-            },
-            {
-                name: "Blaufichte",
-                price: 31.99
-            },
-            {
-                name: "Plastiktanne",
-                price: 9.99
-            },
-            {
-                name: "Palme",
-                price: 59.99
-            }
-        ]
-
+        "tree": Category[] = [
+            form_type = "dropdown",
+            items = [
+                {
+                    name: "Nordmanntanne",
+                    price: 39.99
+                },
+                {
+                    name: "Blaufichte",
+                    price: 31.99
+                },
+                {
+                    name: "Plastiktanne",
+                    price: 9.99
+                },
+                {
+                    name: "Palme",
+                    price: 59.99
+                }
+            ],
+   };
     export let treeheight: number[] = [0.8, 0.9, 1, 1.1, 1.2];
 
     export let holder: Decoration[] =

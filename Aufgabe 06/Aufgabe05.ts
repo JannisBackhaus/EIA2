@@ -8,8 +8,15 @@ namespace Aufgabe05 {
     function dynamicHTML(): void {
         for (let i: number = 0; i < data.length; i++) 
         {
+            let div1 : HTMLDivElement = document.createElement("div");
+            div1.classList.add("div1");
             
-            i
+            let title : HTMLAnchorElement = document.createElement("a");
+            title.innerHTML=(categories[i].categ_name);      
+            title.classList.add("label");
+            
+            let div: HTMLDivElement = document.createElement("div");
+            
 
         }
 

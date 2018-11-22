@@ -3,6 +3,7 @@ namespace Aufgabe06 {
         [key: string]: Category;
     }
     export interface Category {
+        categ_name: string;
         amount_type: string;
         amount: Amount; 
         form_type: string; 
@@ -10,18 +11,19 @@ namespace Aufgabe06 {
     }
     export interface Item {
         name: string;
-        price: number;
+        price: number; 
     }
     export interface Amount {
         steps: number[],
         display: string[],
     }
 
-    export let categories: Categories = 
+    export let data: Categories = 
 
         {
             "tree":
             {
+                categ_name: "Baum",
                 amount_type: "slider",
                 amount:
                 { 
@@ -53,6 +55,7 @@ namespace Aufgabe06 {
 
             "holder":
             {
+                categ_name: "Halterung",
                 amount_type: "",
                 amount:
                 {
@@ -83,6 +86,7 @@ namespace Aufgabe06 {
 
             "balls":
             {
+                categ_name: "Kugeln",
                 amount_type: "stepper",
                 amount:
                 {
@@ -118,6 +122,7 @@ namespace Aufgabe06 {
 
             "tinsel":
             {
+                categ_name: "Lametta",
                 amount_type: "stepper",
                 amount:
                 {
@@ -144,6 +149,7 @@ namespace Aufgabe06 {
 
             "lights":
             {
+                categ_name: "Lichter",
                 amount_type: "stepper",
                 amount:
                 {
@@ -170,6 +176,7 @@ namespace Aufgabe06 {
 
             "top":
             {
+                categ_name: "Spitze",
                 amount_type: "",
                 amount:
                 {

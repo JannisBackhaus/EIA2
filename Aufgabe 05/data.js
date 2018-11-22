@@ -1,7 +1,8 @@
 var Aufgabe06;
 (function (Aufgabe06) {
-    Aufgabe06.categories = {
+    Aufgabe06.data = {
         "tree": {
+            categ_name: "Baum",
             amount_type: "slider",
             amount: {
                 steps: [0.8, 0.9, 1.0, 1.1, 1.2],
@@ -28,6 +29,7 @@ var Aufgabe06;
             ],
         },
         "holder": {
+            categ_name: "Halterung",
             amount_type: "",
             amount: {
                 steps: [],
@@ -54,6 +56,7 @@ var Aufgabe06;
             ]
         },
         "balls": {
+            categ_name: "Kugeln",
             amount_type: "stepper",
             amount: {
                 steps: [5, 10, 15, 20, 25],
@@ -84,6 +87,7 @@ var Aufgabe06;
             ],
         },
         "tinsel": {
+            categ_name: "Lametta",
             amount_type: "stepper",
             amount: {
                 steps: [5, 10, 15, 20, 25],
@@ -106,6 +110,7 @@ var Aufgabe06;
             ]
         },
         "lights": {
+            categ_name: "Lichter",
             amount_type: "stepper",
             amount: {
                 steps: [5, 10, 15, 20, 25],
@@ -128,6 +133,7 @@ var Aufgabe06;
             ]
         },
         "top": {
+            categ_name: "Spitze",
             amount_type: "",
             amount: {
                 steps: [5, 10, 15, 20, 25],

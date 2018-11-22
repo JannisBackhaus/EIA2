@@ -6,7 +6,12 @@ var Aufgabe05;
     }
     function dynamicHTML() {
         for (let i = 0; i < Aufgabe05.data.length; i++) {
-            i;
+            let div1 = document.createElement("div");
+            div1.classList.add("div1");
+            let title = document.createElement("a");
+            title.innerHTML = (categories[i].categ_name);
+            title.classList.add("label");
+            let div = document.createElement("div");
         }
         function createHTML() {
             // Baumart

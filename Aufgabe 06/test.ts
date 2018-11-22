@@ -3,4 +3,4 @@ namespace Aufgabe06 {
         console.log(data["tree"].items[0].name);
     }
     document.addEventListener("DOMContentLoaded", main);
-}   
+}    

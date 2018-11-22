@@ -3,6 +3,7 @@ namespace Aufgabe05 {
     export interface Category {
         form_type: string;
         items: Item[];
+        amount: number[];
     }
     export interface Categories {
         [key: string]: Category[];
@@ -32,11 +33,13 @@ namespace Aufgabe05 {
                     name: "Palme",
                     price: 59.99
                 }
-            ],
-   };
+            ]
+        ]
+        
+        }
     export let treeheight: number[] = [0.8, 0.9, 1, 1.1, 1.2];
 
-    export let holder: Decoration[] =
+        export let holder: Decoration[] =
         [
             {
                 name: "Plastik-Halterung",
@@ -79,7 +82,7 @@ namespace Aufgabe05 {
                 price: 99.99
             }
         ];
-    export let tinsel: Decoration[] =
+        export let tinsel: Decoration[] =
         [
             {
                 name: "Silber Lametta",
@@ -124,4 +127,4 @@ namespace Aufgabe05 {
                 price: 49.99
             }
         ]
-}
+    }

@@ -1,160 +1,161 @@
-var Aufgabe06;
-(function (Aufgabe06) {
-    Aufgabe06.data = {
-        "tree": {
-            categ_name: "Baum",
-            amount_type: "slider",
-            amount: {
-                steps: [0.8, 0.9, 1.0, 1.1, 1.2],
-                display: ["Sehr klein", "Klein", "Normal", "Gro�", "GIGANTISCH"]
+var Konfigurator;
+(function (Konfigurator) {
+    Konfigurator.data = [{
+            "tree": {
+                categ_name: "Baum",
+                amount_type: "slider",
+                amount: {
+                    steps: [0.8, 0.9, 1.0, 1.1, 1.2],
+                    display: ["Sehr klein", "Klein", "Normal", "Gro�", "GIGANTISCH"]
+                },
+                form_type: "dropdown",
+                items: [
+                    {
+                        name: "Nordmanntanne",
+                        price: 39.99,
+                    },
+                    {
+                        name: "Blaufichte",
+                        price: 31.99
+                    },
+                    {
+                        name: "Plastiktanne",
+                        price: 9.99
+                    },
+                    {
+                        name: "Palme",
+                        price: 59.99
+                    }
+                ],
             },
-            form_type: "dropdown",
-            items: [
-                {
-                    name: "Nordmanntanne",
-                    price: 39.99,
+            "holder": {
+                categ_name: "Halterung",
+                amount_type: "",
+                amount: {
+                    steps: [],
+                    display: []
                 },
-                {
-                    name: "Blaufichte",
-                    price: 31.99
-                },
-                {
-                    name: "Plastiktanne",
-                    price: 9.99
-                },
-                {
-                    name: "Palme",
-                    price: 59.99
-                }
-            ],
-        },
-        "holder": {
-            categ_name: "Halterung",
-            amount_type: "",
-            amount: {
-                steps: [],
-                display: []
+                form_type: "radio",
+                items: [
+                    {
+                        name: "Plastik-Halterung",
+                        price: 14.99
+                    },
+                    {
+                        name: "Edelstahl-Halterung",
+                        price: 24.99
+                    },
+                    {
+                        name: "'Iced-Out'-VVS-Halterung",
+                        price: 999.99
+                    },
+                    {
+                        name: "Keramik-Blumentopf",
+                        price: 5.99
+                    }
+                ]
             },
-            form_type: "radio",
-            items: [
-                {
-                    name: "Plastik-Halterung",
-                    price: 14.99
+            "balls": {
+                categ_name: "Kugeln",
+                amount_type: "stepper",
+                amount: {
+                    steps: [],
+                    display: []
                 },
-                {
-                    name: "Edelstahl-Halterung",
-                    price: 24.99
-                },
-                {
-                    name: "'Iced-Out'-VVS-Halterung",
-                    price: 999.99
-                },
-                {
-                    name: "Keramik-Blumentopf",
-                    price: 5.99
-                }
-            ]
-        },
-        "balls": {
-            categ_name: "Kugeln",
-            amount_type: "stepper",
-            amount: {
-                steps: [5, 10, 15, 20, 25],
-                display: ["5", "10", "15", "20", "25"]
+                form_type: "checkbox",
+                items: [
+                    {
+                        name: "Goldene Kugeln",
+                        price: 15.99
+                    },
+                    {
+                        name: "Rote Kugeln",
+                        price: 12.99
+                    },
+                    {
+                        name: "Gruene Kugeln",
+                        price: 12.99
+                    },
+                    {
+                        name: "Mercedes-Sterne",
+                        price: 0
+                    },
+                    {
+                        name: "Gucci-Kugeln",
+                        price: 99.99
+                    }
+                ],
             },
-            form_type: "checkbox",
-            items: [
-                {
-                    name: "Goldene Kugeln",
-                    price: 15.99
+            "tinsel": {
+                categ_name: "Lametta",
+                amount_type: "stepper",
+                amount: {
+                    steps: [],
+                    display: []
                 },
-                {
-                    name: "Rote Kugeln",
-                    price: 12.99
-                },
-                {
-                    name: "Gruene Kugeln",
-                    price: 12.99
-                },
-                {
-                    name: "Mercedes-Sterne",
-                    price: 0
-                },
-                {
-                    name: "Gucci-Kugeln",
-                    price: 99.99
-                }
-            ],
-        },
-        "tinsel": {
-            categ_name: "Lametta",
-            amount_type: "stepper",
-            amount: {
-                steps: [5, 10, 15, 20, 25],
-                display: ["5", "10", "15", "20", "25"]
+                form_type: "checkbox",
+                items: [
+                    {
+                        name: "Silber Lametta",
+                        price: 4.99
+                    },
+                    {
+                        name: "Rotes Lametta",
+                        price: 4.99
+                    },
+                    {
+                        name: "Kunstschnee",
+                        price: 11.99
+                    }
+                ]
             },
-            form_type: "checkbox",
-            items: [
-                {
-                    name: "Silber Lametta",
-                    price: 4.99
+            "lights": {
+                categ_name: "Lichter",
+                amount_type: "stepper",
+                amount: {
+                    steps: [],
+                    display: []
                 },
-                {
-                    name: "Rotes Lametta",
-                    price: 4.99
-                },
-                {
-                    name: "Kunstschnee",
-                    price: 11.99
-                }
-            ]
-        },
-        "lights": {
-            categ_name: "Lichter",
-            amount_type: "stepper",
-            amount: {
-                steps: [5, 10, 15, 20, 25],
-                display: ["5", "10", "15", "20", "25"]
+                form_type: "checkbox",
+                items: [
+                    {
+                        name: "Wachskerzen",
+                        price: 15.99
+                    },
+                    {
+                        name: "Lichterkette elektrisch",
+                        price: 12.99
+                    },
+                    {
+                        name: "LED-Lichterkette",
+                        price: 18.99
+                    }
+                ]
             },
-            form_type: "checkbox",
-            items: [
-                {
-                    name: "Wachskerzen",
-                    price: 15.99
+            "top": {
+                categ_name: "Spitze",
+                amount_type: "",
+                amount: {
+                    steps: [],
+                    display: []
                 },
-                {
-                    name: "Lichterkette elektrisch",
-                    price: 12.99
-                },
-                {
-                    name: "LED-Lichterkette",
-                    price: 18.99
-                }
-            ]
-        },
-        "top": {
-            categ_name: "Spitze",
-            amount_type: "",
-            amount: {
-                steps: [5, 10, 15, 20, 25],
-                display: ["5", "10", "15", "20", "25"]
+                form_type: "radio",
+                items: [
+                    {
+                        name: "Engel",
+                        price: 7.99
+                    },
+                    {
+                        name: "Stern",
+                        price: 15.99
+                    },
+                    {
+                        name: "Supreme-Logo",
+                        price: 49.99
+                    }
+                ]
             },
-            form_type: "radio",
-            items: [
-                {
-                    name: "Engel",
-                    price: 7.99
-                },
-                {
-                    name: "Stern",
-                    price: 15.99
-                },
-                {
-                    name: "Supreme-Logo",
-                    price: 49.99
-                }
-            ]
-        },
-    };
-})(Aufgabe06 || (Aufgabe06 = {}));
+        }
+    ];
+})(Konfigurator || (Konfigurator = {}));
 //# sourceMappingURL=data.js.map

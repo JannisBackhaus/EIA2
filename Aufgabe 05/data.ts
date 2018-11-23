@@ -1,4 +1,4 @@
-namespace Aufgabe06 {
+namespace Konfigurator {
     export interface Categories {
         [key: string]: Category;
     }
@@ -18,9 +18,9 @@ namespace Aufgabe06 {
         display: string[],
     }
 
-    export let data: Categories = 
+    export let data: Categories[] = 
 
-        {
+        [{
             "tree":
             {
                 categ_name: "Baum",
@@ -90,8 +90,8 @@ namespace Aufgabe06 {
                 amount_type: "stepper",
                 amount:
                 {
-                    steps: [5, 10, 15, 20, 25],
-                    display: ["5", "10", "15", "20", "25"]
+                    steps: [],
+                    display: []
                 },
                 form_type: "checkbox",
                 items:
@@ -126,8 +126,8 @@ namespace Aufgabe06 {
                 amount_type: "stepper",
                 amount:
                 {
-                    steps: [5, 10, 15, 20, 25],
-                    display: ["5", "10", "15", "20", "25"]
+                    steps: [],
+                    display: []
                 },
                 form_type: "checkbox",
                 items:
@@ -153,8 +153,8 @@ namespace Aufgabe06 {
                 amount_type: "stepper",
                 amount:
                 {
-                    steps: [5, 10, 15, 20, 25],
-                    display: ["5", "10", "15", "20", "25"]
+                    steps: [],
+                    display: []
                 },
                 form_type: "checkbox",
                 items:
@@ -180,8 +180,8 @@ namespace Aufgabe06 {
                 amount_type: "",
                 amount:
                 {
-                    steps: [5, 10, 15, 20, 25],
-                    display: ["5", "10", "15", "20", "25"]
+                    steps: [],
+                    display: []
                 },
                 form_type: "radio",
                 items:
@@ -204,4 +204,5 @@ namespace Aufgabe06 {
 
 
         }
+            ]
 }

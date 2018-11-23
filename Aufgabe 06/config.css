@@ -30,7 +30,7 @@ body {
 
 .formlabels {
 	display: inline-block;
-	width: 82%;
+	width: 70%;
 	margin: 4px 3% 4px 3%;
 }
 
@@ -42,8 +42,8 @@ body {
 
 .label {
 	font-weight: bold;
-	margin: 2%;
-	display: inline-block;
+	margin: 6% 2% 3% 0%;
+	display: block;
 }
 
 #configurator {
@@ -68,7 +68,8 @@ body {
 	display: inline-block;
 	border-style: solid;
 	border-width: 0px 1px 1px 1px;
-	border-radius: 0px 0px 10px 10px; background-color : white;
+	border-radius: 0px 0px 10px 10px;
+	background-color: white;
 	width: 20%;
 	height: 80%;
 	margin: 0% 0% 0% 0%;
@@ -100,13 +101,14 @@ body {
 	right: 5%;
 	display: inline-block;
 	top: 20%;
-	
 }
+
 #tree_holder_cart {
 	border-width: 0px 0px 1px 0px;
 	border-style: dashed;
 	padding-bottom: 10px;
 }
+
 #tree_holder_cart_price {
 	border-width: 0px 0px 1px 0px;
 	border-style: dashed;
@@ -116,11 +118,24 @@ body {
 #deco_balls_cart {
 	padding-top: 15px;
 }
+
 #deco_balls_cart_price {
 	padding-top: 15px;
-}
-#total	{
+} 
+
+#total {
 	position: absolute;
 	bottom: 5%;
 	right: 5%;
+}
+
+.formselect {
+	display: inline-block;
+	max-width: 80%;
+	margin: 4px 3% 4px 13%;
+}
+
+.amount_stepper	{
+	width: 10%;
+	text-align: center;
 }

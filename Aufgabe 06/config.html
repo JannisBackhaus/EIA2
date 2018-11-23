@@ -3,62 +3,21 @@
 <head>
 <meta charset="utf-8">
 <title></title>
-<link rel="stylesheet" type="text/css" href="config.css"
-	media="screen" />
+<link rel="stylesheet" type="text/css" href="config.css" media="screen" />
 <script src="test2.js" charset="utf-8"></script>
 <script src="data.js" charset="utf-8"></script>
 </head>
-<body> 
-	
+<body>
+
 	<div id="configurator">
-	<p id="title">Konfiguriere deinen Weihnachtsbaum!</p> 
-		<div id="tree">
-			<a class="label">Baum:</a>
-			<div id="tree_type" class="deco_divs">
-				<select name="Select" id="tree_form">
-					<option></option>
-				</select>
-			</div>
-			<a class="label">Höhe:</a> 
-			<div id="tree_height" class="deco_divs">
-				<input type="range" name="Slider" min="0" max="1" step="0.1666"
-					value="0" />
-			</div>
-			<a class="label">Halterung:</a>
-			<div id="tree_holder" class="deco_divs"></div>
-		</div>
-		<div id="deco">
-		
-		<a class="label">Kugeln:</a>
-			<div id="deco_balls" class="deco_divs"></div>
-			<a class="label">Lametta:</a>
-			<div id="deco_tinsel" class="deco_divs"></div>
-			<a class="label">Lichter:</a>
-			<div id="deco_lights" class="deco_divs"></div>
-			<a class="label">Baumspitze:</a>
-			<div id="deco_top" class="deco_divs"></div>
-		</div>
+		<p id="title">Konfiguriere deinen Weihnachtsbaum!</p>
+
 	</div>
 	<div id="overview">
 		<a class="label">Bestellübersicht</a>
-		<div id="ov_articles">
-			<div id="tree_type_cart"></div> 
-			<div id="tree_height_cart"></div>
-			<div id="tree_holder_cart"></div>
-			<div id="deco_balls_cart"></div>
-			<div id="deco_tinsel_cart"></div>
-			<div id="deco_lights_cart"></div>
-			<div id="deco_top_cart"></div>
-		</div>
-		<div id="ov_prices">
-			<div id="tree_type_cart_price"></div>
-			<div id="tree_height_cart_price"></div>
-			<div id="tree_holder_cart_price"></div>
-			<div id="deco_balls_cart_price"></div>
-			<div id="deco_tinsel_cart_price"></div>
-			<div id="deco_lights_cart_price"></div>
-			<div id="deco_top_cart_price"></div>
-		</div>
+		<div id="ov_amount"></div>
+		<div id="ov_items"></div>
+		<div id="ov_prices"></div>
 		<div id="total"></div>
 	</div>
 </body>

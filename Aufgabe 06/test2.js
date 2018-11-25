@@ -80,7 +80,8 @@ var config;
                     let item = form_list.item(i);
                     let amount = item.nextElementSibling.nextElementSibling;
                     if (item.type == "checkbox") {
-                        if (amount.value != "") {
+                        let target = _event.target;
+                        if (target.type == "number" && amount.value != "") {
                             item.checked = true;
                         }
                     }

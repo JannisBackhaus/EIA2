@@ -115,8 +115,8 @@ namespace config {
                     let amount: HTMLInputElement = <HTMLInputElement>item.nextElementSibling.nextElementSibling;
 
                     if (item.type == "checkbox") {
-
-                        if (amount.value != "") {
+                        let target: HTMLInputElement = <HTMLInputElement>_event.target;
+                        if ( target.type == "number" && amount.value != "") {
                             item.checked = true;
                         }
 

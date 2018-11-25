@@ -29,11 +29,15 @@ namespace config {
                 amount:
                 {
                     steps: [0.8, 0.9, 1.0, 1.1, 1.2],
-                    display: ["Sehr klein", "Klein", "Normal", "Groﬂ", "GIGANTISCH"]
+                    display: ["Sehr klein", "Klein", "Normal", "Gross", "Gigantisch"]
                 },
                 form_type: "dropdown",
                 items:
                 [
+                    {
+                        name: "",
+                        price: 0,
+                    },
                     {
                         name: "Nordmanntanne",
                         price: 39.99,
@@ -91,8 +95,8 @@ namespace config {
                 amount_type: "stepper",
                 amount:
                 {
-                    steps: [5, 10, 15, 20, 25],
-                    display: ["5", "10", "15", "20", "25"]
+                    steps: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+                    display: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
                 },
                 form_type: "checkbox",
                 items:
@@ -127,8 +131,8 @@ namespace config {
                 amount_type: "stepper",
                 amount:
                 {
-                    steps: [5, 10, 15, 20, 25],
-                    display: ["5", "10", "15", "20", "25"]
+                    steps: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+                    display: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
                 },
                 form_type: "checkbox",
                 items:
@@ -154,8 +158,8 @@ namespace config {
                 amount_type: "stepper",
                 amount:
                 {
-                    steps: [5, 10, 15, 20, 25],
-                    display: ["5", "10", "15", "20", "25"]
+                    steps: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+                    display: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
                 },
                 form_type: "checkbox",
                 items:
@@ -181,8 +185,8 @@ namespace config {
                 amount_type: "",
                 amount:
                 {
-                    steps: [5, 10, 15, 20, 25],
-                    display: ["5", "10", "15", "20", "25"]
+                    steps: [],
+                    display: []
                 },
                 form_type: "radio",
                 items:

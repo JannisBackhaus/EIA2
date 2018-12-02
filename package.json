@@ -5,11 +5,11 @@
 	"author" : "Jannis",
 	"main" : "Server.js",
 	"scripts" : {
-		"start" : "node Aufgabe 06/Server/Server.js"
+		"start" : "node Aufgabe 06/Server/Server2.js"
 	},
 	"engines" : {
 		"node" : "8.10.0"
 	},
 	"dependencies" : {
 	}
-}
+}  

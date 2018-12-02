@@ -25,5 +25,5 @@ namespace L06_SendData {                                // erstellt ein Namespac
         console.log(_request.url);
         _response.end();                                                                                // beendet die Antwort des Servers
     }
-     
+      
 }  

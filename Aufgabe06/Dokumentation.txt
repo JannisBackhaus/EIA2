@@ -1,0 +1,14 @@
+- localhost greift mit dem port 8100 auf Server zu 
+
+- Konsole im Terminal gibt "Starting server", "
+Listening
+", "I hear voices!" aus.
+
+- Text nach "localhost:8100" wird im HTML-Body als Text ausgegeben
+
+- STRG  + C beendet lokalen Server
+
+- Heroku greift per package.json über den Pfad auf die Server Datei zu
+- Button mit type=submit bewirkt eine Übermittlung der value-Werte und name-Werte der Inputs innerhalb des form-tags
+- Werte werden in der Form /input(n).name + input(n).value + & + input(n+1).name + input(n+1).value/ zur URL des Servers hinzugefügt 
+- Serverseite gibt genau wie localhost die Werte im Body als Text aus

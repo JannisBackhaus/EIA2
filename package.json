@@ -1,0 +1,15 @@
+{
+	"name" : "configurator",
+	"version" : "1.0.0",
+	"description" : "Server for my christmas tree configurator",
+	"author" : "Jannis",
+	"main" : "Server.js",
+	"scripts" : {
+		"start" : "node Aufgabe 06/Server/Server.js"
+	},
+	"engines" : {
+		"node" : "8.10.0"
+	},
+	"dependencies" : {
+	}
+}

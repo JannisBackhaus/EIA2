@@ -1,7 +1,7 @@
 namespace configserver {
 
     document.addEventListener("DOMContentLoaded", main);
-    let address: string = "http://localhost:8100";
+    let address: string = "https://treeconfigurator.herokuapp.com/";
     
     function main(): void {
         console.log("main() triggered");

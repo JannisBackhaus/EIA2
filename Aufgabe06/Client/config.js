@@ -1,7 +1,7 @@
 var configserver;
 (function (configserver) {
     document.addEventListener("DOMContentLoaded", main);
-    let address = "http://localhost:8100";
+    let address = "https://treeconfigurator.herokuapp.com/";
     function main() {
         console.log("main() triggered");
         dynamicHTML();

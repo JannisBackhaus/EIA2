@@ -22,4 +22,4 @@ var L06_SendData;
         _response.end(); // beendet die Antwort des Servers
     }
 })(L06_SendData || (L06_SendData = {}));
-//# sourceMappingURL=Server.ts.js.map
+//# sourceMappingURL=Server.js.map

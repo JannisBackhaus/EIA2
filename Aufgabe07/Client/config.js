@@ -1,5 +1,5 @@
-var configserver07;
-(function (configserver07) {
+var configserver;
+(function (configserver) {
     document.addEventListener("DOMContentLoaded", main);
     let address = "https://treeconfigurator.herokuapp.com/";
     function main() {
@@ -24,7 +24,7 @@ var configserver07;
         ov_items.innerHTML = ("");
         ov_prices.innerHTML = ("");
         let listindex = 0;
-        for (let k in data) {
+        for (let k in configserver.data) {
             let div = document.getElementById("divtop" + k);
             let form_list = div.getElementsByClassName("formelements");
             let option_list = div.getElementsByClassName("option");
@@ -49,8 +49,8 @@ var configserver07;
                     a2.setAttribute("id", "itemlistentry" + listindex);
                     a2.classList.add("ov_entry" + listindex);
                     a2.classList.add("ov_entry");
-                    a2.innerHTML = (data[k].items[i].name);
-                    if (data[k].amount_type == "slider") {
+                    a2.innerHTML = (configserver.data[k].items[i].name);
+                    if (configserver.data[k].amount_type == "slider") {
                         let amount = item.parentElement.nextElementSibling;
                         console.log(amount);
                         console.log(amount.value);
@@ -60,13 +60,13 @@ var configserver07;
                         a3.classList.add("ov_entry" + listindex);
                         a3.classList.add("ov_entry");
                         a3.classList.add("ov_price_entry");
-                        a3.innerHTML = ((data[k].items[i].price * data[k].amount.steps[amount.valueAsNumber]).toFixed(2) + "");
+                        a3.innerHTML = ((configserver.data[k].items[i].price * configserver.data[k].amount.steps[amount.valueAsNumber]).toFixed(2) + "");
                         let display = document.getElementById("slider_display" + 0 + k);
                         console.log("-----------------------------------------");
                         console.log("id =" + "slider_display" + i + k);
                         console.log(display);
                         console.log("-----------------------------------------");
-                        display.innerHTML = (data[k].amount.display[amount.valueAsNumber]);
+                        display.innerHTML = (configserver.data[k].amount.display[amount.valueAsNumber]);
                     }
                     else {
                         let a3 = document.createElement("a");
@@ -75,7 +75,7 @@ var configserver07;
                         a3.classList.add("ov_entry" + listindex);
                         a3.classList.add("ov_entry");
                         a3.classList.add("ov_price_entry");
-                        a3.innerHTML = (data[k].items[i].price.toFixed(2) + "");
+                        a3.innerHTML = (configserver.data[k].items[i].price.toFixed(2) + "");
                     }
                 }
                 if (form_element.classList.contains("radio") == true || form_element.classList.contains("checkbox") == true) {
@@ -112,7 +112,7 @@ var configserver07;
                         a2.setAttribute("id", "itemlistentry" + listindex);
                         a2.classList.add("ov_entry" + listindex);
                         a2.classList.add("ov_entry");
-                        a2.innerHTML = (data[k].items[i].name);
+                        a2.innerHTML = (configserver.data[k].items[i].name);
                         if (item.type == "checkbox") {
                             let a3 = document.createElement("a");
                             ov_prices.appendChild(a3);
@@ -120,7 +120,7 @@ var configserver07;
                             a3.classList.add("ov_entry" + listindex);
                             a3.classList.add("ov_entry");
                             a3.classList.add("ov_price_entry");
-                            a3.innerHTML = ((data[k].items[i].price * amount.valueAsNumber).toFixed(2) + "");
+                            a3.innerHTML = ((configserver.data[k].items[i].price * amount.valueAsNumber).toFixed(2) + "");
                         }
                         else {
                             let a3 = document.createElement("a");
@@ -129,7 +129,7 @@ var configserver07;
                             a3.classList.add("ov_entry" + listindex);
                             a3.classList.add("ov_entry");
                             a3.classList.add("ov_price_entry");
-                            a3.innerHTML = (data[k].items[i].price.toFixed(2) + "");
+                            a3.innerHTML = (configserver.data[k].items[i].price.toFixed(2) + "");
                         }
                     }
                 }
@@ -148,7 +148,7 @@ var configserver07;
     }
     function dynamicHTML() {
         console.log("dynamicHTML() triggered");
-        for (let i in data) {
+        for (let i in configserver.data) {
             let category = i;
             console.log("Kategorie: " + category);
             let divtop = document.createElement("div");
@@ -156,77 +156,77 @@ var configserver07;
             divtop.setAttribute("id", "divtop" + i);
             document.getElementById("configurator").appendChild(divtop);
             let title = document.createElement("a");
-            title.innerHTML = (data[i].title + ":");
+            title.innerHTML = (configserver.data[i].title + ":");
             title.classList.add("label");
             title.setAttribute("id", "label" + i);
             divtop.appendChild(title);
-            if (data[i].form_type == "dropdown") {
+            if (configserver.data[i].form_type == "dropdown") {
                 let menu = document.createElement("select");
                 divtop.appendChild(menu);
                 menu.classList.add("formselect");
-                menu.setAttribute("name", data[i].title + "");
-                for (let k = 0; k < data[i].items.length; k++) {
+                menu.setAttribute("name", configserver.data[i].title + "");
+                for (let k = 0; k < configserver.data[i].items.length; k++) {
                     let dropdown = document.createElement("option");
                     menu.appendChild(dropdown);
                     dropdown.classList.add("formelements");
                     dropdown.classList.add("option");
                     dropdown.setAttribute("value", "" + k);
-                    dropdown.setAttribute("name", data[i].title + "_Option");
-                    dropdown.innerHTML = data[i].items[k].name;
+                    dropdown.setAttribute("name", configserver.data[i].title + "_Option");
+                    dropdown.innerHTML = configserver.data[i].items[k].name;
                 }
                 createAmountHTML(i, 0, divtop);
             }
-            if (data[i].form_type == "radio") {
-                for (let k = 0; k < data[i].items.length; k++) {
+            if (configserver.data[i].form_type == "radio") {
+                for (let k = 0; k < configserver.data[i].items.length; k++) {
                     let radiobutton = document.createElement("input");
                     divtop.appendChild(radiobutton);
                     radiobutton.classList.add("formelements");
                     radiobutton.classList.add("radio");
                     radiobutton.setAttribute("value", "" + k);
                     radiobutton.setAttribute("type", "radio");
-                    radiobutton.setAttribute("name", data[i].title + "_Radiogroup");
-                    radiobutton.innerHTML = data[i].items[k].name;
-                    radiobutton.setAttribute("id", data[i].title + "_radio" + k);
+                    radiobutton.setAttribute("name", configserver.data[i].title + "_Radiogroup");
+                    radiobutton.innerHTML = configserver.data[i].items[k].name;
+                    radiobutton.setAttribute("id", configserver.data[i].title + "_radio" + k);
                     let radiolabel = document.createElement("label");
                     divtop.appendChild(radiolabel);
                     radiolabel.classList.add("formlabels");
-                    radiolabel.setAttribute("for", data[i].title + "_radio" + k);
-                    radiolabel.innerHTML = (data[i].items[k].name);
+                    radiolabel.setAttribute("for", configserver.data[i].title + "_radio" + k);
+                    radiolabel.innerHTML = (configserver.data[i].items[k].name);
                     createAmountHTML(i, k, divtop);
                     divtop.appendChild(document.createElement("br"));
                 }
             }
-            if (data[i].form_type == "checkbox") {
-                for (let k = 0; k < data[i].items.length; k++) {
+            if (configserver.data[i].form_type == "checkbox") {
+                for (let k = 0; k < configserver.data[i].items.length; k++) {
                     let checkbox = document.createElement("input");
                     divtop.appendChild(checkbox);
                     checkbox.classList.add("formelements");
                     checkbox.classList.add("checkbox");
                     checkbox.setAttribute("value", "" + k);
                     checkbox.setAttribute("type", "checkbox");
-                    checkbox.setAttribute("name", data[i].title + "_Checkbox");
-                    checkbox.innerHTML = data[i].items[k].name;
-                    checkbox.setAttribute("id", data[i].title + "_checkbox" + k);
+                    checkbox.setAttribute("name", configserver.data[i].title + "_Checkbox");
+                    checkbox.innerHTML = configserver.data[i].items[k].name;
+                    checkbox.setAttribute("id", configserver.data[i].title + "_checkbox" + k);
                     let checkboxlabel = document.createElement("label");
                     divtop.appendChild(checkboxlabel);
                     checkboxlabel.classList.add("formlabels");
-                    checkboxlabel.setAttribute("for", data[i].title + "_checkbox" + k);
-                    checkboxlabel.innerHTML = (data[i].items[k].name);
+                    checkboxlabel.setAttribute("for", configserver.data[i].title + "_checkbox" + k);
+                    checkboxlabel.innerHTML = (configserver.data[i].items[k].name);
                     createAmountHTML(i, k, divtop);
                     divtop.appendChild(document.createElement("br"));
                 }
             }
         }
         function createAmountHTML(i, k, divtop) {
-            if (data[i].amount_type == "slider") {
+            if (configserver.data[i].amount_type == "slider") {
                 let amount = document.createElement("input");
                 divtop.appendChild(amount);
                 amount.classList.add("amount_slider");
                 amount.setAttribute("id", "amount_slider" + i);
                 amount.setAttribute("type", "range");
-                amount.setAttribute("name", data[i].title + "_amount");
+                amount.setAttribute("name", configserver.data[i].title + "_amount");
                 amount.setAttribute("min", "0");
-                amount.setAttribute("max", (data[i].amount.steps.length - 1) + "");
+                amount.setAttribute("max", (configserver.data[i].amount.steps.length - 1) + "");
                 amount.setAttribute("step", "1");
                 amount.setAttribute("value", "3");
                 let display = document.createElement("a");
@@ -235,15 +235,15 @@ var configserver07;
                 display.setAttribute("id", "slider_display" + k + i);
             }
             ;
-            if (data[i].amount_type == "stepper") {
+            if (configserver.data[i].amount_type == "stepper") {
                 let amount = document.createElement("input");
                 divtop.appendChild(amount);
                 amount.classList.add("amount_stepper");
                 amount.setAttribute("type", "number");
-                amount.setAttribute("name", data[i].items[k].name + "_amount");
+                amount.setAttribute("name", configserver.data[i].items[k].name + "_amount");
                 amount.setAttribute("step", "1");
                 amount.setAttribute("min", "0");
-                amount.setAttribute("max", "" + data[i].amount.steps.length);
+                amount.setAttribute("max", "" + configserver.data[i].amount.steps.length);
             }
         }
     }
@@ -308,5 +308,5 @@ var configserver07;
         target.parentNode.removeChild(target);
         console.log("deleted");
     }
-})(configserver07 || (configserver07 = {}));
+})(configserver || (configserver = {}));
 //# sourceMappingURL=config.js.map

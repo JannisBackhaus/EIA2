@@ -6,9 +6,8 @@ namespace Aufgabe05 {
     }
 
     function dynamicHTML(): void {
-        for (let i: number = 0; i < data.length; i++) 
-        {
-            
+        for (let i: number = 0; i < data.length; i++) {
+
             i
 
         }
@@ -269,4 +268,4 @@ namespace Aufgabe05 {
         }
 
         document.addEventListener("DOMContentLoaded", main);
-    }  
+    }

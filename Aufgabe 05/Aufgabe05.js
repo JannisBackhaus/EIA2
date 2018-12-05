@@ -5,12 +5,12 @@ var Aufgabe05;
         createEventListener(event);
     }
     function dynamicHTML() {
-        for (let i = 0; i < Aufgabe05.data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             i;
         }
         function createHTML() {
             // Baumart
-            for (let i = 0; i < Aufgabe05.data.tree.item.length; i++) {
+            for (let i = 0; i < data.tree.item.length; i++) {
                 let ele = document.createElement("option");
                 document.getElementById("tree_form").appendChild(ele);
                 ele.classList.add("tree_form_options");

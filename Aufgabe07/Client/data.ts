@@ -1,4 +1,4 @@
-namespace configserver07 {
+namespace configserver {
     export interface Categories {
         [key: string]: Category;
     } 

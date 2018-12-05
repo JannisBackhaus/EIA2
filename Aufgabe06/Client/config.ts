@@ -1,4 +1,4 @@
-namespace configserver {
+namespace configserver07 {
 
     document.addEventListener("DOMContentLoaded", main);
     let address: string = "https://treeconfigurator.herokuapp.com/";
@@ -213,6 +213,7 @@ namespace configserver {
                 let menu: HTMLSelectElement = document.createElement("select");
                 divtop.appendChild(menu);
                 menu.classList.add("formselect");
+                menu.setAttribute("name", data[i].title + "");
 
                 for (let k: number = 0; k < data[i].items.length; k++) {
                     let dropdown: HTMLOptionElement = document.createElement("option");
@@ -277,13 +278,13 @@ namespace configserver {
                 amount.classList.add("amount_slider");
                 amount.setAttribute("id", "amount_slider" + i);
                 amount.setAttribute("type", "range");
-                amount.setAttribute("name", "Slider");
+                amount.setAttribute("name", data[i].title + "_amount");
                 amount.setAttribute("min", "0");
                 amount.setAttribute("max", (data[i].amount.steps.length - 1) + "");
                 amount.setAttribute("step", "1");
                 amount.setAttribute("value", "3");
 
-                let display: HTMLAnchorElement = document.createElement("a");
+                let display: HTMLAnchorElement = document.createElement("a"); 
                 divtop.appendChild(display);
                 display.classList.add("slider_display");
                 display.setAttribute("id", "slider_display" + k + i);
@@ -295,8 +296,8 @@ namespace configserver {
                 divtop.appendChild(amount);
                 amount.classList.add("amount_stepper");
                 amount.setAttribute("type", "number");
-                amount.setAttribute("name", "Points");
-                amount.setAttribute("step", "1");
+                amount.setAttribute("name", data[i].items[k].name + "_amount");
+                amount.setAttribute("step", "1"); 
                 amount.setAttribute("min", "0");
                 amount.setAttribute("max", "" + data[i].amount.steps.length);
             }

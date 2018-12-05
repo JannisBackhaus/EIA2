@@ -1,6 +1,6 @@
-var configserver07;
-(function (configserver07) {
-    configserver07.data = {
+var configserver;
+(function (configserver) {
+    configserver.data = {
         "tree": {
             title: "Baum",
             amount_type: "slider",
@@ -160,5 +160,5 @@ var configserver07;
             ]
         },
     };
-})(configserver07 || (configserver07 = {}));
+})(configserver || (configserver = {}));
 //# sourceMappingURL=data.js.map

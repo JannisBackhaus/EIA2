@@ -35,7 +35,7 @@ namespace configserver {
 
         for (let i in order) {
 
-            _response.write(i + ": " + order[i] + "<br>");
+            _response.write(i);
         }
         console.log();
         _response.end();

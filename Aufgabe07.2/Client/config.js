@@ -2,6 +2,7 @@ var aufgabe08;
 (function (aufgabe08) {
     document.addEventListener("DOMContentLoaded", main);
     let address = "https://treeconfigurator.herokuapp.com/";
+    //let address: string = "http://localhost:8100/";
     let order = "";
     function main() {
         console.log("main() triggered");
@@ -63,6 +64,7 @@ var aufgabe08;
                         a3.classList.add("ov_entry");
                         a3.classList.add("ov_price_entry");
                         a3.innerHTML = ((aufgabe08.data[k].items[i].price * aufgabe08.data[k].amount.steps[amount.valueAsNumber]).toFixed(2) + "");
+                        a2.innerHTML += (" (" + aufgabe08.data[k].amount.display[amount.valueAsNumber] + ")");
                         let display = document.getElementById("slider_display" + 0 + k);
                         console.log("-----------------------------------------");
                         console.log("id =" + "slider_display" + i + k);
@@ -255,11 +257,13 @@ var aufgabe08;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
             console.log("response: " + xhr.response);
+            orderConfirmation(xhr.response);
         }
     }
     function checkOrderAndSendData(_event) {
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", address + "?" + order, true);
+        let query = generateJSONString();
+        xhr.open("GET", address + "?" + generateJSONString(), true);
         xhr.addEventListener("readystatechange", handleStateChange);
         xhr.send();
         //        let messagelist: NodeList = document.getElementsByClassName("errormessage");
@@ -316,6 +320,93 @@ var aufgabe08;
         //                }
         //            }
         //        }
+    }
+    function generateJSONString() {
+        let jsonarray = [];
+        let amountlist = document.getElementById("ov_amount").children;
+        let itemlist = document.getElementById("ov_items").children;
+        let pricelist = document.getElementById("ov_prices").children;
+        for (let i = 0; i < itemlist.length; i++) {
+            jsonarray.push({
+                amount: amountlist.item(i).innerHTML,
+                item: itemlist.item(i).innerHTML,
+                price: pricelist.item(i).innerHTML,
+            });
+        }
+        let query = JSON.stringify(jsonarray);
+        console.log(jsonarray);
+        console.log(query);
+        console.log(encodeURIComponent(query));
+        return encodeURIComponent(query);
+    }
+    function orderConfirmation(response) {
+        let confirmwindow = document.getElementById("confirmwindow");
+        if (confirmwindow != null) {
+            confirmwindow.parentNode.removeChild(confirmwindow);
+        }
+        let json = JSON.parse(response);
+        console.log("oooooooooooooooooooooooooooo");
+        console.log(json);
+        console.log("oooooooooooooooooooooooooooo");
+        confirmwindow = document.createElement("div");
+        confirmwindow.setAttribute("id", "confirmwindow");
+        document.body.appendChild(confirmwindow);
+        let total = 0;
+        let text = document.createElement("a");
+        let contentwindow = document.createElement("div");
+        let amount_column = document.createElement("div");
+        let item_column = document.createElement("div");
+        let price_column = document.createElement("div");
+        confirmwindow.appendChild(text);
+        confirmwindow.appendChild(contentwindow);
+        contentwindow.appendChild(amount_column);
+        contentwindow.appendChild(item_column);
+        contentwindow.appendChild(price_column);
+        contentwindow.setAttribute("id", "confirmcontent");
+        text.innerHTML = ("Ihre Bestellung wurde abgeschickt!");
+        text.classList.add("label");
+        text.setAttribute("id", "confirmtext");
+        for (let i = 0; i < json.length; i++) {
+            let amount_entry = document.createElement("a");
+            let item_entry = document.createElement("a");
+            let price_entry = document.createElement("a");
+            amount_column.setAttribute("id", "confirm_amount_column");
+            item_column.setAttribute("id", "confirm_item_column");
+            price_column.setAttribute("id", "confirm_price_column");
+            amount_entry.classList.add("confirmentries");
+            item_entry.classList.add("confirmentries");
+            price_entry.classList.add("confirmentries");
+            amount_column.appendChild(amount_entry);
+            item_column.appendChild(item_entry);
+            price_column.appendChild(price_entry);
+            amount_entry.innerHTML = (json[i]["amount"]);
+            item_entry.innerHTML = (json[i]["item"]);
+            price_entry.innerHTML = (json[i]["price"] + " Euro");
+            total = total + parseFloat(json[i]["price"]);
+        }
+        let totaldisplay = document.createElement("a");
+        confirmwindow.appendChild(totaldisplay);
+        totaldisplay.innerHTML = ("Gesamtpreis: " + total.toFixed(2) + " Euro");
+        totaldisplay.setAttribute("id", "confirmtotal");
+        let exit = document.createElement("img");
+        confirmwindow.appendChild(exit);
+        exit.setAttribute("src", "img/checkmark-flat.png");
+        exit.setAttribute("width", "50px");
+        exit.setAttribute("height", "50px");
+        exit.setAttribute("id", "confirmexit");
+        exit.addEventListener("mouseleave", function normal() {
+            exit.setAttribute("src", "img/checkmark-flat.png");
+        });
+        exit.addEventListener("mouseover", function hover() {
+            exit.setAttribute("src", "img/checkmark-flat-hover.png");
+        });
+        exit.addEventListener("mousedown", function hover() {
+            exit.setAttribute("src", "img/checkmark-flat-keydown.png");
+        });
+        exit.addEventListener("mouseup", function hover() {
+            exit.setAttribute("src", "img/checkmark-flat.png");
+            confirmwindow.parentNode.removeChild(confirmwindow);
+        });
     }
     function deleteErrorMessage(_event) {
         let target = event.target;

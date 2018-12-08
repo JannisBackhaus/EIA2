@@ -1,10 +1,10 @@
 import * as Http from "http";
 import * as Url from "url";
 
-namespace configserver {
+namespace server {
     console.log("Starting server");
     let port: number = process.env.PORT;
-    if (port == undefined)
+    if (port == undefined) 
         port = 8100;
 
 
@@ -23,7 +23,7 @@ namespace configserver {
     function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
         console.log("I hear voices!");
         let url_object = Url.parse(_request.url, true);
-        let query = url_object.query;
+        let query = url_object.query; 
         if (url_object.pathname != "/favicon.ico") {
             console.log(query);
             order = query;

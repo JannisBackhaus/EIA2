@@ -1,8 +1,8 @@
 "use strict";
 const Http = require("http");
 const Url = require("url");
-var configserver;
-(function (configserver) {
+var server;
+(function (server_1) {
     console.log("Starting server");
     let port = process.env.PORT;
     if (port == undefined)
@@ -33,5 +33,5 @@ var configserver;
         console.log();
         _response.end();
     }
-})(configserver || (configserver = {}));
+})(server || (server = {}));
 //# sourceMappingURL=Server.js.map

@@ -1,11 +1,11 @@
-namespace aufgabe08 {
+namespace server {
     export interface Categories {
         [key: string]: Category;
-    }
+    } 
     export interface Category {
         title: string;
         amount_type: string;
-        amount: Amount;
+        amount: Amount; 
         form_type: string;
         items: Item[];
     }
@@ -80,7 +80,7 @@ namespace aufgabe08 {
                     },
                     {
                         name: "'Iced-Out'-VVS-Halterung",
-                        price: 9.99
+                        price: 9.99 
                     },
                     {
                         name: "Keramik-Blumentopf",
@@ -137,7 +137,6 @@ namespace aufgabe08 {
                 form_type: "checkbox",
                 items:
                 [
-
                     {
                         name: "Silber Lametta",
                         price: 4.99

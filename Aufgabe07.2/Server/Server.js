@@ -28,7 +28,7 @@ var configserver;
         _response.setHeader("Access-Control-Allow-Origin", "*");
         _request.url;
         for (let i in order) {
-            _response.write(i + ": " + order[i] + "<br>");
+            _response.write(i);
         }
         console.log();
         _response.end();

@@ -2,8 +2,9 @@ namespace aufgabe08 {
 
     document.addEventListener("DOMContentLoaded", main);
     let address: string = "https://treeconfigurator.herokuapp.com/";
+    //let address: string = "http://localhost:8100/";
     let order: string = "";
-    
+
     function main(): void {
         console.log("main() triggered");
         dynamicHTML();
@@ -80,8 +81,10 @@ namespace aufgabe08 {
                         a3.classList.add("ov_entry" + listindex);
                         a3.classList.add("ov_entry");
                         a3.classList.add("ov_price_entry");
+
                         a3.innerHTML = ((data[k].items[i].price * data[k].amount.steps[amount.valueAsNumber]).toFixed(2) + "");
 
+                        a2.innerHTML += (" (" + data[k].amount.display[amount.valueAsNumber] + ")")
                         let display: HTMLAnchorElement = <HTMLAnchorElement>document.getElementById("slider_display" + 0 + k);
 
                         console.log("-----------------------------------------");
@@ -108,9 +111,9 @@ namespace aufgabe08 {
 
                     let item: HTMLInputElement = <HTMLInputElement>form_list.item(i);
                     let amount: HTMLInputElement = <HTMLInputElement>item.nextElementSibling.nextElementSibling;
-                    
-                    
-                    
+
+
+
                     if (item.type == "checkbox") {
                         let target: HTMLInputElement = <HTMLInputElement>_event.target;
                         if (target.type == "number" && amount.value != "") {
@@ -121,7 +124,7 @@ namespace aufgabe08 {
                     if (item.checked == true) {
 
                         if (item.type == "checkbox") {
-                            
+
                             let a1: HTMLAnchorElement = document.createElement("a");
                             ov_amount.appendChild(a1);
                             a1.setAttribute("id", "amountlistentry" + listindex);
@@ -313,11 +316,13 @@ namespace aufgabe08 {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
             console.log("response: " + xhr.response);
+            orderConfirmation(xhr.response);
         }
     }
     function checkOrderAndSendData(_event: Event): void {
         let xhr: XMLHttpRequest = new XMLHttpRequest();
-        xhr.open("GET", address + "?" + order, true);
+        let query: string = generateJSONString();
+        xhr.open("GET", address + "?" + generateJSONString(), true);
         xhr.addEventListener("readystatechange", handleStateChange);
         xhr.send();
 
@@ -375,6 +380,131 @@ namespace aufgabe08 {
         //                }
         //            }
         //        }
+
+
+    }
+
+    function generateJSONString(): string {
+
+
+        interface Entrypoints {
+            amount: string,
+            item: string,
+            price: string,
+        }
+
+        let jsonarray: Entrypoints[] = []
+        let amountlist: HTMLCollection = document.getElementById("ov_amount").children;
+        let itemlist: HTMLCollection = document.getElementById("ov_items").children;
+        let pricelist: HTMLCollection = document.getElementById("ov_prices").children;
+
+        for (let i: number = 0; i < itemlist.length; i++) {
+
+
+            jsonarray.push({
+                amount: amountlist.item(i).innerHTML,
+                item: itemlist.item(i).innerHTML,
+                price: pricelist.item(i).innerHTML,
+            }
+            )
+
+        }
+        let query: string = JSON.stringify(jsonarray);
+        console.log(jsonarray);
+        console.log(query);
+        console.log(encodeURIComponent(query));
+        return encodeURIComponent(query);
+    }
+
+    function orderConfirmation(response: string): void {
+        let confirmwindow: HTMLDivElement = <HTMLDivElement>document.getElementById("confirmwindow")
+        if (confirmwindow != null) {
+            confirmwindow.parentNode.removeChild(confirmwindow)
+        }
+
+        let json = JSON.parse(response);
+        console.log("oooooooooooooooooooooooooooo")
+        console.log(json)
+        console.log("oooooooooooooooooooooooooooo")
+
+        confirmwindow = document.createElement("div");
+        confirmwindow.setAttribute("id", "confirmwindow");
+        document.body.appendChild(confirmwindow);
+
+        let total: number = 0;
+
+        let text: HTMLAnchorElement = document.createElement("a");
+        let contentwindow: HTMLDivElement = document.createElement("div");
+        let amount_column: HTMLDivElement = document.createElement("div");
+        let item_column: HTMLDivElement = document.createElement("div");
+        let price_column: HTMLDivElement = document.createElement("div");
+        confirmwindow.appendChild(text);
+        confirmwindow.appendChild(contentwindow);
+        contentwindow.appendChild(amount_column);
+        contentwindow.appendChild(item_column);
+        contentwindow.appendChild(price_column);
+
+        contentwindow.setAttribute("id", "confirmcontent");
+        text.innerHTML = ("Ihre Bestellung wurde abgeschickt!")
+        text.classList.add("label");
+        text.setAttribute("id", "confirmtext")
+
+        for (let i: number = 0; i < json.length; i++) {
+
+            let amount_entry: HTMLAnchorElement = document.createElement("a");
+            let item_entry: HTMLAnchorElement = document.createElement("a");
+            let price_entry: HTMLAnchorElement = document.createElement("a");
+
+            amount_column.setAttribute("id", "confirm_amount_column");
+            item_column.setAttribute("id", "confirm_item_column");
+            price_column.setAttribute("id", "confirm_price_column");
+
+            amount_entry.classList.add("confirmentries");
+            item_entry.classList.add("confirmentries");
+            price_entry.classList.add("confirmentries");
+
+            amount_column.appendChild(amount_entry);
+            item_column.appendChild(item_entry);
+            price_column.appendChild(price_entry);
+
+            amount_entry.innerHTML = (json[i]["amount"]);
+            item_entry.innerHTML = (json[i]["item"]);
+            price_entry.innerHTML = (json[i]["price"] + " Euro");
+
+            total = total + parseFloat(json[i]["price"]);
+
+        }
+
+        let totaldisplay: HTMLAnchorElement = document.createElement("a");
+        confirmwindow.appendChild(totaldisplay);
+        totaldisplay.innerHTML = ("Gesamtpreis: " + total.toFixed(2) + " Euro")
+        totaldisplay.setAttribute("id", "confirmtotal");
+
+        let exit: HTMLImageElement = document.createElement("img");
+        confirmwindow.appendChild(exit);
+        exit.setAttribute("src", "img/checkmark-flat.png");
+        exit.setAttribute("width", "50px");
+        exit.setAttribute("height", "50px");
+        exit.setAttribute("id", "confirmexit");
+
+        exit.addEventListener("mouseleave", function normal(): void {
+            exit.setAttribute("src", "img/checkmark-flat.png");
+
+        })
+
+        exit.addEventListener("mouseover", function hover(): void {
+            exit.setAttribute("src", "img/checkmark-flat-hover.png");
+
+        })
+
+        exit.addEventListener("mousedown", function hover(): void {
+            exit.setAttribute("src", "img/checkmark-flat-keydown.png");
+
+        })
+        exit.addEventListener("mouseup", function hover(): void {
+            exit.setAttribute("src", "img/checkmark-flat.png");
+            confirmwindow.parentNode.removeChild(confirmwindow);
+        })
 
 
     }

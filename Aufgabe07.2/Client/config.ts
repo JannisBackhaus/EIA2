@@ -1,8 +1,9 @@
-namespace configserver {
+namespace aufgabe08 {
 
     document.addEventListener("DOMContentLoaded", main);
     let address: string = "https://treeconfigurator.herokuapp.com/";
-
+    let order: string = "";
+    
     function main(): void {
         console.log("main() triggered");
         dynamicHTML();
@@ -20,7 +21,7 @@ namespace configserver {
     }
 
     function generateCart(_event: Event): void {
-        let order: string = "";
+        order = "";
 
         let ov_amount: HTMLDivElement = <HTMLDivElement>(document.getElementById("ov_amount"));
         let ov_items: HTMLDivElement = <HTMLDivElement>(document.getElementById("ov_items"));

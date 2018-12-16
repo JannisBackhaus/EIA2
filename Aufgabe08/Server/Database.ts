@@ -63,7 +63,7 @@ export function findAll(_callback: Function): void {
 
 }
 export function findByMatriculation(_callback: Function, x: string): void {
-    var cursor: Mongo.Cursor = students.find({matrikel:x});
+    var cursor: Mongo.Cursor = students.find({ matrikel: parseInt(x, 10) });
     cursor.toArray(prepareAnswer);
     function prepareAnswer(_e: Mongo.MongoError, studentArray: StudentData[]): void {
         if (_e)

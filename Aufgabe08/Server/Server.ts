@@ -29,7 +29,8 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
 
     let query: AssocStringString = Url.parse(_request.url, true).query;
     var command: string = query["command"];
-    var matriculation: number = 
+    var matriculation: string = query["matriculation"];
+
     switch (command) {
         case "insert":
             let student: StudentData = {
@@ -38,13 +39,13 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
                 matrikel: parseInt(query["matrikel"])
             };
             Database.insert(student);
-            respond(_response, "storing data");
+            respond(_response, "storing data"); 
             break;
         case "refresh":
             Database.findAll(findCallback);
             break;
         case "find":
-            Database.findAll(findByMatriculation);
+            Database.findByMatriculation(findCallback, matriculation);
             break;
         default:
             respond(_response, "unknown command: " + command);
@@ -57,12 +58,8 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
     function findCallback(json: string): void {
         respond(_response, json);
     }
-    
-    function findByMatriculation(json: string): void {
-        Database.findByMatriculation
-        respond();
-}
 
+}
 function respond(_response: Http.ServerResponse, _text: string): void {
     //console.log("Preparing response: " + _text);
     _response.setHeader("Access-Control-Allow-Origin", "*");

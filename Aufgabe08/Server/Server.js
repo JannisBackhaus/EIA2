@@ -21,7 +21,7 @@ function handleRequest(_request, _response) {
     console.log("Request received");
     let query = Url.parse(_request.url, true).query;
     var command = query["command"];
-    var matriculation = ;
+    var matriculation = query["matriculation"];
     switch (command) {
         case "insert":
             let student = {
@@ -36,7 +36,7 @@ function handleRequest(_request, _response) {
             Database.findAll(findCallback);
             break;
         case "find":
-            Database.findAll(findByMatriculation);
+            Database.findByMatriculation(findCallback, matriculation);
             break;
         default:
             respond(_response, "unknown command: " + command);
@@ -46,16 +46,12 @@ function handleRequest(_request, _response) {
     function findCallback(json) {
         respond(_response, json);
     }
-    function findByMatriculation(json) {
-        Database.findByMatriculation;
-        respond();
-    }
-    function respond(_response, _text) {
-        //console.log("Preparing response: " + _text);
-        _response.setHeader("Access-Control-Allow-Origin", "*");
-        _response.setHeader("content-type", "text/html; charset=utf-8");
-        _response.write(_text);
-        _response.end();
-    }
+}
+function respond(_response, _text) {
+    //console.log("Preparing response: " + _text);
+    _response.setHeader("Access-Control-Allow-Origin", "*");
+    _response.setHeader("content-type", "text/html; charset=utf-8");
+    _response.write(_text);
+    _response.end();
 }
 //# sourceMappingURL=Server.js.map

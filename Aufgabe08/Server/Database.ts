@@ -63,7 +63,7 @@ export function findAll(_callback: Function): void {
 
 }
 export function findByMatriculation(_callback: Function, matriculation: string): void {
-    var cursor: Mongo.Cursor = students.find("matrikel", matriculation);
+    var cursor: Mongo.Cursor = students.find({matrikel:matriculation});
     cursor.toArray(prepareAnswer);
     function prepareAnswer(_e: Mongo.MongoError, studentArray: StudentData[]): void {
         if (_e)

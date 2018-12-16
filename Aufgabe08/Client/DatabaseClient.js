@@ -27,11 +27,19 @@ var DatabaseClient;
     }
     function find(_event) {
         let query = "command=find";
-        sendRequest(query, handleFindResponse);
+        let input = document.getElementById("inputsearch");
+        let value = parseInt(input.value, 10);
+        sendFindRequest(query, handleFindResponse, value);
     }
     function sendRequest(_query, _callback) {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", serverAddress + "?" + _query, true);
+        xhr.addEventListener("readystatechange", _callback);
+        xhr.send();
+    }
+    function sendFindRequest(_query, _callback, matriculation) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", serverAddress + "?" + _query + "&matr" + matriculation, true);
         xhr.addEventListener("readystatechange", _callback);
         xhr.send();
     }

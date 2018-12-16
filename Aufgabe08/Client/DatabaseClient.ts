@@ -30,12 +30,21 @@ namespace DatabaseClient {
     
     function find(_event: Event): void {
         let query: string = "command=find";
-        sendRequest(query, handleFindResponse);
+        let input: HTMLInputElement = <HTMLInputElement>document.getElementById("inputsearch") 
+        let value: number = parseInt(input.value,10)
+        sendFindRequest(query, handleFindResponse, value);
     }
 
     function sendRequest(_query: string, _callback: EventListener): void {
         let xhr: XMLHttpRequest = new XMLHttpRequest();
         xhr.open("GET", serverAddress + "?" + _query, true);
+        xhr.addEventListener("readystatechange", _callback);
+        xhr.send();
+    }
+    
+     function sendFindRequest(_query: string, _callback: EventListener, matriculation:number): void {
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("GET", serverAddress + "?" + _query + "&matr" + matriculation, true);
         xhr.addEventListener("readystatechange", _callback);
         xhr.send();
     }

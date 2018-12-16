@@ -31,7 +31,7 @@ namespace DatabaseClient {
     function find(_event: Event): void {
         let query: string = "command=find";
         let input: HTMLInputElement = <HTMLInputElement>document.getElementById("inputsearch") 
-        let value: number = parseInt(input.value,10)
+        let value: string = input.value;
         sendFindRequest(query, handleFindResponse, value);
     }
 
@@ -42,7 +42,7 @@ namespace DatabaseClient {
         xhr.send();
     }
     
-     function sendFindRequest(_query: string, _callback: EventListener, matriculation:number): void {
+     function sendFindRequest(_query: string, _callback: EventListener, matriculation:string): void {
         let xhr: XMLHttpRequest = new XMLHttpRequest();
         xhr.open("GET", serverAddress + "?" + _query + "&matr" + matriculation, true);
         xhr.addEventListener("readystatechange", _callback);

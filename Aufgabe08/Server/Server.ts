@@ -29,7 +29,7 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
 
     let query: AssocStringString = Url.parse(_request.url, true).query;
     var command: string = query["command"];
-
+    var matriculation: number = 
     switch (command) {
         case "insert":
             let student: StudentData = {

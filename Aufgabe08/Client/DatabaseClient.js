@@ -28,7 +28,7 @@ var DatabaseClient;
     function find(_event) {
         let query = "command=find";
         let input = document.getElementById("inputsearch");
-        let value = parseInt(input.value, 10);
+        let value = input.value;
         sendFindRequest(query, handleFindResponse, value);
     }
     function sendRequest(_query, _callback) {

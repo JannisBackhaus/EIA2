@@ -48,7 +48,7 @@ namespace DatabaseClient {
         xhr.addEventListener("readystatechange", _callback);
         xhr.send();
     }
-
+ 
     function handleInsertResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {

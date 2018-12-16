@@ -26,7 +26,6 @@ var DatabaseClient;
         sendRequest(query, handleFindResponse);
     }
     function find(_event) {
-        console.log("Click on Search");
         let query = "command=find";
         let input = document.getElementById("inputsearch");
         let value = input.value;

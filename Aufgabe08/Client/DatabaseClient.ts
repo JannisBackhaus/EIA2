@@ -11,7 +11,7 @@ namespace DatabaseClient {
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
         findButton.addEventListener("click", find);
-        
+
     }
 
     function insert(_event: Event): void {
@@ -22,20 +22,19 @@ namespace DatabaseClient {
         query += "&matrikel=" + inputs[2].value;
         console.log(query);
         sendRequest(query, handleInsertResponse);
-    } 
+    }
 
     function refresh(_event: Event): void {
         let query: string = "command=refresh";
         sendRequest(query, handleFindResponse);
     }
-    
+
     function find(_event: Event): void {
-        console.log("Click on Search") 
         let query: string = "command=find";
-        let input: HTMLInputElement = <HTMLInputElement>document.getElementById("inputsearch") 
+        let input: HTMLInputElement = <HTMLInputElement>document.getElementById("inputsearch")
         let value: string = input.value;
-        console.log("Search by Matriculation: "+value);
-        
+        console.log("Search by Matriculation: " + value);
+
         sendFindRequest(query, handleFindResponse, value);
     }
 
@@ -45,14 +44,14 @@ namespace DatabaseClient {
         xhr.addEventListener("readystatechange", _callback);
         xhr.send();
     }
-    
-     function sendFindRequest(_query: string, _callback: EventListener, matriculation:string): void {
+
+    function sendFindRequest(_query: string, _callback: EventListener, matriculation: string): void {
         let xhr: XMLHttpRequest = new XMLHttpRequest();
         xhr.open("GET", serverAddress + "?" + _query + "&matr=" + matriculation, true);
         xhr.addEventListener("readystatechange", _callback);
         xhr.send();
     }
- 
+
     function handleInsertResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {

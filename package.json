@@ -1,15 +1,16 @@
 {
-	"name" : "configurator",
+	"name" : "Server",
 	"version" : "1.0.0",
-	"description" : "Server for my christmas tree configurator",
+	"description" : "Server for my facebook clone",
 	"author" : "Jannis",
 	"main" : "Server.js",
 	"scripts" : {
-		"start" : "node Aufgabe07.2/Server/Server.js"
+		"start" : "node Aufgabe08/Server/Server.js"
 	},
 	"engines" : {
 		"node" : "8.10.0"
 	},
 	"dependencies" : {
+	"mongodb": "^3.1.10"
 	}
 }  

@@ -268,4 +268,4 @@ namespace Aufgabe05 {
         }
 
         document.addEventListener("DOMContentLoaded", main);
-    }
+    }}

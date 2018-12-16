@@ -75,7 +75,7 @@ namespace deck {
         let cards = parseInt(prompt("Wie viele Karten willst du ziehen?"), 10);
         for (let i: number = 0; i < cards; i++) {
             let div: HTMLDivElement = document.createElement("div");
-            div_hand.appendChild(div);
+            div.appendChild(div);
             let a: number = generateRandom(0, deck.length);
             console.log(a);
             hand[i] = deck[a];

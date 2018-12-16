@@ -63,7 +63,7 @@ var deck;
         let cards = parseInt(prompt("Wie viele Karten willst du ziehen?"), 10);
         for (let i = 0; i < cards; i++) {
             let div = document.createElement("div");
-            div_hand.appendChild(div);
+            div.appendChild(div);
             let a = generateRandom(0, deck.length);
             console.log(a);
             hand[i] = deck[a];

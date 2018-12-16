@@ -30,7 +30,7 @@ var DatabaseClient;
         let query = "command=find";
         let input = document.getElementById("inputsearch");
         let value = input.value;
-        console.log(value);
+        console.log("Search by Matriculation: " + value);
         sendFindRequest(query, handleFindResponse, value);
     }
     function sendRequest(_query, _callback) {

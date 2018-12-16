@@ -21,7 +21,7 @@ function handleRequest(_request, _response) {
     console.log("Request received");
     let query = Url.parse(_request.url, true).query;
     var command = query["command"];
-    var matriculation = query["matriculation"];
+    var matriculation = query["matr"];
     switch (command) {
         case "insert":
             let student = {

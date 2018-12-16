@@ -34,7 +34,7 @@ namespace DatabaseClient {
         let query: string = "command=find";
         let input: HTMLInputElement = <HTMLInputElement>document.getElementById("inputsearch") 
         let value: string = input.value;
-        console.log(value);
+        console.log("Search by Matriculation: "+value);
         
         sendFindRequest(query, handleFindResponse, value);
     }

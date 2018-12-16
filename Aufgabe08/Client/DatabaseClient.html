@@ -8,17 +8,22 @@
 </head>
 <body>
 	<fieldset id="input">
-		<legend> Type student data here </legend>
-		<input type="text" name="name" placeholder="name" id="name" />
-		<input type="text" name="surname" placeholder="surname" id="firstname" />
-		<input type="text" name="matrikel" placeholder="matrikel" id="matrikel" />
+		<legend> Studenten Eingabe </legend>
+		<input type="text" name="name" placeholder="Vorname" id="name" />
+		<input type="text" name="surname" placeholder="Nachname" id="firstname" />
+		<input type="text" name="matrikel" placeholder="Matrikelnummer" id="matrikel" />
 		
-		<button type="button" id="insert">Insert to database</button>
+		<button type="button" id="insert">Zur Datenbank hinzufügen</button>
 	</fieldset>
 	<fieldset id="output">
-		<legend> All student data </legend>
-		<button type="button" id="refresh">Refresh</button>
+		<legend> Eingetragene Studenten: </legend>
+		<button type="button" id="refresh">Aktualisieren</button>
 		<textarea rows="20" cols="90"> </textarea>
+	</fieldset>
+	<fieldset id="find">
+		<legend>Nach Matrikelnummer suchen</legend>
+		<input type="text" name="findmatriculation" placeholder="Matrikelnummer">
+		<button type="button" id="find">Suchen</button>
 	</fieldset>
 </body>
 </html> 

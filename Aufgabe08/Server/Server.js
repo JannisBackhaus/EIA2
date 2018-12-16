@@ -34,6 +34,9 @@ function handleRequest(_request, _response) {
         case "refresh":
             Database.findAll(findCallback);
             break;
+        case "find":
+            Database.findAll(findByMatriculation);
+            break;
         default:
             respond(_response, "unknown command: " + command);
             break;
@@ -42,12 +45,16 @@ function handleRequest(_request, _response) {
     function findCallback(json) {
         respond(_response, json);
     }
-}
-function respond(_response, _text) {
-    //console.log("Preparing response: " + _text);
-    _response.setHeader("Access-Control-Allow-Origin", "*");
-    _response.setHeader("content-type", "text/html; charset=utf-8");
-    _response.write(_text);
-    _response.end();
+    function findByMatriculation(json) {
+        Database.findByMatriculation;
+        respond();
+    }
+    function respond(_response, _text) {
+        //console.log("Preparing response: " + _text);
+        _response.setHeader("Access-Control-Allow-Origin", "*");
+        _response.setHeader("content-type", "text/html; charset=utf-8");
+        _response.write(_text);
+        _response.end();
+    }
 }
 //# sourceMappingURL=Server.js.map

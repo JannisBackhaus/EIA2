@@ -26,7 +26,7 @@ function handleListen(): void {
 
 function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
     console.log("Request received");
- 
+
     let query: AssocStringString = Url.parse(_request.url, true).query;
     var command: string = query["command"];
 
@@ -43,15 +43,24 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
         case "refresh":
             Database.findAll(findCallback);
             break;
+        case "find":
+            Database.findAll(findByMatriculation);
+            break;
         default:
             respond(_response, "unknown command: " + command);
             break;
+
+
     }
 
     // findCallback is an inner function so that _response is in scope
     function findCallback(json: string): void {
         respond(_response, json);
     }
+    
+    function findByMatriculation(json: string): void {
+        Database.findByMatriculation
+        respond();
 }
 
 function respond(_response: Http.ServerResponse, _text: string): void {

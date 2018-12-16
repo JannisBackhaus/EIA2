@@ -14,7 +14,7 @@ let students;
 if (process.env.NODE_ENV == "production") {
     //    databaseURL = "mongodb://username:password@hostname:port/database";
     databaseURL = "mongodb://testuser:geheim1234@ds155492.mlab.com:55492/thefacebook";
-    databaseName = "eia2";
+    databaseName = "thefacebook";
 }
 // try to connect to database, then activate callback "handleConnect" 
 Mongo.MongoClient.connect(databaseURL, handleConnect);

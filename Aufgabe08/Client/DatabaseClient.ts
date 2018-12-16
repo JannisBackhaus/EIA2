@@ -33,6 +33,7 @@ namespace DatabaseClient {
         let input: HTMLInputElement = <HTMLInputElement>document.getElementById("inputsearch") 
         let value: string = input.value;
         console.log(value);
+        console.log("Click on Search")
         sendFindRequest(query, handleFindResponse, value);
     }
 

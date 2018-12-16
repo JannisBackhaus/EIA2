@@ -30,6 +30,7 @@ var DatabaseClient;
         let input = document.getElementById("inputsearch");
         let value = input.value;
         console.log(value);
+        console.log("Click on Search");
         sendFindRequest(query, handleFindResponse, value);
     }
     function sendRequest(_query, _callback) {

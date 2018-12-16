@@ -48,7 +48,7 @@ namespace DatabaseClient {
     
      function sendFindRequest(_query: string, _callback: EventListener, matriculation:string): void {
         let xhr: XMLHttpRequest = new XMLHttpRequest();
-        xhr.open("GET", serverAddress + "?" + _query + "&matr" + matriculation, true);
+        xhr.open("GET", serverAddress + "?" + _query + "&matr=" + matriculation, true);
         xhr.addEventListener("readystatechange", _callback);
         xhr.send();
     }

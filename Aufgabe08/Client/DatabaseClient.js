@@ -41,7 +41,7 @@ var DatabaseClient;
     }
     function sendFindRequest(_query, _callback, matriculation) {
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", serverAddress + "?" + _query + "&matr" + matriculation, true);
+        xhr.open("GET", serverAddress + "?" + _query + "&matr=" + matriculation, true);
         xhr.addEventListener("readystatechange", _callback);
         xhr.send();
     }

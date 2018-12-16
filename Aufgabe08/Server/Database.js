@@ -54,8 +54,8 @@ function findAll(_callback) {
     }
 }
 exports.findAll = findAll;
-function findByMatriculation(_callback, matriculation) {
-    var cursor = students.find({ matrikel: matriculation });
+function findByMatriculation(_callback, x) {
+    var cursor = students.find({ matrikel: x });
     cursor.toArray(prepareAnswer);
     function prepareAnswer(_e, studentArray) {
         if (_e)

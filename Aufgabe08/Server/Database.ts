@@ -5,8 +5,8 @@
 import * as Mongo from "mongodb";
 console.log("Database starting");
 
-//let databaseURL: string = "mongodb://localhost:27017";
-let databaseURL: string = "mongodb://testuser:geheim1234@ds155492.mlab.com:55492/thefacebook";
+let databaseURL: string = "mongodb://localhost:27017";
+//let databaseURL: string = "mongodb://testuser:geheim1234@ds155492.mlab.com:55492/thefacebook";
 
 let databaseName: string = "Test";
 let db: Mongo.Db;

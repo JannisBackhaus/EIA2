@@ -5,8 +5,8 @@
  */
 const Mongo = require("mongodb");
 console.log("Database starting");
-//let databaseURL: string = "mongodb://localhost:27017";
-let databaseURL = "mongodb://testuser:geheim1234@ds155492.mlab.com:55492/thefacebook";
+let databaseURL = "mongodb://localhost:27017";
+//let databaseURL: string = "mongodb://testuser:geheim1234@ds155492.mlab.com:55492/thefacebook";
 let databaseName = "Test";
 let db;
 let students;

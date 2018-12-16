@@ -65,4 +65,4 @@ namespace DatabaseClient {
             console.log(responseAsJson);
         }
     }
-}
+} 

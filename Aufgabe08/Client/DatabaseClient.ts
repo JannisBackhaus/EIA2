@@ -11,6 +11,7 @@ namespace DatabaseClient {
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
         findButton.addEventListener("click", find);
+        console.log(findButton)
     }
 
     function insert(_event: Event): void {

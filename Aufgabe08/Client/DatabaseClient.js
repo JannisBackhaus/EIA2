@@ -11,7 +11,6 @@ var DatabaseClient;
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
         findButton.addEventListener("click", find);
-        console.log(findButton);
     }
     function insert(_event) {
         let inputs = document.getElementsByTagName("input");
@@ -27,11 +26,11 @@ var DatabaseClient;
         sendRequest(query, handleFindResponse);
     }
     function find(_event) {
+        console.log("Click on Search");
         let query = "command=find";
         let input = document.getElementById("inputsearch");
         let value = input.value;
         console.log(value);
-        console.log("Click on Search");
         sendFindRequest(query, handleFindResponse, value);
     }
     function sendRequest(_query, _callback) {

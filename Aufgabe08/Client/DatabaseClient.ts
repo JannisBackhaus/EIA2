@@ -11,7 +11,7 @@ namespace DatabaseClient {
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
         findButton.addEventListener("click", find);
-        console.log(findButton)
+        
     }
 
     function insert(_event: Event): void {
@@ -30,11 +30,12 @@ namespace DatabaseClient {
     }
     
     function find(_event: Event): void {
+        console.log("Click on Search") 
         let query: string = "command=find";
         let input: HTMLInputElement = <HTMLInputElement>document.getElementById("inputsearch") 
         let value: string = input.value;
         console.log(value);
-        console.log("Click on Search")
+        
         sendFindRequest(query, handleFindResponse, value);
     }
 

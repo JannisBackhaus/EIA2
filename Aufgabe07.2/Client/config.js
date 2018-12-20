@@ -345,9 +345,6 @@ var aufgabe08;
             confirmwindow.parentNode.removeChild(confirmwindow);
         }
         let json = JSON.parse(response);
-        console.log("oooooooooooooooooooooooooooo");
-        console.log(json);
-        console.log("oooooooooooooooooooooooooooo");
         confirmwindow = document.createElement("div");
         confirmwindow.setAttribute("id", "confirmwindow");
         document.body.appendChild(confirmwindow);

@@ -27,7 +27,7 @@ var aufgabe081;
         ov_items.innerHTML = ("");
         ov_prices.innerHTML = ("");
         let listindex = 0;
-        for (let k in data) {
+        for (let k in aufgabe081.data) {
             let div = document.getElementById("divtop" + k);
             let form_list = div.getElementsByClassName("formelements");
             let option_list = div.getElementsByClassName("option");
@@ -38,7 +38,7 @@ var aufgabe081;
                 let select_element = option_element.parentElement;
                 console.log(form_element);
                 if (option_element.selected == true && option_element.innerHTML != "") {
-                    order += data[k].title + "=" + option_element.innerHTML + "&";
+                    order += aufgabe081.data[k].title + "=" + option_element.innerHTML + "&";
                     let a1 = document.createElement("a");
                     ov_amount.appendChild(a1);
                     a1.setAttribute("id", "amountlistentry" + listindex);
@@ -52,8 +52,8 @@ var aufgabe081;
                     a2.setAttribute("id", "itemlistentry" + listindex);
                     a2.classList.add("ov_entry" + listindex);
                     a2.classList.add("ov_entry");
-                    a2.innerHTML = (data[k].items[i].name);
-                    if (data[k].amount_type == "slider") {
+                    a2.innerHTML = (aufgabe081.data[k].items[i].name);
+                    if (aufgabe081.data[k].amount_type == "slider") {
                         let amount = item.parentElement.nextElementSibling;
                         console.log(amount);
                         console.log(amount.value);
@@ -63,15 +63,15 @@ var aufgabe081;
                         a3.classList.add("ov_entry" + listindex);
                         a3.classList.add("ov_entry");
                         a3.classList.add("ov_price_entry");
-                        a3.innerHTML = ((data[k].items[i].price * data[k].amount.steps[amount.valueAsNumber]).toFixed(2) + "");
-                        a2.innerHTML += (" (" + data[k].amount.display[amount.valueAsNumber] + ")");
+                        a3.innerHTML = ((aufgabe081.data[k].items[i].price * aufgabe081.data[k].amount.steps[amount.valueAsNumber]).toFixed(2) + "");
+                        a2.innerHTML += (" (" + aufgabe081.data[k].amount.display[amount.valueAsNumber] + ")");
                         let display = document.getElementById("slider_display" + 0 + k);
                         console.log("-----------------------------------------");
                         console.log("id =" + "slider_display" + i + k);
                         console.log(display);
                         console.log("-----------------------------------------");
-                        display.innerHTML = (data[k].amount.display[amount.valueAsNumber]);
-                        order += data[k].title + "_Menge=" + display.innerHTML + "&";
+                        display.innerHTML = (aufgabe081.data[k].amount.display[amount.valueAsNumber]);
+                        order += aufgabe081.data[k].title + "_Menge=" + display.innerHTML + "&";
                     }
                     else {
                         let a3 = document.createElement("a");
@@ -80,7 +80,7 @@ var aufgabe081;
                         a3.classList.add("ov_entry" + listindex);
                         a3.classList.add("ov_entry");
                         a3.classList.add("ov_price_entry");
-                        a3.innerHTML = (data[k].items[i].price.toFixed(2) + "");
+                        a3.innerHTML = (aufgabe081.data[k].items[i].price.toFixed(2) + "");
                     }
                 }
                 if (form_element.classList.contains("radio") == true || form_element.classList.contains("checkbox") == true) {
@@ -117,7 +117,7 @@ var aufgabe081;
                         a2.setAttribute("id", "itemlistentry" + listindex);
                         a2.classList.add("ov_entry" + listindex);
                         a2.classList.add("ov_entry");
-                        a2.innerHTML = (data[k].items[i].name);
+                        a2.innerHTML = (aufgabe081.data[k].items[i].name);
                         if (item.type == "checkbox") {
                             let a3 = document.createElement("a");
                             ov_prices.appendChild(a3);
@@ -125,7 +125,7 @@ var aufgabe081;
                             a3.classList.add("ov_entry" + listindex);
                             a3.classList.add("ov_entry");
                             a3.classList.add("ov_price_entry");
-                            a3.innerHTML = ((data[k].items[i].price * amount.valueAsNumber).toFixed(2) + "");
+                            a3.innerHTML = ((aufgabe081.data[k].items[i].price * amount.valueAsNumber).toFixed(2) + "");
                         }
                         else {
                             let a3 = document.createElement("a");
@@ -134,7 +134,7 @@ var aufgabe081;
                             a3.classList.add("ov_entry" + listindex);
                             a3.classList.add("ov_entry");
                             a3.classList.add("ov_price_entry");
-                            a3.innerHTML = (data[k].items[i].price.toFixed(2) + "");
+                            a3.innerHTML = (aufgabe081.data[k].items[i].price.toFixed(2) + "");
                         }
                     }
                 }
@@ -153,7 +153,7 @@ var aufgabe081;
     }
     function dynamicHTML() {
         console.log("dynamicHTML() triggered");
-        for (let i in data) {
+        for (let i in aufgabe081.data) {
             let category = i;
             console.log("Kategorie: " + category);
             let divtop = document.createElement("div");
@@ -161,77 +161,77 @@ var aufgabe081;
             divtop.setAttribute("id", "divtop" + i);
             document.getElementById("configurator").appendChild(divtop);
             let title = document.createElement("a");
-            title.innerHTML = (data[i].title + ":");
+            title.innerHTML = (aufgabe081.data[i].title + ":");
             title.classList.add("label");
             title.setAttribute("id", "label" + i);
             divtop.appendChild(title);
-            if (data[i].form_type == "dropdown") {
+            if (aufgabe081.data[i].form_type == "dropdown") {
                 let menu = document.createElement("select");
                 divtop.appendChild(menu);
                 menu.classList.add("formselect");
-                menu.setAttribute("name", data[i].title + "");
-                for (let k = 0; k < data[i].items.length; k++) {
+                menu.setAttribute("name", aufgabe081.data[i].title + "");
+                for (let k = 0; k < aufgabe081.data[i].items.length; k++) {
                     let dropdown = document.createElement("option");
                     menu.appendChild(dropdown);
                     dropdown.classList.add("formelements");
                     dropdown.classList.add("option");
                     dropdown.setAttribute("value", "" + k);
-                    dropdown.setAttribute("name", data[i].title + "_Option");
-                    dropdown.innerHTML = data[i].items[k].name;
+                    dropdown.setAttribute("name", aufgabe081.data[i].title + "_Option");
+                    dropdown.innerHTML = aufgabe081.data[i].items[k].name;
                 }
                 createAmountHTML(i, 0, divtop);
             }
-            if (data[i].form_type == "radio") {
-                for (let k = 0; k < data[i].items.length; k++) {
+            if (aufgabe081.data[i].form_type == "radio") {
+                for (let k = 0; k < aufgabe081.data[i].items.length; k++) {
                     let radiobutton = document.createElement("input");
                     divtop.appendChild(radiobutton);
                     radiobutton.classList.add("formelements");
                     radiobutton.classList.add("radio");
                     radiobutton.setAttribute("value", "" + k);
                     radiobutton.setAttribute("type", "radio");
-                    radiobutton.setAttribute("name", data[i].title + "_Radiogroup");
-                    radiobutton.innerHTML = data[i].items[k].name;
-                    radiobutton.setAttribute("id", data[i].title + "_radio" + k);
+                    radiobutton.setAttribute("name", aufgabe081.data[i].title + "_Radiogroup");
+                    radiobutton.innerHTML = aufgabe081.data[i].items[k].name;
+                    radiobutton.setAttribute("id", aufgabe081.data[i].title + "_radio" + k);
                     let radiolabel = document.createElement("label");
                     divtop.appendChild(radiolabel);
                     radiolabel.classList.add("formlabels");
-                    radiolabel.setAttribute("for", data[i].title + "_radio" + k);
-                    radiolabel.innerHTML = (data[i].items[k].name);
+                    radiolabel.setAttribute("for", aufgabe081.data[i].title + "_radio" + k);
+                    radiolabel.innerHTML = (aufgabe081.data[i].items[k].name);
                     createAmountHTML(i, k, divtop);
                     divtop.appendChild(document.createElement("br"));
                 }
             }
-            if (data[i].form_type == "checkbox") {
-                for (let k = 0; k < data[i].items.length; k++) {
+            if (aufgabe081.data[i].form_type == "checkbox") {
+                for (let k = 0; k < aufgabe081.data[i].items.length; k++) {
                     let checkbox = document.createElement("input");
                     divtop.appendChild(checkbox);
                     checkbox.classList.add("formelements");
                     checkbox.classList.add("checkbox");
                     checkbox.setAttribute("value", "" + k);
                     checkbox.setAttribute("type", "checkbox");
-                    checkbox.setAttribute("name", data[i].title + "_Checkbox");
-                    checkbox.innerHTML = data[i].items[k].name;
-                    checkbox.setAttribute("id", data[i].title + "_checkbox" + k);
+                    checkbox.setAttribute("name", aufgabe081.data[i].title + "_Checkbox");
+                    checkbox.innerHTML = aufgabe081.data[i].items[k].name;
+                    checkbox.setAttribute("id", aufgabe081.data[i].title + "_checkbox" + k);
                     let checkboxlabel = document.createElement("label");
                     divtop.appendChild(checkboxlabel);
                     checkboxlabel.classList.add("formlabels");
-                    checkboxlabel.setAttribute("for", data[i].title + "_checkbox" + k);
-                    checkboxlabel.innerHTML = (data[i].items[k].name);
+                    checkboxlabel.setAttribute("for", aufgabe081.data[i].title + "_checkbox" + k);
+                    checkboxlabel.innerHTML = (aufgabe081.data[i].items[k].name);
                     createAmountHTML(i, k, divtop);
                     divtop.appendChild(document.createElement("br"));
                 }
             }
         }
         function createAmountHTML(i, k, divtop) {
-            if (data[i].amount_type == "slider") {
+            if (aufgabe081.data[i].amount_type == "slider") {
                 let amount = document.createElement("input");
                 divtop.appendChild(amount);
                 amount.classList.add("amount_slider");
                 amount.setAttribute("id", "amount_slider" + i);
                 amount.setAttribute("type", "range");
-                amount.setAttribute("name", data[i].title + "_amount");
+                amount.setAttribute("name", aufgabe081.data[i].title + "_amount");
                 amount.setAttribute("min", "0");
-                amount.setAttribute("max", (data[i].amount.steps.length - 1) + "");
+                amount.setAttribute("max", (aufgabe081.data[i].amount.steps.length - 1) + "");
                 amount.setAttribute("step", "1");
                 amount.setAttribute("value", "3");
                 let display = document.createElement("a");
@@ -240,15 +240,15 @@ var aufgabe081;
                 display.setAttribute("id", "slider_display" + k + i);
             }
             ;
-            if (data[i].amount_type == "stepper") {
+            if (aufgabe081.data[i].amount_type == "stepper") {
                 let amount = document.createElement("input");
                 divtop.appendChild(amount);
                 amount.classList.add("amount_stepper");
                 amount.setAttribute("type", "number");
-                amount.setAttribute("name", data[i].items[k].name + "_amount");
+                amount.setAttribute("name", aufgabe081.data[i].items[k].name + "_amount");
                 amount.setAttribute("step", "1");
                 amount.setAttribute("min", "0");
-                amount.setAttribute("max", "" + data[i].amount.steps.length);
+                amount.setAttribute("max", "" + aufgabe081.data[i].amount.steps.length);
             }
         }
     }

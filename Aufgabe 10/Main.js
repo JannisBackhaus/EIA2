@@ -31,7 +31,7 @@ var Aufgabe10;
                 i--;
             }
         }
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 6; i++) {
             let person = new Aufgabe10.Person();
             person.x = Math.random() * Aufgabe10.crc2.canvas.width;
             person.y = Math.random() * Aufgabe10.crc2.canvas.height;

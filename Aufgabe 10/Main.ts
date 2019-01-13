@@ -34,7 +34,7 @@ namespace Aufgabe10 {
             else { i-- }
         }
 
-        for (let i: number = 0; i < 10; i++) {
+        for (let i: number = 0; i < 6; i++) {
             let person: Person = new Person();
 
             person.x = Math.random() * crc2.canvas.width;
@@ -72,16 +72,13 @@ namespace Aufgabe10 {
             }
             else 
                 { person.drawMovingUp();
-                person.moveUp();}
+                person.moveUp();
+                }
         }
         for (let i: number = 0; i < trees.length; i++) {
             let tree: Tree = trees[i];
             tree.draw();
         }
-
-
-
-
         console.log("Update");
     }
 }

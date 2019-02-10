@@ -1,11 +1,11 @@
 {
 	"name" : "Server",
 	"version" : "1.0.0",
-	"description" : "Server for my facebook clone",
+	"description" : "Sever for my Christmas Tree Configurator",
 	"author" : "Jannis",
 	"main" : "Server.js",
 	"scripts" : {
-		"start" : "node Aufgabe08/Server/Server.js"
+		"start" : "node Abschlussabgabe/Server/Server.js"
 	},
 	"engines" : {
 		"node" : "8.10.0"

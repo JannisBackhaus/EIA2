@@ -37,4 +37,4 @@ var Aufgabe10;
     }
     Aufgabe10.createCloud = createCloud;
 })(Aufgabe10 || (Aufgabe10 = {}));
-//# sourceMappingURL=landscape.js.map
+//# sourceMappingURL=Landscape.js.map

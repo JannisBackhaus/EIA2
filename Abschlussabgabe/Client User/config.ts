@@ -1,4 +1,4 @@
-namespace aufgabe08 {
+namespace WBKreloaded {
 
     document.addEventListener("DOMContentLoaded", main);
     let address: string = "https://treeconfigurator.herokuapp.com/";

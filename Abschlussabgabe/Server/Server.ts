@@ -7,7 +7,6 @@ namespace WBKreloaded {
     if (port == undefined)
         port = 8100;
 
-
     interface Data { [key: string]: string; }
 
     let order: Data = {};
@@ -16,6 +15,7 @@ namespace WBKreloaded {
     server.addListener("request", handleRequest);
     server.addListener("listening", handleListen);
     server.listen(port);
+
     function handleListen(): void {
         console.log("Listening");
     }
@@ -35,6 +35,15 @@ namespace WBKreloaded {
 
         for (let i in order) {
 
+            if (i[0] == "newOrder") {
+                console.log("New Order came in")
+            }
+            else if (i[0] == "newData") {
+                console.log("Seller changed offers")
+            }
+            else if (i[0] == "deleteOrder") {
+                console.log("Seller deleted order")}
+            
             _response.write(i);
         }
         console.log();

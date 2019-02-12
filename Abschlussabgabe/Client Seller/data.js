@@ -1,6 +1,6 @@
-var WBKreloaded;
-(function (WBKreloaded) {
-    WBKreloaded.data = {
+var WBKreloadedSeller;
+(function (WBKreloadedSeller) {
+    WBKreloadedSeller.data = {
         "tree": {
             title: "Baum",
             amount_type: "slider",
@@ -160,5 +160,5 @@ var WBKreloaded;
             ]
         },
     };
-})(WBKreloaded || (WBKreloaded = {}));
+})(WBKreloadedSeller || (WBKreloadedSeller = {}));
 //# sourceMappingURL=data.js.map

@@ -1,6 +1,6 @@
-namespace WBKreloaded {
+namespace WBKreloadedSeller {
     export interface Categories {
-        [key: string]: Category;
+        [key: number]: Category ; 
     }
     export interface Category {
         title: string;

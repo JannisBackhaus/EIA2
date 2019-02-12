@@ -28,6 +28,15 @@ var WBKreloaded;
         _response.setHeader("Access-Control-Allow-Origin", "*");
         _request.url;
         for (let i in order) {
+            if (i[0] == "newOrder") {
+                console.log("New Order came in");
+            }
+            else if (i[0] == "newData") {
+                console.log("Seller changed offers");
+            }
+            else if (i[0] == "deleteOrder") {
+                console.log("Seller deleted order");
+            }
             _response.write(i);
         }
         console.log();

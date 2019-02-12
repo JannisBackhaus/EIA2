@@ -1,36 +1,16 @@
 namespace WBKreloaded {
 
     document.addEventListener("DOMContentLoaded", main);
-   // let address: string = "https://treeconfigurator.herokuapp.com/";
-    let address: string = "http://localhost:8100/";
+    let address: string = "https://treeconfigurator.herokuapp.com/";
+    //let address: string = "http://localhost:8100/";
     let order: string = "";
 
     function main(): void {
         console.log("main() triggered");
-        requestData();
         dynamicHTML();
         createEventListener(event);
     }
-    
-    function requestData(): void {
-        let xhr: XMLHttpRequest = new XMLHttpRequest();
-        xhr.open("GET", address + "requesttype=getData", true);
-        xhr.addEventListener("readystatechange", handleStateChangeData);
-        xhr.send();}
-    }
 
-    function handleStateChangeData(_event: ProgressEvent): void {
-        var xhr: XMLHttpRequest = <XMLHttpRequest>_event.target;
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
-            console.log("response: " + xhr.response);
-            decodeData(xhr.response);
-        }
-    }
-
-
-        
-    
     function createEventListener(_event: Event): void {
         let divs: NodeListOf<Element> = document.getElementsByClassName("divtop");
         for (let i: number = 0; i < divs.length; i++) {
@@ -332,7 +312,7 @@ namespace WBKreloaded {
     }
 
 
-    function handleStateChangeOrder(_event: ProgressEvent): void {
+    function handleStateChange(_event: ProgressEvent): void {
         var xhr: XMLHttpRequest = <XMLHttpRequest>_event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
@@ -345,7 +325,7 @@ namespace WBKreloaded {
         let xhr: XMLHttpRequest = new XMLHttpRequest();
         let query: string = generateJSONString();
         xhr.open("GET", address + "?" + generateJSONString(), true);
-        xhr.addEventListener("readystatechange", handleStateChangeOrder);
+        xhr.addEventListener("readystatechange", handleStateChange);
         xhr.send();
 
         //        let messagelist: NodeList = document.getElementsByClassName("errormessage");
@@ -437,10 +417,6 @@ namespace WBKreloaded {
         console.log(encodeURIComponent(query));
         return encodeURIComponent(query);
     }
-
-    function decodeData(response: string): void {
-        let json = JSON.parse(response);        
-            };
 
     function orderConfirmation(response: string): void {
         let confirmwindow: HTMLDivElement = <HTMLDivElement>document.getElementById("confirmwindow")

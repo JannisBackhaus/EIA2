@@ -24,7 +24,7 @@ namespace WBKreloadedSeller {
         //    }
         document.getElementById("savebutton").addEventListener("click", clickHandlerSave);
         document.getElementById("deleteOrders").addEventListener("click", getDataFromServer);
- document.getElementById("resetData").addEventListener("click", resetData);
+        document.getElementById("resetData").addEventListener("click", resetData);
         console.log("createEventListener done");
     }
 
@@ -33,6 +33,62 @@ namespace WBKreloadedSeller {
         xhr.open("GET", address + "?getData0", true);
         xhr.addEventListener("readystatechange", handleStateChangeGetData);
         xhr.send();
+    }
+
+    function getOrdersFromServer(): void {
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("GET", address + "?getOrder", true);
+        xhr.addEventListener("readystatechange", handleStateChangeGetOrders);
+        xhr.send();
+    }
+
+    function handleStateChangeGetOrders(_event: Event): void {
+        var xhr: XMLHttpRequest = <XMLHttpRequest>_event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            console.log("%cServer Response (getOrders):", "color: white; background-color: blue")
+            console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
+            console.log("response: " + xhr.response);
+            let temp: JSON = JSON.parse(xhr.response);
+            let datajson: JSON
+            let datastring: string[]
+
+            for (let key in temp) {
+                //  console.log(temp[key].datastring)
+                datastring.push(decodeURI(temp[key].datastring))
+                //  console.log(datastring)
+                //   console.log(datajson)
+               
+
+            }
+            
+
+            let tempData: Categories = []
+            for (let i in datajson) {
+                tempData[parseInt(i)] = {
+                    title: datajson[i]["title"],
+                    amount_type: datajson[i]["amount_type"],
+                    amount: null,
+                    form_type: datajson[i]["form_type"],
+                    items: [{ name: null, price: null }, { name: null, price: null }],
+                }
+
+                for (let k: number = 0; k < datajson[i]["items"].length; k++) {
+                    tempData[parseInt(i)]["items"][k] =
+                        {
+                            name: datajson[i]["items"][k]["name"],
+                            price: datajson[i]["items"][k]["price"],
+                        }
+                }
+            }
+
+            console.log(tempData)
+
+            newData = tempData
+
+            console.log("%cConverted Server-Response (getOrders):", "color: white; background-color: green")
+            console.log(newData)
+            dynamicHTML();
+        }
     }
 
     function handleStateChangeGetData(_event: Event): void {

@@ -83,7 +83,7 @@ function handleInsert(_e: Mongo.MongoError): void {
     console.log("Database insertion returned -> " + _e);
 }
 
-export function findAll(_callback: Function): void {
+export function getData(_callback: Function): void {
     var cursor: Mongo.Cursor = data.find();
 
     cursor.toArray(prepareAnswer);
@@ -94,25 +94,5 @@ export function findAll(_callback: Function): void {
         else
             _callback(JSON.stringify(dataArray));
     }
-
-
 }
 
-
-// try to fetch all documents from database, then activate callback
-export function getOrders(_callback: Function): void {
-    // cursor points to the retreived set of documents in memory
-    var cursor: Mongo.Cursor = data.find();
-    // try to convert to array, then activate callback "prepareAnswer"
-    cursor.toArray(prepareAnswer);
-
-    // toArray-handler receives two standard parameters, an error object and the array
-    // implemented as inner function, so _callback is in scope
-    function prepareAnswer(_e: Mongo.MongoError, orderArray: Entrypoints[]): void {
-        if (_e)
-            _callback("Error" + _e);
-        else
-            // stringify creates a json-string, passed it back to _callback
-            _callback(JSON.stringify(orderArray));
-    }
-}

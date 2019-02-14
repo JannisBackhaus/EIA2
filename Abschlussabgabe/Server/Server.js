@@ -73,9 +73,10 @@ var WBKreloadedServer;
                 //                Database.saveData(document);
                 _response.end();
                 break;
+            case "/?getOrder":
             case "/?getData0":
                 console.log("---------------Offer Data requested--------------");
-                Database.findAll(findCallback);
+                Database.getData(findCallback);
                 break;
             case "/?newOrder":
                 json = JSON.parse(query);
@@ -84,7 +85,7 @@ var WBKreloadedServer;
                 console.log("---------------New order came in--------------");
                 let order = {
                     datatype: "order",
-                    datastring: query,
+                    datastring: encodeURI(query)
                 };
                 _response.write(query);
                 Database.insertOrder(order);

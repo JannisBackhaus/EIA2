@@ -7,6 +7,11 @@ namespace WBKreloadedServer {
     interface AssocStringString {
         [key: string]: string;
     }
+    interface Entrypoints {
+        amount: string,
+        item: string,
+        price: string,
+    }
     export interface StoredData {
         datatype: string;
         datastring: string;
@@ -118,10 +123,10 @@ namespace WBKreloadedServer {
                 //                Database.saveData(document);
                 _response.end();
                 break;
-
+            case "/?getOrder":
             case "/?getData0":
                 console.log("---------------Offer Data requested--------------")
-                Database.findAll(findCallback);
+                Database.getData(findCallback);
                 break;
 
             case "/?newOrder":
@@ -133,14 +138,16 @@ namespace WBKreloadedServer {
 
                 console.log("---------------New order came in--------------")
 
+
                 let order: StoredData = {
                     datatype: "order",
-                    datastring: query,
+                    datastring: encodeURI(query)
                 }
                 _response.write(query);
 
                 Database.insertOrder(order)
                 break;
+
         }
         function findCallback(json: string): void {
             let query: AssocStringString = JSON.parse(json)

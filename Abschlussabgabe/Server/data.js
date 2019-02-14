@@ -1,7 +1,7 @@
-var WBKreloadedSeller;
-(function (WBKreloadedSeller) {
-    WBKreloadedSeller.data = {
-        0: {
+var WBKreloadedServer;
+(function (WBKreloadedServer) {
+    WBKreloadedServer.data = {
+        "tree": {
             title: "Baum",
             amount_type: "slider",
             amount: {
@@ -32,7 +32,7 @@ var WBKreloadedSeller;
                 }
             ],
         },
-        1: {
+        "holder": {
             title: "Halterung",
             amount_type: "",
             amount: {
@@ -59,7 +59,7 @@ var WBKreloadedSeller;
                 }
             ]
         },
-        2: {
+        "balls": {
             title: "Kugeln",
             amount_type: "stepper",
             amount: {
@@ -90,7 +90,7 @@ var WBKreloadedSeller;
                 }
             ],
         },
-        3: {
+        "tinsel": {
             title: "Lametta",
             amount_type: "stepper",
             amount: {
@@ -113,7 +113,7 @@ var WBKreloadedSeller;
                 }
             ]
         },
-        4: {
+        "lights": {
             title: "Lichter",
             amount_type: "stepper",
             amount: {
@@ -136,7 +136,7 @@ var WBKreloadedSeller;
                 }
             ]
         },
-        5: {
+        "top": {
             title: "Spitze",
             amount_type: "",
             amount: {
@@ -160,5 +160,5 @@ var WBKreloadedSeller;
             ]
         },
     };
-})(WBKreloadedSeller || (WBKreloadedSeller = {}));
+})(WBKreloadedServer || (WBKreloadedServer = {}));
 //# sourceMappingURL=data.js.map

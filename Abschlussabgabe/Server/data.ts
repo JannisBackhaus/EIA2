@@ -1,4 +1,4 @@
-namespace WBKreloadedSeller {
+namespace WBKreloadedServer {
     export interface Categories {
         [key: number]: Category ; 
     }
@@ -22,7 +22,7 @@ namespace WBKreloadedSeller {
 
 
         {
-            0:
+            "tree":
             {
                 title: "Baum",
                 amount_type: "slider",
@@ -58,7 +58,7 @@ namespace WBKreloadedSeller {
 
             },
 
-            1:
+            "holder":
             {
                 title: "Halterung",
                 amount_type: "",
@@ -89,7 +89,7 @@ namespace WBKreloadedSeller {
                 ]
             },
 
-            2:
+            "balls":
             {
                 title: "Kugeln",
                 amount_type: "stepper",
@@ -125,7 +125,7 @@ namespace WBKreloadedSeller {
 
             },
 
-            3:
+            "tinsel":
             {
                 title: "Lametta",
                 amount_type: "stepper",
@@ -153,7 +153,7 @@ namespace WBKreloadedSeller {
                 ]
             },
 
-            4:
+            "lights":
             {
                 title: "Lichter",
                 amount_type: "stepper",
@@ -180,7 +180,7 @@ namespace WBKreloadedSeller {
                 ]
             },
 
-            5:
+            "top":
             {
                 title: "Spitze",
                 amount_type: "",

@@ -1,41 +1,84 @@
-namespace WBKreloaded {
+namespace WBKreloadedUser {
 
     document.addEventListener("DOMContentLoaded", main);
-   // let address: string = "https://treeconfigurator.herokuapp.com/";
+    // let address: string = "https://treeconfigurator.herokuapp.com/";
     let address: string = "http://localhost:8100/";
     let order: string = "";
+    let data: Categories
 
     function main(): void {
         console.log("main() triggered");
-        requestData();
+        getDataFromServer();
         dynamicHTML();
-        createEventListener(event);
-    }
-    
-    function requestData(): void {
-        let xhr: XMLHttpRequest = new XMLHttpRequest();
-        xhr.open("GET", address + "requesttype=getData", true);
-        xhr.addEventListener("readystatechange", handleStateChangeData);
-        xhr.send();}
+        createEventListener();
     }
 
-    function handleStateChangeData(_event: ProgressEvent): void {
+    function getDataFromServer(): void {
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("GET", address + "?getData0", true);
+        xhr.addEventListener("readystatechange", handleStateChangeGetData);
+        xhr.send();
+    }
+
+    function handleStateChangeGetData(_event: Event): void {
         var xhr: XMLHttpRequest = <XMLHttpRequest>_event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
+            console.log("%cServer Response (getData):", "color: white; background-color: blue")
             console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
             console.log("response: " + xhr.response);
-            decodeData(xhr.response);
+            let temp: JSON = JSON.parse(xhr.response);
+            let datajson: JSON
+            for (let key in temp) {
+                //  console.log(temp[key].datastring)
+                let datastring: string = decodeURI(temp[key].datastring)
+                //  console.log(datastring)
+                datajson = JSON.parse(datastring)
+                //   console.log(datajson)
+            }
+
+
+            let tempData: Categories = []
+            for (let i in datajson) {
+                tempData[parseInt(i)] = {
+                    title: datajson[i]["title"],
+                    amount_type: datajson[i]["amount_type"],
+                    amount: null,
+                    form_type: datajson[i]["form_type"],
+                    items: [{ name: null, price: null }, { name: null, price: null }],
+                }
+
+                for (let k: number = 0; k < datajson[i]["items"].length; k++) {
+                    tempData[parseInt(i)]["items"][k] =
+                        {
+                            name: datajson[i]["items"][k]["name"],
+                            price: datajson[i]["items"][k]["price"],
+                        }
+                }
+            }
+
+            console.log(tempData)
+
+            data = tempData
+
+            console.log("%cConverted Server-Response (getData):", "color: white; background-color: green")
+            console.log(data)
+            dynamicHTML();
         }
     }
 
 
-        
-    
-    function createEventListener(_event: Event): void {
+
+
+    function createEventListener(): void {
+   
         let divs: NodeListOf<Element> = document.getElementsByClassName("divtop");
+        console.log("HIER")
+        console.log(divs)
+        console.log(divs.length)
         for (let i: number = 0; i < divs.length; i++) {
-            let div: Element = divs[i];
+            let div: Element = <Element>divs[i];
             div.addEventListener("input", generateCart);
+            console.log("div" + i + " got Eventlistener")
         }
         document.getElementById("orderbutton").addEventListener("click", checkOrderAndSendData);
 
@@ -43,6 +86,7 @@ namespace WBKreloaded {
     }
 
     function generateCart(_event: Event): void {
+        console.log("change registered")
         order = "";
 
         let ov_amount: HTMLDivElement = <HTMLDivElement>(document.getElementById("ov_amount"));
@@ -219,15 +263,15 @@ namespace WBKreloaded {
 
         for (let i in data) {
             let category = i
-
+ 
             console.log("Kategorie: " + category);
 
 
-            let divtop: HTMLDivElement = document.createElement("div");
+            let divtop: HTMLDivElement = <HTMLDivElement>document.createElement("div");
             divtop.classList.add("divtop");
-            divtop.setAttribute("id", "divtop" + i);
+            divtop.setAttribute("id", "divtop" + data[i].title);
             document.getElementById("configurator").appendChild(divtop);
-
+ 
             let title: HTMLAnchorElement = document.createElement("a");
             title.innerHTML = (data[i].title + ":");
             title.classList.add("label");
@@ -295,41 +339,42 @@ namespace WBKreloaded {
                 }
             }
         }
-        function createAmountHTML(i: string, k: number, divtop: HTMLDivElement): void {
-
-            if (data[i].amount_type == "slider") {
-                let amount: HTMLInputElement = document.createElement("input");
-                divtop.appendChild(amount);
-                amount.classList.add("amount_slider");
-                amount.setAttribute("id", "amount_slider" + i);
-                amount.setAttribute("type", "range");
-                amount.setAttribute("name", data[i].title + "_amount");
-                amount.setAttribute("min", "0");
-                amount.setAttribute("max", (data[i].amount.steps.length - 1) + "");
-                amount.setAttribute("step", "1");
-                amount.setAttribute("value", "3");
-
-                let display: HTMLAnchorElement = document.createElement("a");
-                divtop.appendChild(display);
-                display.classList.add("slider_display");
-                display.setAttribute("id", "slider_display" + k + i);
-
-            };
-
-            if (data[i].amount_type == "stepper") {
-                let amount: HTMLInputElement = document.createElement("input");
-                divtop.appendChild(amount);
-                amount.classList.add("amount_stepper");
-                amount.setAttribute("type", "number");
-                amount.setAttribute("name", data[i].items[k].name + "_amount");
-                amount.setAttribute("step", "1");
-                amount.setAttribute("min", "0");
-                amount.setAttribute("max", "" + data[i].amount.steps.length);
-            }
-        }
-
-
     }
+    function createAmountHTML(i: string, k: number, divtop: HTMLDivElement): void {
+
+        if (data[parseInt(i)].amount_type == "slider") {
+            let amount: HTMLInputElement = document.createElement("input");
+            divtop.appendChild(amount);
+            amount.classList.add("amount_slider");
+            amount.setAttribute("id", "amount_slider" + i);
+            amount.setAttribute("type", "range");
+            amount.setAttribute("name", data[parseInt(i)].title + "_amount");
+            amount.setAttribute("min", "0");
+            amount.setAttribute("max", "15");
+            amount.setAttribute("step", "1");
+            amount.setAttribute("value", "3");
+
+            let display: HTMLAnchorElement = document.createElement("a");
+            divtop.appendChild(display);
+            display.classList.add("slider_display");
+            display.setAttribute("id", "slider_display" + k + i);
+
+        };
+
+        if (data[parseInt(i)].amount_type == "stepper") {
+            let amount: HTMLInputElement = document.createElement("input");
+            divtop.appendChild(amount);
+            amount.classList.add("amount_stepper");
+            amount.setAttribute("type", "number");
+            amount.setAttribute("name", data[parseInt(i)].items[k].name + "_amount");
+            amount.setAttribute("step", "1");
+            amount.setAttribute("min", "0");
+            //amount.setAttribute("max", "" + data[parseInt(i)].amount.steps.length);
+        }
+    }
+
+
+
 
 
     function handleStateChangeOrder(_event: ProgressEvent): void {
@@ -344,7 +389,7 @@ namespace WBKreloaded {
     function checkOrderAndSendData(_event: Event): void {
         let xhr: XMLHttpRequest = new XMLHttpRequest();
         let query: string = generateJSONString();
-        xhr.open("GET", address + "?" + generateJSONString(), true);
+        xhr.open("GET", address + "?newOrder" + generateJSONString(), true);
         xhr.addEventListener("readystatechange", handleStateChangeOrder);
         xhr.send();
 
@@ -435,21 +480,23 @@ namespace WBKreloaded {
         console.log(jsonarray);
         console.log(query);
         console.log(encodeURIComponent(query));
-        return encodeURIComponent(query);
+        return query;
     }
 
-    function decodeData(response: string): void {
-        let json = JSON.parse(response);        
-            };
+    function decodeData(_response: string): void {
+        let json = JSON.parse(_response);
+    };
 
     function orderConfirmation(response: string): void {
         let confirmwindow: HTMLDivElement = <HTMLDivElement>document.getElementById("confirmwindow")
         if (confirmwindow != null) {
             confirmwindow.parentNode.removeChild(confirmwindow)
         }
-
+        console.log("%cRaw Server Response:", "color: white; background-color: blue")
+        console.log(response)
         let json = JSON.parse(response);
-
+        console.log("%cParsed Response to JSON-Object:", "color: white; background-color: green")
+        console.log(json)
         confirmwindow = document.createElement("div");
         confirmwindow.setAttribute("id", "confirmwindow");
         document.body.appendChild(confirmwindow);

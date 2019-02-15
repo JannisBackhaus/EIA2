@@ -1,8 +1,8 @@
 var WBKreloadedUser;
 (function (WBKreloadedUser) {
     document.addEventListener("DOMContentLoaded", main);
-    // let address: string = "https://treeconfigurator.herokuapp.com/";
-    let address = "http://localhost:8100/";
+    let address = "https://treeconfigurator.herokuapp.com/";
+    // let address: string = "http://localhost:8100/";
     let order = "";
     let data;
     function main() {

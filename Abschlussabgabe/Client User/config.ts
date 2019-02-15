@@ -1,8 +1,8 @@
 namespace WBKreloadedUser {
 
     document.addEventListener("DOMContentLoaded", main);
-    // let address: string = "https://treeconfigurator.herokuapp.com/";
-    let address: string = "http://localhost:8100/";
+    let address: string = "https://treeconfigurator.herokuapp.com/";
+    // let address: string = "http://localhost:8100/";
     let order: string = "";
     let data: Categories
 
@@ -70,7 +70,7 @@ namespace WBKreloadedUser {
 
 
     function createEventListener(): void {
-   
+
         let divs: NodeListOf<Element> = document.getElementsByClassName("divtop");
         console.log("HIER")
         console.log(divs)
@@ -263,7 +263,7 @@ namespace WBKreloadedUser {
 
         for (let i in data) {
             let category = i
- 
+
             console.log("Kategorie: " + category);
 
 
@@ -271,7 +271,7 @@ namespace WBKreloadedUser {
             divtop.classList.add("divtop");
             divtop.setAttribute("id", "divtop" + data[i].title);
             document.getElementById("configurator").appendChild(divtop);
- 
+
             let title: HTMLAnchorElement = document.createElement("a");
             title.innerHTML = (data[i].title + ":");
             title.classList.add("label");

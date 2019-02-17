@@ -35,6 +35,10 @@ function saveData(_doc) {
     data.insertOne(_doc, handleInsert);
 }
 exports.saveData = saveData;
+function deleteAllOrders() {
+    orders.deleteMany({});
+}
+exports.deleteAllOrders = deleteAllOrders;
 // insertion-handler receives an error object as standard parameter
 function handleInsert(_e) {
     console.log("Database insertion returned -> " + _e);

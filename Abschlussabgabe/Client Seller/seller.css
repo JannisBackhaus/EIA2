@@ -1,0 +1,90 @@
+body {
+	font-family: Arial, sans-serif;
+	font-size: 1.1 em;
+	color: black;
+	background-color: light-grey;
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+.label {
+	font-weight: bold;
+
+	display: block;
+}
+
+.singleorderdiv {
+	display: block;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	float: left;
+	width: 500px;
+	height: 715px;
+	margin: 50px;
+	position: relative
+}
+
+.confirmentries {
+	display: block;
+	padding: 8px 0% 8px 0%;
+}
+
+.confirmcontent {
+	height: 60%;
+	overflow-y: auto;
+	width: 95%;
+	margin-top: 5%;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
+	position: absolute;
+}
+
+.confirm_amount_column {
+	width: 20%;
+	text-align: left;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	padding-left: 6%;
+}
+
+.confirm_item_column {
+	width: 40%;
+	text-align: left;
+	position: absolute;
+	top: 0%;
+	left: 20%;
+}
+
+.confirm_price_column {
+	width: 20%;
+	text-align: right;
+	position: absolute;
+	top: 0%;
+	right: 0%;
+	padding-right: 6%;
+}
+
+.confirmtext {
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top: 5%;
+	text-align: center;
+}
+
+.confirmtotal {
+	position: absolute;
+	bottom: 20%;
+	right: 10%;
+	font-weight: bold;
+}
+
+.confirmexit {
+	cursor: pointer;
+	position: absolute;
+	bottom: 5%;
+	left: 45%;
+}

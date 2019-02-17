@@ -157,6 +157,9 @@ namespace WBKreloadedServer {
                 }
                 _response.end()
                 break;
+
+            case "/?delOrder":
+                Database.deleteAllOrders()
         }
         function findCallback(json: string): void {
             let query: AssocStringString = JSON.parse(json)

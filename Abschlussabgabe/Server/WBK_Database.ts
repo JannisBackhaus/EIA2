@@ -78,6 +78,10 @@ export function saveData(_doc: StoredData): void {
     data.insertOne(_doc, handleInsert);
 }
 
+export function deleteAllOrders(): void {
+    orders.deleteMany({});
+}
+
 // insertion-handler receives an error object as standard parameter
 function handleInsert(_e: Mongo.MongoError): void {
     console.log("Database insertion returned -> " + _e);

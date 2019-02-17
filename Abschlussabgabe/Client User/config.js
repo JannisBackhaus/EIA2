@@ -401,9 +401,6 @@ var WBKreloadedUser;
         }
         console.log("%cRaw Server Response:", "color: white; background-color: blue");
         console.log(response);
-        let json = JSON.parse(response);
-        console.log("%cParsed Response to JSON-Object:", "color: white; background-color: green");
-        console.log(json);
         confirmwindow = document.createElement("div");
         confirmwindow.setAttribute("id", "confirmwindow");
         document.body.appendChild(confirmwindow);
@@ -420,8 +417,33 @@ var WBKreloadedUser;
         contentwindow.appendChild(price_column);
         contentwindow.setAttribute("id", "confirmcontent");
         text.innerHTML = ("Ihre Bestellung wurde abgeschickt!");
+        if (response == "Leere Bestellung") {
+            text.innerHTML = ("Die Bestellung ist leer. Sie wurde nicht abgeschickt.");
+            let exit = document.createElement("img");
+            confirmwindow.appendChild(exit);
+            exit.setAttribute("src", "img/checkmark-flat.png");
+            exit.setAttribute("width", "50px");
+            exit.setAttribute("height", "50px");
+            exit.setAttribute("id", "confirmexit");
+            exit.addEventListener("mouseleave", function normal() {
+                exit.setAttribute("src", "img/checkmark-flat.png");
+            });
+            exit.addEventListener("mouseover", function hover() {
+                exit.setAttribute("src", "img/checkmark-flat-hover.png");
+            });
+            exit.addEventListener("mousedown", function hover() {
+                exit.setAttribute("src", "img/checkmark-flat-keydown.png");
+            });
+            exit.addEventListener("mouseup", function hover() {
+                exit.setAttribute("src", "img/checkmark-flat.png");
+                confirmwindow.parentNode.removeChild(confirmwindow);
+            });
+        }
         text.classList.add("label");
         text.setAttribute("id", "confirmtext");
+        console.log("%cParsed Response to JSON-Object:", "color: white; background-color: green");
+        let json = JSON.parse(response);
+        console.log(json);
         for (let i = 0; i < json.length; i++) {
             let amount_entry = document.createElement("a");
             let item_entry = document.createElement("a");

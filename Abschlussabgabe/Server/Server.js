@@ -98,6 +98,8 @@ var WBKreloadedServer;
                 }
                 _response.end();
                 break;
+            case "/?delOrder":
+                Database.deleteAllOrders();
         }
         function findCallback(json) {
             let query = JSON.parse(json);

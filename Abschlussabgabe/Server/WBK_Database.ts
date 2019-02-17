@@ -83,9 +83,12 @@ function handleInsert(_e: Mongo.MongoError): void {
     console.log("Database insertion returned -> " + _e);
 }
 
-export function getData(_callback: Function): void {
-    var cursor: Mongo.Cursor = data.find();
-
+export function getData(_callback: Function, targetDb: string): void {
+    
+    if (targetDb== "data")
+        var cursor: Mongo.Cursor = data.find();
+    else
+        var cursor: Mongo.Cursor = orders.find();
     cursor.toArray(prepareAnswer);
 
     function prepareAnswer(_e: Mongo.MongoError, dataArray: StoredData[]): void {

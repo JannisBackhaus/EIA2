@@ -9,8 +9,8 @@ namespace WBKreloadedUser {
     function main(): void {
         console.log("main() triggered");
         getDataFromServer();
-        dynamicHTML();
-        createEventListener();
+        //dynamicHTML();
+        //createEventListener();
     }
 
     function getDataFromServer(): void {
@@ -63,6 +63,7 @@ namespace WBKreloadedUser {
             console.log("%cConverted Server-Response (getData):", "color: white; background-color: green")
             console.log(data)
             dynamicHTML();
+            createEventListener()
         }
     }
 
@@ -269,7 +270,7 @@ namespace WBKreloadedUser {
 
             let divtop: HTMLDivElement = <HTMLDivElement>document.createElement("div");
             divtop.classList.add("divtop");
-            divtop.setAttribute("id", "divtop" + data[i].title);
+            divtop.setAttribute("id", "divtop" + i);
             document.getElementById("configurator").appendChild(divtop);
 
             let title: HTMLAnchorElement = document.createElement("a");
@@ -515,7 +516,7 @@ namespace WBKreloadedUser {
         contentwindow.appendChild(price_column);
 
         contentwindow.setAttribute("id", "confirmcontent");
-        text.innerHTML = ("Ihre Bestellung wurde abgeschickt!")
+        text.innerHTML = ("Ihre Bestellung wurde abgeschickt!") 
         text.classList.add("label");
         text.setAttribute("id", "confirmtext")
 

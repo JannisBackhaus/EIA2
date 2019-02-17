@@ -74,9 +74,12 @@ var WBKreloadedServer;
                 _response.end();
                 break;
             case "/?getOrder":
+                console.log("---------------Orders requested--------------");
+                Database.getData(findCallback, "data");
+                break;
             case "/?getData0":
                 console.log("---------------Offer Data requested--------------");
-                Database.getData(findCallback);
+                Database.getData(findCallback, "data");
                 break;
             case "/?newOrder":
                 json = JSON.parse(query);

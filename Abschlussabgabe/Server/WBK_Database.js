@@ -39,8 +39,11 @@ exports.saveData = saveData;
 function handleInsert(_e) {
     console.log("Database insertion returned -> " + _e);
 }
-function getData(_callback) {
-    var cursor = data.find();
+function getData(_callback, targetDb) {
+    if (targetDb == "data")
+        var cursor = data.find();
+    else
+        var cursor = orders.find();
     cursor.toArray(prepareAnswer);
     function prepareAnswer(_e, dataArray) {
         if (_e)

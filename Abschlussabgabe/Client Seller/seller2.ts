@@ -1,8 +1,8 @@
 namespace WBKreloadedSeller {
 
     document.addEventListener("DOMContentLoaded", main);
-    // let address: string = "https://treeconfigurator.herokuapp.com/";
-    let address: string = "http://localhost:8100/";
+    let address: string = "https://treeconfigurator.herokuapp.com/";
+    //let address: string = "http://localhost:8100/";
     let newData: Categories
     let reconstruct: Categories
     let query: string
@@ -13,7 +13,6 @@ namespace WBKreloadedSeller {
         getDataFromServer();
         dynamicHTML();
         createEventListener();
-
     }
 
     function createEventListener(): void {
@@ -23,7 +22,8 @@ namespace WBKreloadedSeller {
         //        div.addEventListener("input", generateCart);
         //    }
         document.getElementById("savebutton").addEventListener("click", clickHandlerSave);
-        document.getElementById("deleteOrders").addEventListener("click", getDataFromServer);
+        //document.getElementById("deleteOrders").addEventListener("click", getDataFromServer);
+        document.getElementById("getOrders").addEventListener("click", getOrdersFromServer);
         document.getElementById("resetData").addEventListener("click", resetData);
         console.log("createEventListener done");
     }
@@ -48,47 +48,111 @@ namespace WBKreloadedSeller {
             console.log("%cServer Response (getOrders):", "color: white; background-color: blue")
             console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
             console.log("response: " + xhr.response);
-            let temp: JSON = JSON.parse(xhr.response);
-            let datajson: JSON
-            let datastring: string[]
-
-            for (let key in temp) {
-                //  console.log(temp[key].datastring)
-                datastring.push(decodeURI(temp[key].datastring))
-                //  console.log(datastring)
-                //   console.log(datajson)
-               
-
-            }
-            
-
-            let tempData: Categories = []
-            for (let i in datajson) {
-                tempData[parseInt(i)] = {
-                    title: datajson[i]["title"],
-                    amount_type: datajson[i]["amount_type"],
-                    amount: null,
-                    form_type: datajson[i]["form_type"],
-                    items: [{ name: null, price: null }, { name: null, price: null }],
-                }
-
-                for (let k: number = 0; k < datajson[i]["items"].length; k++) {
-                    tempData[parseInt(i)]["items"][k] =
-                        {
-                            name: datajson[i]["items"][k]["name"],
-                            price: datajson[i]["items"][k]["price"],
-                        }
-                }
-            }
-
-            console.log(tempData)
-
-            newData = tempData
-
-            console.log("%cConverted Server-Response (getOrders):", "color: white; background-color: green")
-            console.log(newData)
-            dynamicHTML();
+            orderConfirmation(xhr.response);
         }
+    }
+
+    function orderConfirmation(response: string): void {
+        let orderwindow: HTMLDivElement = <HTMLDivElement>document.getElementById("documents")
+        if (orderwindow != null) {
+            orderwindow.innerHTML = "";
+        }
+        console.log("%cRaw Server Response: (getOrder)", "color: white; background-color: blue")
+        console.log(response)
+        let json = JSON.parse(response);
+        console.log("%cParsed Response to JSON-Object:", "color: white; background-color: green")
+        console.log(json)
+
+        let temp: JSON = JSON.parse(response);
+        let datajson: JSON
+        let datastring: string
+
+        for (let key in temp) {
+            datastring = (decodeURI(temp[key].datastring))
+            datajson = JSON.parse(datastring)
+        }
+
+        console.log("%cConverted Server-Response (getOrders):", "color: white; background-color: green")
+        console.log(datajson)
+
+        for (let key in datajson) {
+            let confirmwindow: HTMLDivElement = <HTMLDivElement>document.createElement("div")
+            let total: number = 0;
+
+            let text: HTMLAnchorElement = document.createElement("a");
+            let contentwindow: HTMLDivElement = document.createElement("div");
+            let amount_column: HTMLDivElement = document.createElement("div");
+            let item_column: HTMLDivElement = document.createElement("div");
+            let price_column: HTMLDivElement = document.createElement("div");
+
+            confirmwindow.appendChild(text);
+            confirmwindow.appendChild(contentwindow);
+            contentwindow.appendChild(amount_column);
+            contentwindow.appendChild(item_column);
+            contentwindow.appendChild(price_column);
+
+            contentwindow.setAttribute("id", "confirmcontent" + key);
+
+            text.classList.add("label");
+            text.setAttribute("id", "confirmtext" + key)
+
+            let amount_entry: HTMLAnchorElement = document.createElement("a");
+            let item_entry: HTMLAnchorElement = document.createElement("a");
+            let price_entry: HTMLAnchorElement = document.createElement("a");
+
+            text.innerHTML = ("Bestellung Nr." + key)
+
+            amount_column.setAttribute("id", "confirm_amount_column" + key);
+            item_column.setAttribute("id", "confirm_item_column" + key);
+            price_column.setAttribute("id", "confirm_price_column" + key);
+
+            amount_entry.classList.add("confirmentries");
+            item_entry.classList.add("confirmentries");
+            price_entry.classList.add("confirmentries");
+
+            amount_column.appendChild(amount_entry);
+            item_column.appendChild(item_entry);
+            price_column.appendChild(price_entry);
+
+            amount_entry.innerHTML = (datajson[key]["amount"]);
+            item_entry.innerHTML = (datajson[key]["item"]);
+            price_entry.innerHTML = (datajson[key]["price"] + " Euro");
+            total = total + parseFloat(datajson[key]["price"]);
+
+
+
+            let totaldisplay: HTMLAnchorElement = document.createElement("a");
+            confirmwindow.appendChild(totaldisplay);
+            totaldisplay.innerHTML = ("Gesamtpreis: " + total.toFixed(2) + " Euro")
+            totaldisplay.setAttribute("id", "confirmtotal");
+
+            let exit: HTMLImageElement = document.createElement("img");
+            confirmwindow.appendChild(exit);
+            exit.setAttribute("src", "img/checkmark-flat.png");
+            exit.setAttribute("width", "50px");
+            exit.setAttribute("height", "50px");
+            exit.setAttribute("id", "confirmexit");
+
+            exit.addEventListener("mouseleave", function normal(): void {
+                exit.setAttribute("src", "img/checkmark-flat.png");
+
+            })
+
+            exit.addEventListener("mouseover", function hover(): void {
+                exit.setAttribute("src", "img/checkmark-flat-hover.png");
+
+            })
+
+            exit.addEventListener("mousedown", function hover(): void {
+                exit.setAttribute("src", "img/checkmark-flat-keydown.png");
+
+            })
+            exit.addEventListener("mouseup", function hover(): void {
+                exit.setAttribute("src", "img/checkmark-flat.png");
+                //confirmwindow.parentNode.removeChild(confirmwindow);
+            })
+        }
+
     }
 
     function handleStateChangeGetData(_event: Event): void {

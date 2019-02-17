@@ -1,8 +1,8 @@
 var WBKreloadedSeller;
 (function (WBKreloadedSeller) {
     document.addEventListener("DOMContentLoaded", main);
-    // let address: string = "https://treeconfigurator.herokuapp.com/";
-    let address = "http://localhost:8100/";
+    let address = "https://treeconfigurator.herokuapp.com/";
+    //let address: string = "http://localhost:8100/";
     let newData;
     let reconstruct;
     let query;
@@ -19,7 +19,8 @@ var WBKreloadedSeller;
         //        div.addEventListener("input", generateCart);
         //    }
         document.getElementById("savebutton").addEventListener("click", clickHandlerSave);
-        document.getElementById("deleteOrders").addEventListener("click", getDataFromServer);
+        //document.getElementById("deleteOrders").addEventListener("click", getDataFromServer);
+        document.getElementById("getOrders").addEventListener("click", getOrdersFromServer);
         document.getElementById("resetData").addEventListener("click", resetData);
         console.log("createEventListener done");
     }
@@ -41,35 +42,84 @@ var WBKreloadedSeller;
             console.log("%cServer Response (getOrders):", "color: white; background-color: blue");
             console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
             console.log("response: " + xhr.response);
-            let temp = JSON.parse(xhr.response);
-            let datajson;
-            let datastring;
-            for (let key in temp) {
-                //  console.log(temp[key].datastring)
-                datastring.push(decodeURI(temp[key].datastring));
-            }
-            let tempData = [];
-            for (let i in datajson) {
-                tempData[parseInt(i)] = {
-                    title: datajson[i]["title"],
-                    amount_type: datajson[i]["amount_type"],
-                    amount: null,
-                    form_type: datajson[i]["form_type"],
-                    items: [{ name: null, price: null }, { name: null, price: null }],
-                };
-                for (let k = 0; k < datajson[i]["items"].length; k++) {
-                    tempData[parseInt(i)]["items"][k] =
-                        {
-                            name: datajson[i]["items"][k]["name"],
-                            price: datajson[i]["items"][k]["price"],
-                        };
-                }
-            }
-            console.log(tempData);
-            newData = tempData;
-            console.log("%cConverted Server-Response (getOrders):", "color: white; background-color: green");
-            console.log(newData);
-            dynamicHTML();
+            orderConfirmation(xhr.response);
+        }
+    }
+    function orderConfirmation(response) {
+        let orderwindow = document.getElementById("documents");
+        if (orderwindow != null) {
+            orderwindow.innerHTML = "";
+        }
+        console.log("%cRaw Server Response: (getOrder)", "color: white; background-color: blue");
+        console.log(response);
+        let json = JSON.parse(response);
+        console.log("%cParsed Response to JSON-Object:", "color: white; background-color: green");
+        console.log(json);
+        let temp = JSON.parse(response);
+        let datajson;
+        let datastring;
+        for (let key in temp) {
+            datastring = (decodeURI(temp[key].datastring));
+            datajson = JSON.parse(datastring);
+        }
+        console.log("%cConverted Server-Response (getOrders):", "color: white; background-color: green");
+        console.log(datajson);
+        for (let key in datajson) {
+            let confirmwindow = document.createElement("div");
+            let total = 0;
+            let text = document.createElement("a");
+            let contentwindow = document.createElement("div");
+            let amount_column = document.createElement("div");
+            let item_column = document.createElement("div");
+            let price_column = document.createElement("div");
+            confirmwindow.appendChild(text);
+            confirmwindow.appendChild(contentwindow);
+            contentwindow.appendChild(amount_column);
+            contentwindow.appendChild(item_column);
+            contentwindow.appendChild(price_column);
+            contentwindow.setAttribute("id", "confirmcontent" + key);
+            text.classList.add("label");
+            text.setAttribute("id", "confirmtext" + key);
+            let amount_entry = document.createElement("a");
+            let item_entry = document.createElement("a");
+            let price_entry = document.createElement("a");
+            text.innerHTML = ("Bestellung Nr." + key);
+            amount_column.setAttribute("id", "confirm_amount_column" + key);
+            item_column.setAttribute("id", "confirm_item_column" + key);
+            price_column.setAttribute("id", "confirm_price_column" + key);
+            amount_entry.classList.add("confirmentries");
+            item_entry.classList.add("confirmentries");
+            price_entry.classList.add("confirmentries");
+            amount_column.appendChild(amount_entry);
+            item_column.appendChild(item_entry);
+            price_column.appendChild(price_entry);
+            amount_entry.innerHTML = (datajson[key]["amount"]);
+            item_entry.innerHTML = (datajson[key]["item"]);
+            price_entry.innerHTML = (datajson[key]["price"] + " Euro");
+            total = total + parseFloat(datajson[key]["price"]);
+            let totaldisplay = document.createElement("a");
+            confirmwindow.appendChild(totaldisplay);
+            totaldisplay.innerHTML = ("Gesamtpreis: " + total.toFixed(2) + " Euro");
+            totaldisplay.setAttribute("id", "confirmtotal");
+            let exit = document.createElement("img");
+            confirmwindow.appendChild(exit);
+            exit.setAttribute("src", "img/checkmark-flat.png");
+            exit.setAttribute("width", "50px");
+            exit.setAttribute("height", "50px");
+            exit.setAttribute("id", "confirmexit");
+            exit.addEventListener("mouseleave", function normal() {
+                exit.setAttribute("src", "img/checkmark-flat.png");
+            });
+            exit.addEventListener("mouseover", function hover() {
+                exit.setAttribute("src", "img/checkmark-flat-hover.png");
+            });
+            exit.addEventListener("mousedown", function hover() {
+                exit.setAttribute("src", "img/checkmark-flat-keydown.png");
+            });
+            exit.addEventListener("mouseup", function hover() {
+                exit.setAttribute("src", "img/checkmark-flat.png");
+                //confirmwindow.parentNode.removeChild(confirmwindow);
+            });
         }
     }
     function handleStateChangeGetData(_event) {

@@ -8,8 +8,8 @@ var WBKreloadedUser;
     function main() {
         console.log("main() triggered");
         getDataFromServer();
-        dynamicHTML();
-        createEventListener();
+        //dynamicHTML();
+        //createEventListener();
     }
     function getDataFromServer() {
         let xhr = new XMLHttpRequest();
@@ -53,6 +53,7 @@ var WBKreloadedUser;
             console.log("%cConverted Server-Response (getData):", "color: white; background-color: green");
             console.log(data);
             dynamicHTML();
+            createEventListener();
         }
     }
     function createEventListener() {
@@ -209,7 +210,7 @@ var WBKreloadedUser;
             console.log("Kategorie: " + category);
             let divtop = document.createElement("div");
             divtop.classList.add("divtop");
-            divtop.setAttribute("id", "divtop" + data[i].title);
+            divtop.setAttribute("id", "divtop" + i);
             document.getElementById("configurator").appendChild(divtop);
             let title = document.createElement("a");
             title.innerHTML = (data[i].title + ":");

@@ -1,8 +1,8 @@
 namespace WBKreloadedSeller {
 
     document.addEventListener("DOMContentLoaded", main);
-    let address: string = "https://treeconfigurator.herokuapp.com/";
-    //let address: string = "http://localhost:8100/";
+   // let address: string = "https://treeconfigurator.herokuapp.com/";
+    let address: string = "http://localhost:8100/";
     let newData: Categories
     let reconstruct: Categories
     let query: string

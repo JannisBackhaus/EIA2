@@ -125,7 +125,7 @@ namespace WBKreloadedServer {
                 break;
             case "/?getOrder":
                 console.log("---------------Orders requested--------------")
-                Database.getData(findCallback, "data");
+                Database.getData(findCallback, "order");
                 break;
             case "/?getData0":
                 console.log("---------------Offer Data requested--------------")

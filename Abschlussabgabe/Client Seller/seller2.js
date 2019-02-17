@@ -1,8 +1,8 @@
 var WBKreloadedSeller;
 (function (WBKreloadedSeller) {
     document.addEventListener("DOMContentLoaded", main);
-    let address = "https://treeconfigurator.herokuapp.com/";
-    //let address: string = "http://localhost:8100/";
+    // let address: string = "https://treeconfigurator.herokuapp.com/";
+    let address = "http://localhost:8100/";
     let newData;
     let reconstruct;
     let query;

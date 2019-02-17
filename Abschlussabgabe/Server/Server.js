@@ -95,8 +95,8 @@ var WBKreloadedServer;
                     };
                     _response.write(query);
                     Database.insertOrder(order);
-                    _response.end();
                 }
+                _response.end();
                 break;
         }
         function findCallback(json) {

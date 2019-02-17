@@ -50,8 +50,6 @@ var WBKreloadedSeller;
         if (orderwindow != null) {
             orderwindow.innerHTML = "";
         }
-        console.log("%cRaw Server Response: (getOrder)", "color: white; background-color: blue");
-        console.log(response);
         let tempJSON = JSON.parse(response);
         console.log("%cParsed Response to JSON-Object:", "color: white; background-color: green");
         console.log(tempJSON);
@@ -59,7 +57,10 @@ var WBKreloadedSeller;
         let datastring;
         for (let key in tempJSON) {
             datastring = (decodeURI(tempJSON[key].datastring));
-            orderJSON = JSON.parse(datastring);
+            console.log(datastring);
+            if (datastring == "[]")
+                continue;
+            orderJSON[key] = JSON.parse(datastring);
         }
         console.log("%cConverted Server-Response (getOrders):", "color: white; background-color: green");
         console.log(orderJSON);

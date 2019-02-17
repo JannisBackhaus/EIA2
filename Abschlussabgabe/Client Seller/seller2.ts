@@ -2,7 +2,7 @@ namespace WBKreloadedSeller {
 
     document.addEventListener("DOMContentLoaded", main);
     let address: string = "https://treeconfigurator.herokuapp.com/";
-   // let address: string = "http://localhost:8100/";
+    // let address: string = "http://localhost:8100/";
     let newData: Categories
     let reconstruct: Categories
     let query: string
@@ -57,20 +57,25 @@ namespace WBKreloadedSeller {
         if (orderwindow != null) {
             orderwindow.innerHTML = "";
         }
-        console.log("%cRaw Server Response: (getOrder)", "color: white; background-color: blue")
-        console.log(response)
         let tempJSON = JSON.parse(response);
         console.log("%cParsed Response to JSON-Object:", "color: white; background-color: green")
         console.log(tempJSON)
 
-        let orderJSON: JSON
-        let datastring: string
-
-        for (let key in tempJSON) { 
-            datastring = (decodeURI(tempJSON[key].datastring))
-            orderJSON = JSON.parse(datastring)
+        interface OrderJSON {
+            [key: string]: JSON;
         }
-
+        
+        let orderJSON: OrderJSON
+        let datastring: string
+        
+        for (let key in tempJSON) {
+            datastring = (decodeURI(tempJSON[key].datastring))
+            console.log(datastring)
+            if (datastring == "[]")
+                continue
+            orderJSON[key] = JSON.parse(datastring)
+        }
+ 
         console.log("%cConverted Server-Response (getOrders):", "color: white; background-color: green")
         console.log(orderJSON)
 
@@ -94,7 +99,7 @@ namespace WBKreloadedSeller {
             text.innerHTML = ("Bestellung Nr." + key)
             text.classList.add("label");
             text.setAttribute("id", "confirmtext" + key)
-//
+            //
             let amount_entry: HTMLAnchorElement = document.createElement("a");
             let item_entry: HTMLAnchorElement = document.createElement("a");
             let price_entry: HTMLAnchorElement = document.createElement("a");

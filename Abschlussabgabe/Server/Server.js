@@ -82,17 +82,21 @@ var WBKreloadedServer;
                 Database.getData(findCallback, "data");
                 break;
             case "/?newOrder":
-                json = JSON.parse(query);
-                console.log(query);
-                console.log(json);
-                console.log("---------------New order came in--------------");
-                let order = {
-                    datatype: "order",
-                    datastring: encodeURI(query)
-                };
-                _response.write(query);
-                Database.insertOrder(order);
-                _response.end();
+                if (query == "[]")
+                    _response.write("Leere Bestellung");
+                else {
+                    json = JSON.parse(query);
+                    console.log(query);
+                    console.log(json);
+                    console.log("---------------New order came in--------------");
+                    let order = {
+                        datatype: "order",
+                        datastring: encodeURI(query)
+                    };
+                    _response.write(query);
+                    Database.insertOrder(order);
+                    _response.end();
+                }
                 break;
         }
         function findCallback(json) {

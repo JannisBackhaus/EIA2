@@ -133,25 +133,29 @@ namespace WBKreloadedServer {
                 break;
 
             case "/?newOrder":
-                json = JSON.parse(query)
+                if (query == "[]")
+                    _response.write("Leere Bestellung")
 
-                console.log(query)
-                console.log(json)
+                else {
+                    json = JSON.parse(query)
+
+                    console.log(query)
+                    console.log(json)
 
 
-                console.log("---------------New order came in--------------")
+                    console.log("---------------New order came in--------------")
 
 
-                let order: StoredData = {
-                    datatype: "order",
-                    datastring: encodeURI(query)
+                    let order: StoredData = {
+                        datatype: "order",
+                        datastring: encodeURI(query)
+                    }
+                    _response.write(query);
+
+                    Database.insertOrder(order)
+                    _response.end()
                 }
-                _response.write(query);
-
-                Database.insertOrder(order)
-                _response.end()
                 break;
-
         }
         function findCallback(json: string): void {
             let query: AssocStringString = JSON.parse(json)

@@ -47,7 +47,7 @@ var WBKreloadedSeller;
     }
     function orderConfirmation(response) {
         let orderwindow = document.getElementById("documents");
-        if (orderwindow != null) {
+        if (orderwindow.innerHTML != null) {
             orderwindow.innerHTML = "";
         }
         let tempJSON = JSON.parse(response);
@@ -385,6 +385,7 @@ var WBKreloadedSeller;
             console.log("%cServer Response (getData):", "color: white; background-color: blue");
             console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
             console.log("response: " + xhr.response);
+            getOrdersFromServer();
         }
     }
     function saveData() {

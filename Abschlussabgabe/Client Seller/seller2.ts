@@ -54,7 +54,7 @@ namespace WBKreloadedSeller {
 
     function orderConfirmation(response: string): void {
         let orderwindow: HTMLDivElement = <HTMLDivElement>document.getElementById("documents")
-        if (orderwindow != null) {
+        if (orderwindow.innerHTML != null) {
             orderwindow.innerHTML = "";
         }
         let tempJSON = JSON.parse(response);
@@ -473,6 +473,7 @@ namespace WBKreloadedSeller {
         xhr.open("GET", address + "?delOrder", true);
         xhr.addEventListener("readystatechange", handleStateChangeGetData);
         xhr.send();
+
     }
 
     function handleStateChangeDeleteOrders(_event: Event): void {
@@ -481,6 +482,7 @@ namespace WBKreloadedSeller {
             console.log("%cServer Response (getData):", "color: white; background-color: blue")
             console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
             console.log("response: " + xhr.response);
+            getOrdersFromServer()
         }
     }
 

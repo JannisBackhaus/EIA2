@@ -100,6 +100,8 @@ var WBKreloadedServer;
                 break;
             case "/?delOrder":
                 Database.deleteAllOrders();
+                _response.write("All Orders Deleted");
+                _response.end();
         }
         function findCallback(json) {
             let query = JSON.parse(json);

@@ -9,10 +9,121 @@ body {
 	height: 100%;
 }
 
+#offer {
+	width: 45%;
+	display: inline-block;
+	float: left
+}
+
+#orders {
+	width: 45%;
+	display: inline-block;
+	float: left
+}
+
+#categories {
+	margin: 20px; border-style : solid;
+	border-width: 1px 1px 1px 1px;
+	border-color: #d6d6d6;
+	border-radius: 5px;
+	border-style: solid;
+}
+#title {
+	font-weight: 700;
+	font-size: 2em;
+	margin-bottom: 30px;
+	font-family: 'Mountains of Christmas', cursive;
+	margin-top: 20px;
+	text-align: center;
+}
+.titles {
+	font-size: 1.8em;
+		font-weight: 500;
+	
+	margin: 10px 15px 10px 60px;
+font-family: 'Mountains of Christmas', cursive;
+}
+
+.divall {
+	display: block;
+	margin: 10px;
+	padding: 10px;
+	border-style: solid;
+	border-width: 0px 0px 1px 0px;
+	border-color: #d6d6d6;
+}
+
 .label {
 	font-weight: bold;
-
 	display: block;
+}
+
+.ctg_title {
+	font-size: 1.5em;
+	display: inline-block;
+	margin: 3px 30px 3px 10px
+}
+
+.ctgnames {
+	display: inline-block;
+	margin: 3px 20px 3px 20px;
+}
+
+.ctgtypes {
+	display: inline-block;
+	margin: 3px 20px 3px 20px;
+}
+
+.ctgamounttypes {
+	display: inline-block;
+	margin: 3px 20px 3px 20px;
+}
+
+.ctgremovebutton {
+	font-size: 1.5em;
+	width: 40px;
+	font-weight: bold;
+	height: 40px;
+	border-Radius: 40px;
+	color: white;
+	background-Color: red;
+	margin: 3px 20px 3px 20px;
+}
+
+.categorystripe {
+	border-width: 0px 0px 1px 0px;
+	border-color: #d6d6d6;
+	padding-bottom: 10px;
+	border-style: solid;
+}
+
+.removebutton:hover {
+	background-Color: #ff4242;
+}
+
+.divitems {
+	margin: 20px 50px 20px 50px;
+	border-width: 0px 0px 0px 1px;
+	border-style: solid;
+	border-color: #a7a7a7;
+	padding-left: 25px
+}
+
+.itemstripes {
+	margin: 15px 0px 15px 0px;
+}
+
+.subtitle {
+	display: inline-block;
+}
+
+.itemnames {
+	margin: 0px 30px 0px 30px;
+	width: 200px
+}
+
+.itemprices {
+	margin: 0px 30px 0px 10px;
 }
 
 .singleorderdiv {
@@ -25,6 +136,44 @@ body {
 	height: 715px;
 	margin: 50px;
 	position: relative
+}
+
+.itemaddbutton {
+	width: 50px;
+}
+
+#ctgaddbutton {
+	font-size: 1.5em;
+	width: 80%;
+	font-weight: bold;
+	height: 40px;
+	border-Radius: 40px;
+	color: white;
+	background-Color: #0DFF6E;
+	margin: 0 10% 0 10%;
+}
+
+.mainbuttons {
+	background-color: #ffffff;
+	-moz-border-radius: 42px;
+	-webkit-border-radius: 42px;
+	border-radius: 42px;
+	border: 1px solid #969696;
+	display: inline-block;
+	cursor: pointer;
+	color: #2e2e2e;
+	font-family: Arial;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 12px 0px;
+	width: 150px;
+	margin: 25px 25px 25px 25px; text-decoration : none;
+	text-align: center;
+	text-decoration: none;
+}
+
+.mainbuttons:hover {
+	background-color: #f6f6f6;
 }
 
 .confirmentries {

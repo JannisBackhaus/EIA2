@@ -9,6 +9,7 @@ namespace WBKreloadedSeller {
 
     function main(): void {
         console.log("main() triggered");
+        getOrdersFromServer();
 
         getDataFromServer();
         dynamicHTML();
@@ -48,122 +49,124 @@ namespace WBKreloadedSeller {
             console.log("%cServer Response (getOrders):", "color: white; background-color: blue")
             console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
             console.log("response: " + xhr.response);
-            orderConfirmation(xhr.response);
+            orderView(xhr.response);
         }
     }
 
-    function orderConfirmation(response: string): void {
+    function orderView(response: string): void {
         let orderwindow: HTMLDivElement = <HTMLDivElement>document.getElementById("documents")
-        if (orderwindow.innerHTML != null) {
-            orderwindow.innerHTML = "";
-        }
-        let tempJSON = JSON.parse(response);
-        console.log("%cParsed Response to JSON-Object:", "color: white; background-color: green")
-        console.log(tempJSON)
+        orderwindow.innerHTML = "";
+        if (response == "All Orders Deleted")
+        { orderwindow.innerHTML = "Keine neuen Bestellungen"; }
+
+        else {
+            let tempJSON = JSON.parse(response);
+            console.log("%cParsed Response to JSON-Object:", "color: white; background-color: green")
+            console.log(tempJSON)
 
 
-        let datastring: string
-        let orderJSON: JSON
+            let datastring: string
+            let orderJSON: JSON
 
-        for (let key in tempJSON) {
-            datastring = (decodeURI(tempJSON[key].datastring))
-            console.log("datastring for key: " + key)
-            console.log(datastring)
+            for (let key in tempJSON) {
+                datastring = (decodeURI(tempJSON[key].datastring))
+                console.log("datastring for key: " + key)
+                console.log(datastring)
 
-            orderJSON = JSON.parse(datastring)
+                orderJSON = JSON.parse(datastring)
 
-            console.log("%cOrder no." + key + ":", "color: white; background-color: pink")
-            console.log(orderJSON)
+                console.log("%cOrder no." + key + ":", "color: white; background-color: pink")
+                console.log(orderJSON)
 
-            let confirmwindow: HTMLDivElement = <HTMLDivElement>document.createElement("div")
-            confirmwindow.classList.add("singleorderdiv")
-            let total: number = 0;
-            orderwindow.appendChild(confirmwindow)
-            let text: HTMLAnchorElement = document.createElement("a");
-            let contentwindow: HTMLDivElement = document.createElement("div");
-            let amount_column: HTMLDivElement = document.createElement("div");
-            let item_column: HTMLDivElement = document.createElement("div");
-            let price_column: HTMLDivElement = document.createElement("div");
+                let confirmwindow: HTMLDivElement = <HTMLDivElement>document.createElement("div")
+                confirmwindow.classList.add("singleorderdiv")
+                let total: number = 0;
+                orderwindow.appendChild(confirmwindow)
+                let text: HTMLAnchorElement = document.createElement("a");
+                let contentwindow: HTMLDivElement = document.createElement("div");
+                let amount_column: HTMLDivElement = document.createElement("div");
+                let item_column: HTMLDivElement = document.createElement("div");
+                let price_column: HTMLDivElement = document.createElement("div");
 
-            confirmwindow.appendChild(text);
-            confirmwindow.appendChild(contentwindow);
-            contentwindow.appendChild(amount_column);
-            contentwindow.appendChild(item_column);
-            contentwindow.appendChild(price_column);
+                confirmwindow.appendChild(text);
+                confirmwindow.appendChild(contentwindow);
+                contentwindow.appendChild(amount_column);
+                contentwindow.appendChild(item_column);
+                contentwindow.appendChild(price_column);
 
-            contentwindow.setAttribute("id", "confirmcontent" + key);
-            contentwindow.classList.add("confirmcontent")
+                contentwindow.setAttribute("id", "confirmcontent" + key);
+                contentwindow.classList.add("confirmcontent")
 
-            text.innerHTML = ("Bestellung Nr. " + key)
-            text.classList.add("label");
-            text.setAttribute("id", "confirmtext" + key)
-            text.classList.add("confirmtext")
+                text.innerHTML = ("Bestellung Nr. " + key)
+                text.classList.add("label");
+                text.setAttribute("id", "confirmtext" + key)
+                text.classList.add("confirmtext")
 
-            amount_column.setAttribute("id", "confirm_amount_column" + key);
-            amount_column.classList.add("confirm_amount_column")
-            item_column.setAttribute("id", "confirm_item_column" + key);
-            item_column.classList.add("confirm_item_column")
-            price_column.setAttribute("id", "confirm_price_column" + key);
-            price_column.classList.add("confirm_price_column")
+                amount_column.setAttribute("id", "confirm_amount_column" + key);
+                amount_column.classList.add("confirm_amount_column")
+                item_column.setAttribute("id", "confirm_item_column" + key);
+                item_column.classList.add("confirm_item_column")
+                price_column.setAttribute("id", "confirm_price_column" + key);
+                price_column.classList.add("confirm_price_column")
 
 
-            for (let i in orderJSON) {
-                let amount_entry: HTMLAnchorElement = document.createElement("a");
-                let item_entry: HTMLAnchorElement = document.createElement("a");
-                let price_entry: HTMLAnchorElement = document.createElement("a");
+                for (let i in orderJSON) {
+                    let amount_entry: HTMLAnchorElement = document.createElement("a");
+                    let item_entry: HTMLAnchorElement = document.createElement("a");
+                    let price_entry: HTMLAnchorElement = document.createElement("a");
 
-                amount_column.appendChild(amount_entry);
-                item_column.appendChild(item_entry);
-                price_column.appendChild(price_entry);
+                    amount_column.appendChild(amount_entry);
+                    item_column.appendChild(item_entry);
+                    price_column.appendChild(price_entry);
 
-                amount_entry.classList.add("confirmentries");
-                item_entry.classList.add("confirmentries");
-                price_entry.classList.add("confirmentries");
+                    amount_entry.classList.add("confirmentries");
+                    item_entry.classList.add("confirmentries");
+                    price_entry.classList.add("confirmentries");
 
-                amount_entry.innerHTML = (orderJSON[i]["amount"]);
-                item_entry.innerHTML = (orderJSON[i]["item"]);
-                price_entry.innerHTML = (orderJSON[i]["price"] + " Euro");
-                total = total + parseFloat(orderJSON[i]["price"]);
+                    amount_entry.innerHTML = (orderJSON[i]["amount"]);
+                    item_entry.innerHTML = (orderJSON[i]["item"]);
+                    price_entry.innerHTML = (orderJSON[i]["price"] + " Euro");
+                    total = total + parseFloat(orderJSON[i]["price"]);
+                }
+
+
+                let totaldisplay: HTMLAnchorElement = document.createElement("a");
+                confirmwindow.appendChild(totaldisplay);
+                totaldisplay.innerHTML = ("Gesamtpreis: " + total.toFixed(2) + " Euro")
+                totaldisplay.setAttribute("id", "confirmtotal" + key);
+                totaldisplay.classList.add("confirmtotal");
+
+
+                let exit: HTMLImageElement = document.createElement("img");
+                confirmwindow.appendChild(exit);
+                exit.setAttribute("src", "img/checkmark-flat.png");
+                exit.setAttribute("width", "50px");
+                exit.setAttribute("height", "50px");
+                exit.setAttribute("id", "confirmexit");
+                exit.classList.add("confirmexit");
+
+
+                exit.addEventListener("mouseleave", function normal(): void {
+                    exit.setAttribute("src", "img/checkmark-flat.png");
+
+                })
+
+                exit.addEventListener("mouseover", function hover(): void {
+                    exit.setAttribute("src", "img/checkmark-flat-hover.png");
+
+                })
+
+                exit.addEventListener("mousedown", function hover(): void {
+                    exit.setAttribute("src", "img/checkmark-flat-keydown.png");
+
+                })
+                exit.addEventListener("mouseup", function hover(): void {
+                    exit.setAttribute("src", "img/checkmark-flat.png");
+                    //confirmwindow.parentNode.removeChild(confirmwindow);
+                })
             }
 
-
-            let totaldisplay: HTMLAnchorElement = document.createElement("a");
-            confirmwindow.appendChild(totaldisplay);
-            totaldisplay.innerHTML = ("Gesamtpreis: " + total.toFixed(2) + " Euro")
-            totaldisplay.setAttribute("id", "confirmtotal" + key);
-            totaldisplay.classList.add("confirmtotal");
-
-
-            let exit: HTMLImageElement = document.createElement("img");
-            confirmwindow.appendChild(exit);
-            exit.setAttribute("src", "img/checkmark-flat.png");
-            exit.setAttribute("width", "50px");
-            exit.setAttribute("height", "50px");
-            exit.setAttribute("id", "confirmexit");
-            exit.classList.add("confirmexit");
-
-
-            exit.addEventListener("mouseleave", function normal(): void {
-                exit.setAttribute("src", "img/checkmark-flat.png");
-
-            })
-
-            exit.addEventListener("mouseover", function hover(): void {
-                exit.setAttribute("src", "img/checkmark-flat-hover.png");
-
-            })
-
-            exit.addEventListener("mousedown", function hover(): void {
-                exit.setAttribute("src", "img/checkmark-flat-keydown.png");
-
-            })
-            exit.addEventListener("mouseup", function hover(): void {
-                exit.setAttribute("src", "img/checkmark-flat.png");
-                //confirmwindow.parentNode.removeChild(confirmwindow);
-            })
         }
-
-
     }
 
     function handleStateChangeGetData(_event: Event): void {
@@ -239,6 +242,7 @@ namespace WBKreloadedSeller {
 
             title.innerHTML = ("Kategorie " + (index + 1) + ":");
             title.classList.add("label");
+            title.classList.add("ctg_title");
             title.setAttribute("id", "label" + i);
 
 
@@ -317,9 +321,7 @@ namespace WBKreloadedSeller {
             ctgRemoveButton.classList.add("removebutton")
             ctgRemoveButton.classList.add("formelements")
             ctgRemoveButton.innerHTML = "-"
-            ctgRemoveButton.style.backgroundColor = "red";
-            ctgRemoveButton.style.color = "white";
-            ctgRemoveButton.style.borderRadius = "10px";
+
             ctgRemoveButton.addEventListener("click", handleRemoveCtg)
 
             let divitems: HTMLDivElement = document.createElement("div");
@@ -334,8 +336,8 @@ namespace WBKreloadedSeller {
             // ---------- ITEMS ----------        
             for (let k: number = 0; k < newData[i].items.length; k++) {
                 let itemstripe: HTMLDivElement = document.createElement("div");
-                divitems.classList.add("itemstripes");
-                divitems.setAttribute("id", i + "itemstripe" + k);
+                itemstripe.classList.add("itemstripes");
+                itemstripe.setAttribute("id", i + "itemstripe" + k);
                 divitems.appendChild(itemstripe);
 
                 let subtitle: HTMLAnchorElement = document.createElement("a");
@@ -343,6 +345,7 @@ namespace WBKreloadedSeller {
 
                 subtitle.innerHTML = ("Item " + (k + 1) + ":");
                 subtitle.classList.add("label");
+                subtitle.classList.add("subtitle");
                 subtitle.setAttribute("id", "label" + i);
 
                 let itemName: HTMLInputElement = document.createElement("input");            // Item-Name
@@ -401,9 +404,7 @@ namespace WBKreloadedSeller {
         ctgAddButton.classList.add("addbutton")
         ctgAddButton.classList.add("formelements")
         ctgAddButton.innerHTML = "+"
-        ctgAddButton.style.backgroundColor = "#0DFF6E";
-        ctgAddButton.style.color = "white";
-        ctgAddButton.style.borderRadius = "10px";
+
         ctgAddButton.addEventListener("click", handleAddCtg)
     }
 
@@ -482,7 +483,7 @@ namespace WBKreloadedSeller {
             console.log("%cServer Response (getData):", "color: white; background-color: blue")
             console.log("ready: " + xhr.readyState, " | type: " + xhr.responseType, " | status:" + xhr.status, " | text:" + xhr.statusText);
             console.log("response: " + xhr.response);
-            getOrdersFromServer()
+            getOrdersFromServer();
         }
     }
 

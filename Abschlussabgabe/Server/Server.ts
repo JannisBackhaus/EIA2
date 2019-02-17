@@ -149,6 +149,7 @@ namespace WBKreloadedServer {
                 _response.write(query);
 
                 Database.insertOrder(order)
+                _response.end()
                 break;
 
         }

@@ -1,8 +1,8 @@
 var WBKreloadedSeller;
 (function (WBKreloadedSeller) {
     document.addEventListener("DOMContentLoaded", main);
-    // let address: string = "https://treeconfigurator.herokuapp.com/";
-    let address = "http://localhost:8100/";
+    let address = "https://treeconfigurator.herokuapp.com/";
+    //  let address: string = "http://localhost:8100/";
     let newData;
     let reconstruct;
     let query;
@@ -52,19 +52,18 @@ var WBKreloadedSeller;
         }
         console.log("%cRaw Server Response: (getOrder)", "color: white; background-color: blue");
         console.log(response);
-        let json = JSON.parse(response);
+        let tempJSON = JSON.parse(response);
         console.log("%cParsed Response to JSON-Object:", "color: white; background-color: green");
-        console.log(json);
-        let temp = JSON.parse(response);
-        let datajson;
+        console.log(tempJSON);
+        let orderJSON;
         let datastring;
-        for (let key in temp) {
-            datastring = (decodeURI(temp[key].datastring));
-            datajson = JSON.parse(datastring);
+        for (let key in tempJSON) {
+            datastring = (decodeURI(tempJSON[key].datastring));
+            orderJSON = JSON.parse(datastring);
         }
         console.log("%cConverted Server-Response (getOrders):", "color: white; background-color: green");
-        console.log(datajson);
-        for (let key in datajson) {
+        console.log(orderJSON);
+        for (let key in orderJSON) {
             let confirmwindow = document.createElement("div");
             let total = 0;
             let text = document.createElement("a");
@@ -78,12 +77,13 @@ var WBKreloadedSeller;
             contentwindow.appendChild(item_column);
             contentwindow.appendChild(price_column);
             contentwindow.setAttribute("id", "confirmcontent" + key);
+            text.innerHTML = ("Bestellung Nr." + key);
             text.classList.add("label");
             text.setAttribute("id", "confirmtext" + key);
+            //
             let amount_entry = document.createElement("a");
             let item_entry = document.createElement("a");
             let price_entry = document.createElement("a");
-            text.innerHTML = ("Bestellung Nr." + key);
             amount_column.setAttribute("id", "confirm_amount_column" + key);
             item_column.setAttribute("id", "confirm_item_column" + key);
             price_column.setAttribute("id", "confirm_price_column" + key);
@@ -93,10 +93,10 @@ var WBKreloadedSeller;
             amount_column.appendChild(amount_entry);
             item_column.appendChild(item_entry);
             price_column.appendChild(price_entry);
-            amount_entry.innerHTML = (datajson[key]["amount"]);
-            item_entry.innerHTML = (datajson[key]["item"]);
-            price_entry.innerHTML = (datajson[key]["price"] + " Euro");
-            total = total + parseFloat(datajson[key]["price"]);
+            amount_entry.innerHTML = (orderJSON[key]["amount"]);
+            item_entry.innerHTML = (orderJSON[key]["item"]);
+            price_entry.innerHTML = (orderJSON[key]["price"] + " Euro");
+            total = total + parseFloat(orderJSON[key]["price"]);
             let totaldisplay = document.createElement("a");
             confirmwindow.appendChild(totaldisplay);
             totaldisplay.innerHTML = ("Gesamtpreis: " + total.toFixed(2) + " Euro");

@@ -64,7 +64,7 @@ function handleConnect(_e: Mongo.MongoError, _db: Mongo.Db): void {
         console.log("Connected to database!");
         console.log(databaseURL);
         db = _db.db(databaseName);
-        orders = db.collection("orders");
+        orders = db.collection("orders"); 
         data = db.collection("data");
     }
 }

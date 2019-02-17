@@ -156,8 +156,9 @@ namespace WBKreloadedServer {
 
                 }
                 _response.end()
+  
                 break;
-
+  
             case "/?delOrder":
                 Database.deleteAllOrders()
         }

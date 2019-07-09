@@ -32,13 +32,13 @@ namespace WBKreloadedServer {
         price: number;
     }
     export interface Amount {
-        steps: number[],
-        display: string[],
+        steps: number[];
+        display: string[];
     }
     interface OrderData { [key: string]: string; }
 
     let order: OrderData = {};
-    export let block: string
+    export let block: string;
 
     console.log("Starting server");
     let port: number = process.env.PORT;
@@ -57,16 +57,16 @@ namespace WBKreloadedServer {
     function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
         console.log("I hear voices!");
 
-        let url_object = Url.parse(_request.url, true)
-        let query: string = decodeURI(url_object.path)
-        let queryAlt = url_object.query
+        let url_object = Url.parse(_request.url, true);
+        let query: string = decodeURI(url_object.path);
+        let queryAlt = url_object.query;
 
-        console.log("decoded string from URI:")
-        console.log(query)
-        console.log("query from URI:")
-        console.log(queryAlt)
+        console.log("decoded string from URI:");
+        console.log(query);
+        console.log("query from URI:");
+        console.log(queryAlt);
 
-        let document: Categories = []
+        let document: Categories = [];
 
         if (url_object.pathname != "/favicon.ico") {
             // console.log(query);
@@ -75,26 +75,26 @@ namespace WBKreloadedServer {
         _response.setHeader("Access-Control-Allow-Origin", "*");
         _request.url;
 
-        let requestType: string = query.slice(0, 10)
-        console.log("REQUEST-TYPE: " + requestType)
-        query = query.slice(10, query.length)
+        let requestType: string = query.slice(0, 10);
+        console.log("REQUEST-TYPE: " + requestType);
+        query = query.slice(10, query.length);
 
-        let json: JSON
+        let json: JSON;
 
         switch (requestType) {
             case "/?saveData":
-                console.log("---------------Seller changed offers--------------")
-                json = JSON.parse(query)
+                console.log("---------------Seller changed offers--------------");
+                json = JSON.parse(query);
 
-                console.log(query)
-                console.log(json)
-                console.log(encodeURI(query))
+                console.log(query);
+                console.log(json);
+                console.log(encodeURI(query));
 
                 let data: StoredData = {
                     datatype: "data",
-                    datastring: encodeURI(query),
-                }
-                Database.saveData(data)
+                    datastring: encodeURI(query)
+                };
+                Database.saveData(data);
                 _response.write(query);
 
 
@@ -128,19 +128,19 @@ namespace WBKreloadedServer {
                 Database.getData(findCallback, "order");
                 break;
             case "/?getData0":
-                console.log("---------------Offer Data requested--------------")
+                console.log("---------------Offer Data requested--------------");
                 Database.getData(findCallback, "data");
                 break;
 
             case "/?newOrder":
                 if (query == "[]")
-                    _response.write("Leere Bestellung")
+                    _response.write("Leere Bestellung");
 
                 else {
-                    json = JSON.parse(query)
+                    json = JSON.parse(query);
 
-                    console.log(query)
-                    console.log(json)
+                    console.log(query);
+                    console.log(json);
 
 
                     console.log("---------------New order came in--------------")
@@ -149,27 +149,36 @@ namespace WBKreloadedServer {
                     let order: StoredData = {
                         datatype: "order",
                         datastring: encodeURI(query)
-                    }
+                    };
                     _response.write(query);
 
-                    Database.insertOrder(order) 
+                    Database.insertOrder(order);
 
                 }
-                _response.end()
+                _response.end();
   
                 break;
   
             case "/?delOrder":
-                Database.deleteAllOrders()
-                _response.write("All Orders Deleted")
-                _response.end()
+                Database.deleteAllOrders();
+                _response.write("All Orders Deleted");
+                _response.end();
+                
+                break; 
+
+            case "/?delSinOr":
+                Database.deleteSingleOrder(query);
+                _response.write("Order with id '" + query + "' deleted.");
+                _response.end();
+                break;
+
         }
         function findCallback(json: string): void { 
-            let query: AssocStringString = JSON.parse(json)
-            console.log(query)
-            let query2 = JSON.stringify(query)
+            let query: AssocStringString = JSON.parse(json);
+            console.log(query);
+            let query2: string = JSON.stringify(query);
 
-            console.log(query2)
+            console.log(query2);
             respond(_response, json);
         }
         function respond(_response: Http.ServerResponse, _text: string): void {

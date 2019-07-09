@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const Mongo = require("mongodb");
 console.log("Database starting");
 //let databaseURL: string = "mongodb://localhost:27017";
@@ -39,6 +40,10 @@ function deleteAllOrders() {
     orders.deleteMany({});
 }
 exports.deleteAllOrders = deleteAllOrders;
+function deleteSingleOrder(id) {
+    orders.remove({ _id: id });
+}
+exports.deleteSingleOrder = deleteSingleOrder;
 // insertion-handler receives an error object as standard parameter
 function handleInsert(_e) {
     console.log("Database insertion returned -> " + _e);

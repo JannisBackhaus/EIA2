@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const Http = require("http");
 const Url = require("url");
 const Database = require("./WBK_Database");
@@ -27,6 +28,7 @@ var WBKreloadedServer;
         console.log(queryAlt);
         let document = [];
         if (url_object.pathname != "/favicon.ico") {
+            // console.log(query);
         }
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
@@ -44,7 +46,7 @@ var WBKreloadedServer;
                 console.log(encodeURI(query));
                 let data = {
                     datatype: "data",
-                    datastring: encodeURI(query),
+                    datastring: encodeURI(query)
                 };
                 Database.saveData(data);
                 _response.write(query);
@@ -102,6 +104,12 @@ var WBKreloadedServer;
                 Database.deleteAllOrders();
                 _response.write("All Orders Deleted");
                 _response.end();
+                break;
+            case "/?delSinOr":
+                Database.deleteSingleOrder(query);
+                _response.write("Order with id '" + query + "' deleted.");
+                _response.end();
+                break;
         }
         function findCallback(json) {
             let query = JSON.parse(json);

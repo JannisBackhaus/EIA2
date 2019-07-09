@@ -7,9 +7,9 @@ interface OrderData {
 }
 
 interface Entrypoints {
-    amount: string,
-    item: string,
-    price: string,
+    amount: string;
+    item: string;
+    price: string;
 }
 
 export interface StoredData {
@@ -34,8 +34,8 @@ interface Item {
     price: number;
 }
 interface Amount {
-    steps: number[],
-    display: string[],
+    steps: number[];
+    display: string[];
 }
 
 //let databaseURL: string = "mongodb://localhost:27017";
@@ -80,6 +80,10 @@ export function saveData(_doc: StoredData): void {
 
 export function deleteAllOrders(): void {
     orders.deleteMany({});
+}
+
+export function deleteSingleOrder(id: string): void {
+    orders.remove({ _id: id });
 }
 
 // insertion-handler receives an error object as standard parameter

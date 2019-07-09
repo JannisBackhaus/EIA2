@@ -83,11 +83,8 @@ export function deleteAllOrders(): void {
 }
 
 export function deleteSingleOrder(id: string): void {
-    try {
         db.orders.deleteOne( { "_id" : ObjectId(id) } );
-     } catch (e) {
-        print(e);
-     }
+     
 }
 
 // insertion-handler receives an error object as standard parameter

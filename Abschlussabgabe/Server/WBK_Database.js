@@ -41,12 +41,7 @@ function deleteAllOrders() {
 }
 exports.deleteAllOrders = deleteAllOrders;
 function deleteSingleOrder(id) {
-    try {
-        db.orders.deleteOne({ "_id": ObjectId(id) });
-    }
-    catch (e) {
-        print(e);
-    }
+    db.orders.deleteOne({ "_id": ObjectId(id) });
 }
 exports.deleteSingleOrder = deleteSingleOrder;
 // insertion-handler receives an error object as standard parameter
